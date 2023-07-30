@@ -9,10 +9,11 @@ const icons = { IconBrandChrome, IconHelp };
 const other = {
   id: 'sample-docs-roadmap',
   type: 'group',
+  title: 'Goerli ETH',
   children: [
     {
       id: 'sample-page',
-      title: 'Sample Page',
+      title: 'Send',
       type: 'item',
       url: '/sample-page',
       icon: icons.IconBrandChrome,
@@ -20,9 +21,9 @@ const other = {
     },
     {
       id: 'documentation',
-      title: 'Documentation',
+      title: 'Receive',
       type: 'item',
-      url: 'https://codedthemes.gitbook.io/berry/',
+      url: '/eth/send',
       icon: icons.IconHelp,
       external: true,
       target: true

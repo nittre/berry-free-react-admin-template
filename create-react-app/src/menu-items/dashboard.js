@@ -13,9 +13,9 @@ const dashboard = {
   children: [
     {
       id: 'default',
-      title: 'Dashboard',
+      title: 'Dashboard -> Sidebar>MenuList>menu-items 순으로 들어오면됨',
       type: 'item',
-      url: '/dashboard/default',
+      url: '/dashboard',
       icon: icons.IconDashboard,
       breadcrumbs: false
     }
