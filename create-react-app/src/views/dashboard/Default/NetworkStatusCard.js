@@ -56,9 +56,8 @@ const CardWrapper = styled(MainCard)(({ theme }) => ({
 
 // ===========================|| DASHBOARD DEFAULT - EARNING CARD ||=========================== //
 
-const NetworkStatusCard = ({ isLoading, networkProvider }) => {
+const NetworkStatusCard = ({ isLoading, blockNumber }) => {
   const theme = useTheme();
-  const [latestBlock, setLatestBlock] = useState('')
 
   const [anchorEl, setAnchorEl] = useState(null);
 
@@ -70,18 +69,6 @@ const NetworkStatusCard = ({ isLoading, networkProvider }) => {
     setAnchorEl(null);
   };
 
-
-  useEffect(() => {
-	async function something() {
-		if (networkProvider == undefined || Object.keys(networkProvider).length != 0){
-			networkProvider.on('block', (blockNumber) => {
-				setLatestBlock(blockNumber)
-			})
-		}
-	}
-
-	something()
-  }, [networkProvider])
 
   return (
     <>
@@ -103,7 +90,7 @@ const NetworkStatusCard = ({ isLoading, networkProvider }) => {
                       <TypoGraphy sx={{ fontSize: '1rem', fontWeight: 600 }}>Goerli TestNet</TypoGraphy>
                     </Grid>
                     <Grid item>
-                      <TypoGraphy sx={{ fontSize: '1rem', fontWeight: 400 }}>block height: {latestBlock}</TypoGraphy>
+                      <TypoGraphy sx={{ fontSize: '1rem', fontWeight: 400 }}>block height: {blockNumber}</TypoGraphy>
                     </Grid>
                   </Grid>
                 </SubCard>
