@@ -1,4 +1,4 @@
-import {ethers} from 'ethers'
+import {ethers, formatUnits} from 'ethers'
 
 export const createWallet = () => {
 	return ethers.HDNodeWallet.createRandom()
@@ -6,6 +6,15 @@ export const createWallet = () => {
 
 export const createWalletFromPhrase = (phrase) => {
 	return ethers.HDNodeWallet.fromPhrase(phrase)
+}
+
+export const getBalance = async (provider, address)=> {
+	const balance = await provider.getBalance(address)
+	return balance
+}
+
+export const weiToEther = (value, decimal = 18, ceil = 7) => {
+	return formatUnits(value, decimal).slice(0, ceil)
 }
 
 // export interface GasLimitResponse {
@@ -25,13 +34,6 @@ export const createWalletFromPhrase = (phrase) => {
 // }
 
 
-// export const getBalance = async (
-// 	provider: InfuraProvider,
-// 	address: string,
-// ): Promise<bigint> => {
-// 	const balance = await provider.getBalance(address)
-// 	return balance
-// }
 
 // export const getTokenBalance = async (
 // 	tokenAddress: string,
@@ -44,10 +46,6 @@ export const createWalletFromPhrase = (phrase) => {
 // 	const result = await getBalance(account)
 
 // 	return result
-// }
-
-// export const weiToEther = (value: bigint, decimal = 18, ceil = 7): string => {
-// 	return formatUnits(value, decimal).slice(0, ceil)
 // }
 
 // export const ethToWei = (value: string, decimal = 18): bigint => {

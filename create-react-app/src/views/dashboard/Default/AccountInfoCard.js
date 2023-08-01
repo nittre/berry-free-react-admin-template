@@ -11,6 +11,10 @@ import SkeletonEarningCard from 'ui-component/cards/Skeleton/EarningCard';
 
 // assets
 import EthBalanceIcon from 'assets/images/icons/ethBalance.svg';
+import { useNavigate } from 'react-router';
+import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { getBalance, weiToEther } from 'utils/crypto';
 
 const CardWrapper = styled(MainCard)(({ theme }) => ({
   backgroundColor: theme.palette.secondary.dark,
@@ -52,8 +56,14 @@ const CardWrapper = styled(MainCard)(({ theme }) => ({
 
 const AccountInfoCard = ({ isLoading }) => {
   const theme = useTheme();
-
+  const { wallet, networkProvider } = useSelector(state => state)
   const [anchorEl, setAnchorEl] = useState(null);
+  const [balance, setBalance] = useState('')
+  const [latestBlock, setLatestBlock] = useState('')
+  
+  const formatAddress = (address) => {
+	return address.slice(0, 8) + '...' + address.slice(address.length - 10, address.length - 1)
+  }
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -62,6 +72,12 @@ const AccountInfoCard = ({ isLoading }) => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  useEffect(() => {
+	getBalance(networkProvider, wallet.address).then(balance => {
+		setBalance(weiToEther(balance))
+	})
+  }, [])
 
   return (
     <>
@@ -91,7 +107,7 @@ const AccountInfoCard = ({ isLoading }) => {
               <Grid item>
                 <Grid container alignItems="center">
                   <Grid item>
-                    <Typography sx={{ fontSize: '2.125rem', fontWeight: 500, mr: 1, mt: 1.75, mb: 0.75 }}>0.123 GoerliETH</Typography>
+                    <Typography sx={{ fontSize: '2.125rem', fontWeight: 500, mr: 1, mt: 1.75, mb: 0.75 }}>{balance} GoerliETH</Typography>
                   </Grid>
                 </Grid>
               </Grid>
@@ -103,7 +119,7 @@ const AccountInfoCard = ({ isLoading }) => {
                     color: theme.palette.secondary[200]
                   }}
                 >
-                  0x35292...D4d83e
+                  {formatAddress(wallet.address)}
                 </Typography>
               </Grid>
             </Grid>

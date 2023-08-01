@@ -8,14 +8,30 @@ import AccountInfoCard from './AccountInfoCard';
 import NetworkStatusCard from './NetworkStatusCard';
 import PopularCard from './PopularCard';
 import { gridSpacing } from 'store/constant';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router';
 
 // ==============================|| DEFAULT DASHBOARD ||============================== //
 
 const Dashboard = () => {
+  const { wallet, networkProvider } = useSelector(state => state)
+  const dispatch = useDispatch()
+  const navigate = useNavigate('/')
   const [isLoading, setLoading] = useState(true);
+
   useEffect(() => {
     setLoading(false);
+	if (Object.keys(networkProvider).length == 0) {
+		dispatch({type: 'SET_PROVIDER'})
+	}
+	console.log(networkProvider)
   }, []);
+
+  useEffect(() => {
+	if (Object.keys(wallet).length == 0) {
+		navigate('/wallet')
+	}
+  })
 
   return (
     <Grid container spacing={gridSpacing}>
