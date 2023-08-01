@@ -59,7 +59,6 @@ const AccountInfoCard = ({ isLoading }) => {
   const { wallet, networkProvider } = useSelector(state => state)
   const [anchorEl, setAnchorEl] = useState(null);
   const [balance, setBalance] = useState('')
-  const [latestBlock, setLatestBlock] = useState('')
   
   const formatAddress = (address) => {
 	return address.slice(0, 8) + '...' + address.slice(address.length - 10, address.length - 1)
