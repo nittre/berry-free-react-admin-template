@@ -7,7 +7,7 @@ import { Divider, Grid, Stack, Typography, useMediaQuery } from '@mui/material';
 // project imports
 import AuthWrapper1 from '../AuthWrapper1';
 import AuthCardWrapper from '../AuthCardWrapper';
-import AuthLogin from '../auth-forms/AuthLogin';
+import RestoreWalletForm from '../auth-forms/RestoreWalletForm';
 import Logo from 'ui-component/Logo';
 import AuthFooter from 'ui-component/cards/AuthFooter';
 
@@ -47,7 +47,7 @@ const Login = () => {
                     </Grid>
                   </Grid>
                   <Grid item xs={12}>
-                    <AuthLogin />
+                    <RestoreWalletForm />
                   </Grid>
                   <Grid item xs={12}>
                     <Divider />

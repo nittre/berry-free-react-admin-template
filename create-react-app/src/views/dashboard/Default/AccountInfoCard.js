@@ -50,7 +50,7 @@ const CardWrapper = styled(MainCard)(({ theme }) => ({
 
 // ===========================|| DASHBOARD DEFAULT - EARNING CARD ||=========================== //
 
-const AccountInfo = ({ isLoading }) => {
+const AccountInfoCard = ({ isLoading }) => {
   const theme = useTheme();
 
   const [anchorEl, setAnchorEl] = useState(null);
@@ -114,8 +114,8 @@ const AccountInfo = ({ isLoading }) => {
   );
 };
 
-AccountInfo.propTypes = {
+AccountInfoCard.propTypes = {
   isLoading: PropTypes.bool
 };
 
-export default AccountInfo;
+export default AccountInfoCard;
