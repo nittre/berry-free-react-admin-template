@@ -13,6 +13,7 @@ import AnimateButton from 'ui-component/extended/AnimateButton';
 import { createWallet } from 'utils/crypto';
 import { useState } from 'react';
 import { pasteToClipboard } from 'utils/utils';
+import { useDispatch } from 'react-redux';
 
 
 // assets
@@ -21,21 +22,34 @@ import { pasteToClipboard } from 'utils/utils';
 
 const createWalletStep = ['start', 'pasteMnemonic', 'end']
 
-const Register = () => {
+const CreateWallet = () => {
   const theme = useTheme();
   const navigate = useNavigate()
+  const dispatch = useDispatch()
   const matchDownSM = useMediaQuery(theme.breakpoints.down('md'));
   const [step, setStep] = useState(createWalletStep[0])
   const [phrase, setPhrase] = useState([])
+  const [wallet, setWallet] = useState(undefined)
   const [isPhrasePasted, setIsPhrasePasted] = useState(false)
+
+  const dispatchWallet = () => {
+	dispatch({
+		type: 'CREATE_WALLET',
+		payload: {
+			wallet
+		}
+	})
+  }
 
   const handleCreateButtonClick = () => {
 	try {
 		if (step == createWalletStep[0]){
 			const wallet = createWallet()
+			setWallet(wallet)
 			setPhrase(wallet.mnemonic.phrase.split(' '))
 			setStep(createWalletStep[1])
 		} else if (step == createWalletStep[1]) {
+			dispatchWallet()
 			navigate('/')
 		}
 	} catch(e) {
@@ -152,4 +166,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default CreateWallet;
