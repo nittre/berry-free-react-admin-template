@@ -4,13 +4,15 @@ import { combineReducers } from 'redux';
 import customizationReducer from './customizationReducer';
 import walletReducer from './walletReducer';
 import networkProviderReducer from './networkProviderReducer';
+import transactionReducer from './transactionReducer';
 
 // ==============================|| COMBINE REDUCER ||============================== //
 
 const reducer = combineReducers({
   customization: customizationReducer,
   wallet: walletReducer,
-  networkProvider: networkProviderReducer
+  networkProvider: networkProviderReducer,
+  transaction: transactionReducer
 });
 
 export default reducer;

@@ -8,7 +8,7 @@ const icons = {
 
 // ==============================|| EXTRA PAGES MENU ITEMS ||============================== //
 
-const pages = {
+const transaction = {
   id: 'pages',
   title: 'Transaction',
   type: 'group',
@@ -40,4 +40,4 @@ const pages = {
   ]
 };
 
-export default pages;
+export default transaction;
