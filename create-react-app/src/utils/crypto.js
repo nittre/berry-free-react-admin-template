@@ -17,6 +17,11 @@ export const weiToEther = (value, decimal = 18, ceil = 7) => {
 	return formatUnits(value, decimal).slice(0, ceil)
 }
 
+// export const getBlockHeight = async (provider) => {
+// 	const height = await provider.getBlockNumber
+// 	return height
+// }
+
 // export interface GasLimitResponse {
 // 	message: string
 // 	gasLimit: bigint | null

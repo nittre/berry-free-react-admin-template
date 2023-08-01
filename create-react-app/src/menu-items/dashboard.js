@@ -13,7 +13,7 @@ const dashboard = {
   children: [
     {
       id: 'default',
-      title: 'Dashboard -> Sidebar>MenuList>menu-items 순으로 들어오면됨',
+      title: 'Dashboard',
       type: 'item',
       url: '/dashboard',
       icon: icons.IconDashboard,

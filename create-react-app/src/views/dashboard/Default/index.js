@@ -20,11 +20,12 @@ const Dashboard = () => {
   const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
-    setLoading(false);
+	setLoading(false);
 	if (Object.keys(networkProvider).length == 0) {
+		setLoading(true)
 		dispatch({type: 'SET_PROVIDER'})
+		setLoading(false)
 	}
-	console.log(networkProvider)
   }, []);
 
   useEffect(() => {
@@ -38,10 +39,10 @@ const Dashboard = () => {
       <Grid item xs={12}>
         <Grid container spacing={gridSpacing}>
           <Grid item lg={4} md={6} sm={6} xs={12}>
-            <AccountInfoCard isLoading={isLoading} />
+            <AccountInfoCard isLoading={isLoading} wallet={wallet} networkProvider={networkProvider} />
           </Grid>
           <Grid item lg={4} md={6} sm={6} xs={12}>
-            <NetworkStatusCard isLoading={isLoading} />
+            <NetworkStatusCard isLoading={isLoading} networkProvider={networkProvider} />
           </Grid>
         </Grid>
       </Grid>

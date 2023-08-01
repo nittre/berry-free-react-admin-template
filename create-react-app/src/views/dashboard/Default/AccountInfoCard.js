@@ -54,9 +54,8 @@ const CardWrapper = styled(MainCard)(({ theme }) => ({
 
 // ===========================|| DASHBOARD DEFAULT - EARNING CARD ||=========================== //
 
-const AccountInfoCard = ({ isLoading }) => {
+const AccountInfoCard = ({ isLoading, wallet, networkProvider }) => {
   const theme = useTheme();
-  const { wallet, networkProvider } = useSelector(state => state)
   const [anchorEl, setAnchorEl] = useState(null);
   const [balance, setBalance] = useState('')
   
@@ -73,10 +72,12 @@ const AccountInfoCard = ({ isLoading }) => {
   };
 
   useEffect(() => {
-	getBalance(networkProvider, wallet.address).then(balance => {
-		setBalance(weiToEther(balance))
-	})
-  }, [])
+	if (Object.keys(wallet).length != 0){
+		getBalance(networkProvider, wallet.address).then(balance => {
+			setBalance(weiToEther(balance))
+		})
+	}
+  }, [wallet])
 
   return (
     <>

@@ -14,6 +14,7 @@ import MainCard from 'ui-component/cards/MainCard';
 import SkeletonEarningCard from 'ui-component/cards/Skeleton/EarningCard';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import { getBlockHeight } from 'utils/crypto';
 
 // assets
 
@@ -55,9 +56,8 @@ const CardWrapper = styled(MainCard)(({ theme }) => ({
 
 // ===========================|| DASHBOARD DEFAULT - EARNING CARD ||=========================== //
 
-const NetworkStatusCard = ({ isLoading }) => {
+const NetworkStatusCard = ({ isLoading, networkProvider }) => {
   const theme = useTheme();
-  const networkProvider = useSelector(state => state.networkProvider)
   const [latestBlock, setLatestBlock] = useState('')
 
   const [anchorEl, setAnchorEl] = useState(null);
@@ -72,10 +72,16 @@ const NetworkStatusCard = ({ isLoading }) => {
 
 
   useEffect(() => {
-	networkProvider.on('block', (blockNumber) => {
-		setLatestBlock(blockNumber)
-	})
-  }, [])
+	async function something() {
+		if (networkProvider == undefined || Object.keys(networkProvider).length != 0){
+			networkProvider.on('block', (blockNumber) => {
+				setLatestBlock(blockNumber)
+			})
+		}
+	}
+
+	something()
+  }, [networkProvider])
 
   return (
     <>

@@ -10,16 +10,15 @@ const icons = {
 
 const pages = {
   id: 'pages',
-  title: 'Pages -> 트랜잭션으로 바꾸기',
-  caption: 'Pages Caption',
+  title: 'Transaction',
   type: 'group',
   children: [
     {
-      id: 'authentication',
-      title: 'Authentication -> 트랜잭션으로 바꾸기',
+      id: 'transaction',
+      title: 'Transaction',
       type: 'item',
       icon: icons.IconKey,
-      url: '/transactions'
+      url: '/transaction'
 
       // children: [
       //   {
