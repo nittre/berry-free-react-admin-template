@@ -5,7 +5,7 @@ import Loadable from 'ui-component/Loadable';
 import MinimalLayout from 'layout/MinimalLayout';
 
 // login option 3 routing
-const AuthLogin3 = Loadable(lazy(() => import('views/pages/authentication/authentication3/Login3')));
+const RestoreWallet = Loadable(lazy(() => import('views/pages/authentication/authentication3/RestoreWallet')));
 const AuthRegister3 = Loadable(lazy(() => import('views/pages/authentication/authentication3/Register3')));
 
 // ==============================|| AUTHENTICATION ROUTING ||============================== //
@@ -16,7 +16,7 @@ const AuthenticationRoutes = {
   children: [
     {
       path: '/wallet/restore',
-      element: <AuthLogin3 />
+      element: <RestoreWallet />
     },
     {
       path: '/wallet/create',

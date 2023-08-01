@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
@@ -35,8 +35,9 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
 import Google from 'assets/images/icons/social-google.svg';
+import { useNavigate } from 'react-router';
 
-// ============================|| FIREBASE - LOGIN ||============================ //
+// ============================|| Restore Wallet ||============================ //
 
 const WalletRestore = ({ ...others }) => {
   const theme = useTheme();
@@ -45,12 +46,19 @@ const WalletRestore = ({ ...others }) => {
   // scriptRef.current -> 현재 마운트 된 상태면 true, 아니면 false
   const matchDownSM = useMediaQuery(theme.breakpoints.down('md'));
   const customization = useSelector((state) => state.customization);
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
   const [checked, setChecked] = useState(true);
   const [numPhrase, setNumPhrase] = useState(12)
 
-  const googleHandler = async () => {
-    console.error('Login');
-  };
+  const restoreWallet = (phrase) => {
+	dispatch({
+		type: 'RESTORE_WALLET',
+		payload: {
+			phrase
+		}
+	})
+  }
 
   const [showPassword, setShowPassword] = useState(false);
   const handleClickShowPassword = () => {
@@ -105,9 +113,9 @@ const WalletRestore = ({ ...others }) => {
           try {
 			
             if (scriptedRef.current) {
-				const result = createWalletFromPhrase(Object.values(values).join(' '))
-				console.log(result)
+				restoreWallet(Object.values(values).join(' '))
 				setSubmitting(false);
+				navigate('/')
             }
           } catch (err) {
             console.error(err);
