@@ -12,6 +12,8 @@ import { Avatar, Box, Grid, Menu, MenuItem, Typography } from '@mui/material';
 // project imports
 import MainCard from 'ui-component/cards/MainCard';
 import SkeletonEarningCard from 'ui-component/cards/Skeleton/EarningCard';
+import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 
 // assets
 
@@ -55,6 +57,8 @@ const CardWrapper = styled(MainCard)(({ theme }) => ({
 
 const NetworkStatusCard = ({ isLoading }) => {
   const theme = useTheme();
+  const networkProvider = useSelector(state => state.networkProvider)
+  const [latestBlock, setLatestBlock] = useState('')
 
   const [anchorEl, setAnchorEl] = useState(null);
 
@@ -65,6 +69,13 @@ const NetworkStatusCard = ({ isLoading }) => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+
+  useEffect(() => {
+	networkProvider.on('block', (blockNumber) => {
+		setLatestBlock(blockNumber)
+	})
+  }, [])
 
   return (
     <>
@@ -86,7 +97,7 @@ const NetworkStatusCard = ({ isLoading }) => {
                       <TypoGraphy sx={{ fontSize: '1rem', fontWeight: 600 }}>Goerli TestNet</TypoGraphy>
                     </Grid>
                     <Grid item>
-                      <TypoGraphy sx={{ fontSize: '1rem', fontWeight: 400 }}>block height: 205871</TypoGraphy>
+                      <TypoGraphy sx={{ fontSize: '1rem', fontWeight: 400 }}>block height: {latestBlock}</TypoGraphy>
                     </Grid>
                   </Grid>
                 </SubCard>
