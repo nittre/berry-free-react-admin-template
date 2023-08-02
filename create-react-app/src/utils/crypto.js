@@ -1,5 +1,7 @@
-import {ethers, formatUnits, parseUnits} from 'ethers'
+import { BaseContract, ethers, formatUnits, parseUnits } from 'ethers'
 import axios from 'axios'
+import { erc20abi } from './erc20abi'
+
 export const createWallet = () => {
 	return ethers.HDNodeWallet.createRandom()
 }
@@ -69,28 +71,37 @@ export const sendEther = async (provider, wallet, tx) => {
 		return true
 	} catch(e) {
 		return false
-	}
-	
+	}	
 }
 
+export const importTokenContract = async (provider, contractAddress, abi = erc20abi) => {
+	const contract = new BaseContract(contractAddress, abi, provider)
+	const getSymbol = contract.getFunction('symbol')
+	const getDecimals = contract.getFunction('decimals')
+	
+	const symbol = await getSymbol()
+	const decimals = await getDecimals()
+	return {symbol, decimals}
+}
+
+export const getTokenBalance = async (
+	provider,
+	tokenAddress,
+	accountAddress,
+)=> {
+	const contract = new ethers.BaseContract(tokenAddress, erc20abi, provider)
+	const getBalance = contract.getFunction('balanceOf')
+
+	const result = await getBalance(accountAddress)
+
+	return result
+}
 
 // export const getBlockHeight = async (provider) => {
 // 	const height = await provider.getBlockNumber
 // 	return height
 // }
 
-// export const getTokenBalance = async (
-// 	tokenAddress: string,
-// 	provider: InfuraProvider,
-// 	account: string,
-// ): Promise<any> => {
-// 	const contract = new ethers.BaseContract(tokenAddress, erc20abi, provider)
-// 	const getBalance = contract.getFunction('balanceOf')
-
-// 	const result = await getBalance(account)
-
-// 	return result
-// }
 
 
 // export const weiToGwei = (value: number): bigint => {
