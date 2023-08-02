@@ -12,7 +12,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { getBlockHeight, isValidAddress } from 'utils/crypto';
 import MainCard from 'ui-component/cards/MainCard';
-import SendComponent from '../send/SendComponent';
 import ImportTokenInit from './ImportTokenInit';
 import { Formik, useFormik } from 'formik';
 // third party
