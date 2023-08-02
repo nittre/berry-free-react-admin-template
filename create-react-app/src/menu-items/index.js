@@ -1,12 +1,12 @@
 import dashboard from './dashboard';
 import transaction from './transaction';
 import utilities from './utilities';
-import other from './other';
+import eth from './eth';
 
 // ==============================|| MENU ITEMS ||============================== //
 
 const menuItems = {
-  items: [dashboard, transaction, other, utilities]
+  items: [dashboard, transaction, eth, utilities]
 };
 
 export default menuItems;

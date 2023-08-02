@@ -4,6 +4,7 @@ import { lazy } from 'react';
 import MainLayout from 'layout/MainLayout';
 import Loadable from 'ui-component/Loadable';
 import Transaction from 'views/transaction';
+import Send from 'views/send';
 
 // dashboard routing
 const DashboardDefault = Loadable(lazy(() => import('views/dashboard/Default')));
@@ -38,12 +39,7 @@ const MainRoutes = {
     },
     {
       path: 'send',
-      children: [
-        {
-          path: 'util-color',
-          element: <UtilsColor />
-        }
-      ]
+      element: <Send />
     },
     {
       path: 'utils',

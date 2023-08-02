@@ -1,5 +1,5 @@
-import {ethers, formatUnits} from 'ethers'
-
+import {ethers, formatUnits, parseUnits} from 'ethers'
+import axios from 'axios'
 export const createWallet = () => {
 	return ethers.HDNodeWallet.createRandom()
 }
@@ -13,32 +13,71 @@ export const getBalance = async (provider, address)=> {
 	return balance
 }
 
+export const etherToWei = (value, decimal = 18) => {
+	return parseUnits(value, decimal)
+}
+
 export const weiToEther = (value, decimal = 18, ceil = 7) => {
 	return formatUnits(value, decimal).slice(0, ceil)
 }
+
+export const isValidAddress = (address) => {
+	try {
+		return ethers.isAddress(address)
+	} catch (e) {
+		return false
+	}
+}
+
+export const getGasPrice = async ()=> {
+	const apiKey = process.env.REACT_APP_ETHERSCAN_KEY
+
+	try {
+		const result = await axios.get(
+			`https://api.etherscan.io/api?module=gastracker&action=gasoracle&apikey=${apiKey}`,
+		)
+
+		const { SafeGasPrice, ProposeGasPrice, FastGasPrice } =
+			result.data.result
+		return {
+			data: {
+				safe: BigInt(Math.ceil(Number(SafeGasPrice) * 1000000000)),
+				propose: BigInt(Math.ceil(Number(ProposeGasPrice) * 1000000000)),
+				fast: BigInt(Math.ceil(Number(FastGasPrice) * 1000000000)),
+			},
+			message: 'success',
+		}
+	} catch (e) {
+		const { code } = JSON.parse(JSON.stringify(e))
+		return {
+			message: code,
+			data: null,
+		}
+	}
+}
+
+export const getETHGasLimit = () => {
+	return 21000n
+}
+
+export const sendEther = async (provider, wallet, tx) => {
+	try {
+		const signer = wallet.connect(provider)
+		const nonce = await signer.getNonce()
+		const txResponse = await signer.sendTransaction({...tx, nonce})
+		const txReceipt = await txResponse.wait()
+		return true
+	} catch(e) {
+		return false
+	}
+	
+}
+
 
 // export const getBlockHeight = async (provider) => {
 // 	const height = await provider.getBlockNumber
 // 	return height
 // }
-
-// export interface GasLimitResponse {
-// 	message: string
-// 	gasLimit: bigint | null
-// }
-
-// export interface GasPrice {
-// 	safe: bigint
-// 	propose: bigint
-// 	fast: bigint
-// }
-
-// export interface GasPriceResponse {
-// 	message: string
-// 	data: GasPrice | null
-// }
-
-
 
 // export const getTokenBalance = async (
 // 	tokenAddress: string,
@@ -53,43 +92,9 @@ export const weiToEther = (value, decimal = 18, ceil = 7) => {
 // 	return result
 // }
 
-// export const ethToWei = (value: string, decimal = 18): bigint => {
-// 	return parseUnits(value, decimal)
-// }
 
 // export const weiToGwei = (value: number): bigint => {
 // 	return BigInt(formatUnits(BigInt(value), 'gwei'))
-// }
-
-// export const isValidAddress = (address: string): boolean => {
-// 	try {
-// 		return ethers.isAddress(address)
-// 	} catch (e) {
-// 		return false
-// 	}
-// }
-
-// export const getETHGasLimit = async (
-// 	provider: InfuraProvider,
-// 	tx: TxType,
-// ): Promise<GasLimitResponse> => {
-// 	try {
-// 		const gasLimit = await provider.estimateGas({
-// 			from: tx.from,
-// 			to: tx.to,
-// 			value: tx.value,
-// 		})
-// 		return {
-// 			message: 'success',
-// 			gasLimit,
-// 		}
-// 	} catch (e) {
-// 		const { code } = JSON.parse(JSON.stringify(e))
-// 		return {
-// 			message: code,
-// 			gasLimit: BigInt(0),
-// 		}
-// 	}
 // }
 
 // export const getPopulatedTx = async (
@@ -130,39 +135,6 @@ export const weiToEther = (value, decimal = 18, ceil = 7) => {
 // 	}
 // }
 
-// export const getProperGasPrice = async (): Promise<GasPriceResponse> => {
-// 	const apiKey = process.env.REACT_APP_ETHERSCAN_KEY
-
-// 	try {
-// 		if (apiKey !== undefined) {
-// 			const result = await axios.get(
-// 				`https://api.etherscan.io/api?module=gastracker&action=gasoracle&apikey=${apiKey}`,
-// 			)
-// 			const { SafeGasPrice, ProposeGasPrice, FastGasPrice, suggestBaseFee } =
-// 				result.data.result
-
-// 			return {
-// 				data: {
-// 					safe: BigInt(Math.ceil(Number(SafeGasPrice) * 1000000000)),
-// 					propose: BigInt(Math.ceil(Number(ProposeGasPrice) * 1000000000)),
-// 					fast: BigInt(Math.ceil(Number(FastGasPrice) * 1000000000)),
-// 				},
-// 				message: 'success',
-// 			}
-// 		} else {
-// 			return {
-// 				data: null,
-// 				message: 'no etherscan api key',
-// 			}
-// 		}
-// 	} catch (e: any) {
-// 		const { code } = JSON.parse(JSON.stringify(e))
-// 		return {
-// 			message: code,
-// 			data: null,
-// 		}
-// 	}
-// }
 
 // export const hashingPassword = (password: string): string => {
 // 	const salt = process.env.PASSWORD_SALT

@@ -6,29 +6,20 @@ const icons = { IconBrandChrome, IconHelp };
 
 // ==============================|| SAMPLE PAGE & DOCUMENTATION MENU ITEMS ||============================== //
 
-const other = {
-  id: 'sample-docs-roadmap',
+const eth = {
+  id: 'eth',
   type: 'group',
   title: 'Goerli ETH',
   children: [
     {
-      id: 'sample-page',
+      id: 'send-eth',
       title: 'Send',
       type: 'item',
-      url: '/sample-page',
+      url: '/send',
       icon: icons.IconBrandChrome,
       breadcrumbs: false
     },
-    {
-      id: 'documentation',
-      title: 'Receive',
-      type: 'item',
-      url: '/eth/send',
-      icon: icons.IconHelp,
-      external: true,
-      target: true
-    }
   ]
 };
 
-export default other;
+export default eth;
