@@ -8,7 +8,7 @@ const tokenReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'ADD_TOKEN':
 		return {
-			tx: [...state.token, action.payload.token]
+			token: [...state.token, action.payload.token]
 		}
 	default:
       return state;

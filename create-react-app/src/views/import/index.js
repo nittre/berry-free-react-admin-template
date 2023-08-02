@@ -6,7 +6,7 @@ import { Grid } from '@mui/material';
 // project imports
 import AccountInfoCard from '../dashboard/Default/AccountInfoCard';
 import NetworkStatusCard from '../dashboard/Default/NetworkStatusCard';
-import PopularCard from '../dashboard/Default/PopularCard';
+import PopularCard from '../dashboard/Default/TokenList';
 import { gridSpacing } from 'store/constant';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
