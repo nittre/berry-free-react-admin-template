@@ -28,7 +28,7 @@ const token = {
       id: 'token-send',
       title: 'Send Token',
       type: 'item',
-      url: '/token/send',
+      url: '/send',
       icon: icons.IconPalette,
       breadcrumbs: false
     }
