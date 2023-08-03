@@ -39,6 +39,17 @@ const Dashboard = () => {
 		dispatch({type: 'RESET_TOKEN'})
 	})
 	setProvider()
+
+	if (localStorage.getItem('tx')){
+		const localTxs = JSON.parse(localStorage.getItem('tx'))
+		for (const tx of localTxs){
+			if (transaction.tx.filter(t => t.hash === tx.hash).length == 0){
+				dispatch({type: 'ADD_TRANSACTION', payload: {tx}})
+			}
+		}
+	} else {
+		localStorage.setItem('tx', JSON.stringify([]))
+	}
   }, []);
 
   useEffect(() => {
@@ -71,15 +82,6 @@ const Dashboard = () => {
 				}
 			})
 		}
-	}
-
-	if (localStorage.getItem('tx')){
-		const localTxs = JSON.parse(localStorage.getItem('tx'))
-		for (const tx of localTxs){
-			dispatch({type: 'ADD_TRANSACTION', payload: {tx}})
-		}
-	} else {
-		localStorage.setItem('tx', JSON.stringify([]))
 	}
 	subscribeBlocks()
   }, [networkProvider])
