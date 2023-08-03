@@ -12,6 +12,8 @@ const walletReducer = (state = initialState, action) => {
 		return createWalletFromPhrase(action.payload.phrase);
 	case 'CREATE_WALLET':
 		return action.payload.wallet
+	case 'LOGOUT':
+		return new Object()
     default:
       return state;
   }
