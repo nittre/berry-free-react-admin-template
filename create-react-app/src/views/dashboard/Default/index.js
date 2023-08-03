@@ -33,6 +33,11 @@ const Dashboard = () => {
 		} 
 	}
 
+	window.addEventListener('beforeunload', () => {
+		dispatch({type: 'LOGOUT'})
+		dispatch({type: 'RESET_TX'})
+		dispatch({type: 'RESET_TOKEN'})
+	})
 	setProvider()
   }, []);
 
