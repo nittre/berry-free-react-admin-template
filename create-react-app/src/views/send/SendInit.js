@@ -27,11 +27,12 @@ import { useNavigate } from 'react-router';
 
 const SendInit = ({ isLoading, formik, handleFormikValue, handleStep }) => {
   const theme = useTheme();
-  const {wallet, networkProvider, token} = useSelector(state => state)
+  const {wallet, networkProvider} = useSelector(state => state)
 
   const [calcGasFeeLoading, setCalcGasFeeLoading] = useState(false)
   const [step, setStep] = useState('init')
   const [txResult, setTxResult] = useState('pending')
+  const [token, setToken] = useState([])
 
   const handleValueChange = async (e, value, to) => {
 	setCalcGasFeeLoading(true)
@@ -66,7 +67,7 @@ const SendInit = ({ isLoading, formik, handleFormikValue, handleStep }) => {
   }
 
   const handleAssetChange = (e) => {
-	for (const t of token.token) {
+	for (const t of token) {
 		if (t.tokenSymbol == e.target.value) {
 			handleFormikValue('token', t)
 			break
@@ -74,11 +75,16 @@ const SendInit = ({ isLoading, formik, handleFormikValue, handleStep }) => {
 	} 
   }
 
-  
-
   const handleNextButton = () => {
 	handleStep('confirm')
   }
+
+  useEffect(() => {
+	const locTokens = localStorage.getItem('tokens')
+	if (locTokens !== null && locTokens.length !== 0){
+		setToken(JSON.parse(locTokens))
+	}
+  }, [])
 
   return (
 	<Grid container direction="column">
@@ -88,8 +94,8 @@ const SendInit = ({ isLoading, formik, handleFormikValue, handleStep }) => {
 				handleAssetChange(e)
 			}} id="asset" name="asset" defaultValue="GoerliETH">
 				<MenuItem key="GoerliETH" value="GoerliETH">GoerliETH</MenuItem>
-				{Array.from({length: token.token.length}, (_, index) => {
-					return <MenuItem key={index} value={token.token[index].tokenSymbol}>{token.token[index].tokenSymbol}</MenuItem>
+				{Array.from({length: token.length}, (_, index) => {
+					return <MenuItem key={index} value={token[index].tokenSymbol}>{token[index].tokenSymbol}</MenuItem>
 				})}
 			</Select>
 			<FormControl sx={{...theme.typography.customInput, flexGrow: 3}}>

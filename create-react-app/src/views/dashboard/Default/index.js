@@ -69,8 +69,9 @@ const Dashboard = () => {
 								dispatch({type: 'ADD_TRANSACTION', payload: {
 									tx
 								}})
-								if (localStorage.getItem('tx')){
-									const localTxs = JSON.parse(localStorage.getItem('tx'))
+								const locTx = localStorage.getItem('tx')
+								if (locTx !== null && locTx.length !== 0){
+									const localTxs = JSON.parse(locTx)
 									localTxs.push(tx)
 									localStorage.setItem('tx', JSON.stringify(localTxs))
 								} else {

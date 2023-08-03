@@ -9,7 +9,7 @@ import { CardContent, Divider, Grid, Typography } from '@mui/material';
 import MainCard from 'ui-component/cards/MainCard';
 import SkeletonPopularCard from 'ui-component/cards/Skeleton/PopularCard';
 import { gridSpacing } from 'store/constant';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { getTokenBalance, weiToEther } from 'utils/crypto';
 import { useEffect } from 'react';
 
@@ -17,9 +17,9 @@ import { useEffect } from 'react';
 
 const TokenList = ({ isLoading }) => {
   const theme = useTheme();
-  const { wallet, networkProvider, token } = useSelector(state => state)
-  const dispatch = useDispatch()
+  const { wallet, networkProvider } = useSelector(state => state)
   const [anchorEl, setAnchorEl] = useState(null);
+  const [token, setToken] = useState([])
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -30,14 +30,14 @@ const TokenList = ({ isLoading }) => {
   };
 
   const updateTokenBalance = async () => {
-	const updatedToken = []
-	for (const t of token.token){
-		const balance = await getTokenBalance(networkProvider, t.tokenAddress, wallet.address)
-		updatedToken.push({...t, balance: weiToEther(balance, t.tokenDecimals)})
+	const locTokens = localStorage.getItem('tokens')
+	if (locTokens !== null && locTokens.length !== 0){
+		const tokens = JSON.parse(locTokens)
+		for (const t of tokens){
+			const balance = await getTokenBalance(networkProvider, t.tokenAddress, wallet.address)
+			token.push({...t, balance: weiToEther(balance, t.tokenDecimals)})
+		}
 	}
-	dispatch({type: 'UPDATE_BALANCE', payload: {
-		token: updatedToken
-	}})
   }
 
   useEffect( () => {
@@ -63,20 +63,20 @@ const TokenList = ({ isLoading }) => {
               <Grid item xs={12}>
                 <Grid container direction="column">
                   {
-					Array.from({length: token.token.length}, (_, index) => {
+					Array.from({length: token.length}, (_, index) => {
 						return (
 							<Grid item key={index}>
 								<Grid container alignItems="center" justifyContent="space-between">
 								<Grid item>
 									<Typography variant="subtitle1" color="inherit">
-										{token.token[index].tokenSymbol}
+										{token[index].tokenSymbol}
 									</Typography>
 								</Grid>
 								<Grid item>
 									<Grid container alignItems="center" justifyContent="space-between">
 									<Grid item>
 										<Typography variant="subtitle1" color="inherit">
-										{token.token[index].balance} {token.token[index].tokenSymbol}
+										{token[index].balance} {token[index].tokenSymbol}
 										</Typography>
 									</Grid>
 									</Grid>

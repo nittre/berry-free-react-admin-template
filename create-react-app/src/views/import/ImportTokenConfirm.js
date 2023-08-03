@@ -25,7 +25,6 @@ import { useNavigate } from 'react-router';
 const ImportTokenConfirm = ({ isLoading, handleStep, formik, updateFormikValue }) => {
   const theme = useTheme();
   const navigate = useNavigate()
-  const dispatch = useDispatch()
   const {networkProvider, wallet} = useSelector(state => state)
 
   const handlePrevButton = () => {
@@ -33,8 +32,12 @@ const ImportTokenConfirm = ({ isLoading, handleStep, formik, updateFormikValue }
   }
 
   const handleNextButton = () => {
-	console.log('formik.values: ', formik.values)
-	dispatch({type: 'ADD_TOKEN', payload: { token: formik.values}})
+	const locTokens = localStorage.getItem('tokens')
+	if (locTokens !== null && locTokens.length !== 0){
+		localStorage.setItem('tokens', [...JSON.parse(locTokens), formik.values])
+	} else {
+		localStorage.setItem('tokens', JSON.stringify([formik.values]))
+	}
 	navigate('/')
   }
 
