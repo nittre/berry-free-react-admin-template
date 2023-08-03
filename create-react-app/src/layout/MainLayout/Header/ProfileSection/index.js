@@ -59,6 +59,7 @@ const ProfileSection = () => {
   const anchorRef = useRef(null);
   const handleLogout = async () => {
     dispatch({type: 'LOGOUT'})
+	dispatch({type: 'RESET_TX'})
 	navigate('/wallet')
   };
 

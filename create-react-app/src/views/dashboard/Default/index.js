@@ -17,7 +17,7 @@ import { InfuraProvider } from 'ethers';
 // ==============================|| DEFAULT DASHBOARD ||============================== //
 
 const Dashboard = () => {
-  const { wallet, networkProvider } = useSelector(state => state)
+  const { wallet, networkProvider, transaction } = useSelector(state => state)
   const dispatch = useDispatch()
   const navigate = useNavigate('/')
   const [isLoading, setLoading] = useState(true);
@@ -46,17 +46,20 @@ const Dashboard = () => {
 
 				if (block !== null) {
 					for (const txHash of block.transactions) {
-						const tx = await networkProvider.getTransaction(txHash)
-						if (tx !== null && (tx.to === wallet.address || tx.from === wallet.address)) {
-							dispatch({type: 'ADD_TRANSACTION', payload: {
-								tx
-							}})
-							if (localStorage.getItem('tx')){
-								const localTxs = JSON.parse(localStorage.getItem('tx'))
-								localTxs.push(tx)
-								localStorage.setItem('tx', JSON.stringify(localTxs))
-							} else {
-								localStorage.setItem('tx', JSON.stringify([tx]))
+						const isExist = transaction.tx.filter(elem => elem.hash == txHash).length
+						if (isExist == 0) {
+							const tx = await networkProvider.getTransaction(txHash)
+							if (tx !== null && (tx.to === wallet.address || tx.from === wallet.address)) {
+								dispatch({type: 'ADD_TRANSACTION', payload: {
+									tx
+								}})
+								if (localStorage.getItem('tx')){
+									const localTxs = JSON.parse(localStorage.getItem('tx'))
+									localTxs.push(tx)
+									localStorage.setItem('tx', JSON.stringify(localTxs))
+								} else {
+									localStorage.setItem('tx', JSON.stringify([tx]))
+								}
 							}
 						}
 					}

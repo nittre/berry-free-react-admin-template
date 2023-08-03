@@ -10,6 +10,10 @@ const transactionReducer = (state = initialState, action) => {
 		return {
 			tx: [...state.tx, action.payload.tx]
 		}
+	case 'RESET_TX': 
+		return {
+			tx: []
+		}
 	default:
       return state;
   }
