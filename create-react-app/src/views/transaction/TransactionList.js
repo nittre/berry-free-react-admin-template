@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
-import { CardContent, Divider, Grid, Typography } from '@mui/material';
+import { CardContent, Divider, Grid, Paper, Table, TableBody, TableCell, TableHead, TableRow, Typography } from '@mui/material';
 
 // project imports
 import MainCard from 'ui-component/cards/MainCard';
@@ -12,6 +12,7 @@ import { gridSpacing } from 'store/constant';
 import { useSelector } from 'react-redux';
 import { weiToEther } from 'utils/crypto';
 import { useEffect } from 'react';
+import { formatAddress } from 'utils/utils';
 
 // ==============================|| Transaction - TransactionList ||============================== //
 
@@ -35,59 +36,35 @@ const TransactionList = ({ isLoading }) => {
       ) : (
         <MainCard title="트랜잭션" content={false}>
           <CardContent>
-            <Grid container spacing={gridSpacing}>
+            <Grid container spacing={gridSpacing} component={Paper} style={{overflowX: 'auto'}}>
               <Grid item xs={12}>
-                  {
-					Array.from({length: tx.length}, (_, index) => {
-						return (
-						<Grid container direction="column" key={index}>
-							<Grid item>
-							<Grid container alignItems="center" justifyContent="space-between">
-							<Grid item>
-								<Typography variant="subtitle1" color="inherit">
-									block: {tx[index].blockNumber}
-								</Typography>
-							</Grid>
-							</Grid>
-							<Grid container alignItems="center" justifyContent="space-between">
-							<Grid item>
-								<Typography variant="subtitle1" color="inherit">
-									txHash: {tx[index].hash}
-								</Typography>
-							</Grid>
-							</Grid>
-							<Grid container alignItems="center" justifyContent="space-between">
-							<Grid item>
-								<Typography variant="subtitle1" color="inherit">
-									from: {tx[index].from}
-								</Typography>
-							</Grid>
-							<Grid item>
-								<Grid container alignItems="center" justifyContent="space-between">
-								<Grid item>
-									<Typography variant="subtitle1" color="inherit">
-										to: {tx[index].to}
-									</Typography>
-								</Grid>
-								</Grid>
-							</Grid>
-							<Grid item>
-								<Grid container alignItems="center" justifyContent="space-between">
-								<Grid item>
-									<Typography variant="subtitle1" color="inherit">
-									value: {weiToEther(tx[index].value)} GoerliETH
-									</Typography>
-								</Grid>
-								</Grid>
-							</Grid>
-							</Grid>
-						</Grid>
-						</Grid>)
-					})
-				
-				}
-               
-                <Divider sx={{ my: 1.5 }} />
+				<Table>
+					<TableHead>
+						<TableRow>
+							<TableCell>Transaction Hash</TableCell>
+							<TableCell>Block</TableCell>
+							<TableCell>From</TableCell>
+							<TableCell>To</TableCell>
+							<TableCell>Value</TableCell>
+						</TableRow>
+					</TableHead>
+					<TableBody>
+					{
+						Array.from({length: tx.length}, (_, index) => {
+							return (
+							<TableRow key={index}>
+								<TableCell>{formatAddress(tx[index].hash)}</TableCell>
+								<TableCell>{tx[index].blockNumber}</TableCell>
+								<TableCell>{formatAddress(tx[index].from)}</TableCell>
+								<TableCell>{formatAddress(tx[index].to)}</TableCell>
+								<TableCell>{weiToEther(tx[index].value)} GoerliETH</TableCell>
+							</TableRow>
+						)
+						})
+					}
+					</TableBody>
+
+				</Table>               
               </Grid>
             </Grid>
           </CardContent>

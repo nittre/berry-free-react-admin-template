@@ -11,3 +11,7 @@ export const pasteToClipboard = (value) => {
 		return false
 	}
 }
+
+export const formatAddress = (address, maxStrNum=12) => {
+	return address.slice(0, (maxStrNum/2)+1) + '.....' + address.slice(address.length-(maxStrNum/2), address.length)
+} 
