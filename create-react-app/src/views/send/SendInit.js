@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
-import { Box, Button, CardContent, Divider, FormControl, FormControlLabel, FormLabel, Grid, IconButton, Input, InputAdornment, InputLabel, OutlinedInput, Radio, RadioGroup, Typography } from '@mui/material';
+import { Box, Button, CardContent, Divider, FormControl, FormControlLabel, FormLabel, Grid, IconButton, Input, InputAdornment, InputLabel, MenuItem, OutlinedInput, Radio, RadioGroup, Select, Typography } from '@mui/material';
 import TypoGraphy from '@mui/material/Typography';
 
 // third party
@@ -14,7 +14,7 @@ import MainCard from 'ui-component/cards/MainCard';
 import SkeletonPopularCard from 'ui-component/cards/Skeleton/PopularCard';
 import { gridSpacing } from 'store/constant';
 import { useSelector } from 'react-redux';
-import { etherToWei, getETHGasLimit, getGasPrice, isValidAddress, sendEther, weiToEther } from 'utils/crypto';
+import { etherToWei, getETHGasLimit, getGasPrice, getPopulatedTx, getTokenGasLimit, isValidAddress, sendEther, weiToEther } from 'utils/crypto';
 import { useEffect } from 'react';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { Formik, useFormik } from 'formik';
@@ -27,33 +27,54 @@ import { useNavigate } from 'react-router';
 
 const SendInit = ({ isLoading, formik, handleFormikValue, handleStep }) => {
   const theme = useTheme();
-  const {wallet, networkProvider} = useSelector(state => state)
+  const {wallet, networkProvider, token} = useSelector(state => state)
 
   const [calcGasFeeLoading, setCalcGasFeeLoading] = useState(false)
   const [step, setStep] = useState('init')
   const [txResult, setTxResult] = useState('pending')
 
-  const handleValueChange = async () => {
+  const handleValueChange = async (e, value, to) => {
 	setCalcGasFeeLoading(true)
-	const gasLimit = await getETHGasLimit(networkProvider, {
-		from: wallet.address,
-		to: formik.values.to,
-		value: etherToWei(formik.values.value)
-	})
 
-	const gasPrice = await getGasPrice()
-	if (gasPrice.data !== null){
-		handleFormikValue('gasPrice', {
-			safe: gasPrice.data.safe,
-			propose: gasPrice.data.propose,
-			fast: gasPrice.data.fast,
-		})
+	if (value != 0 && to.length != 0){
+		let gasLimit
+		if (formik.values.asset === "GoerliETH") {
+			gasLimit = await getETHGasLimit(networkProvider, {
+				from: wallet.address,
+				to: to,
+				value: etherToWei(value)
+			})
+		} else {
+			gasLimit = await getTokenGasLimit(networkProvider, wallet.address, formik.values.token.tokenAddress, 'transfer', [to, etherToWei(value, formik.values.token.tokenDecimals)])
+			const data = await getPopulatedTx(networkProvider, formik.values.token.tokenAddress, 'transfer', [to, etherToWei(value, formik.values.token.tokenDecimals)])
+			handleFormikValue('data', data)
+		}
+
+		const gasPrice = await getGasPrice()
+		if (gasPrice.data !== null){
+			handleFormikValue('gasPrice', {
+				safe: gasPrice.data.safe,
+				propose: gasPrice.data.propose,
+				fast: gasPrice.data.fast,
+			})
+		}
+
+		handleFormikValue('gasLimit', gasLimit)
 	}
-
-	handleFormikValue('gasLimit', gasLimit)
 
 	setCalcGasFeeLoading(false)
   }
+
+  const handleAssetChange = (e) => {
+	for (const t of token.token) {
+		if (t.tokenSymbol == e.target.value) {
+			handleFormikValue('token', t)
+			break
+		}
+	} 
+  }
+
+  
 
   const handleNextButton = () => {
 	handleStep('confirm')
@@ -62,17 +83,16 @@ const SendInit = ({ isLoading, formik, handleFormikValue, handleStep }) => {
   return (
 	<Grid container direction="column">
 		<Grid container item direction="row">
-			<FormControl sx={{...theme.typography.customInput, flexGrow: 1, marginRight: '10px'}}>
-				<InputLabel htmlFor="asset">asset</InputLabel>
-				<OutlinedInput
-					id="asset"
-					type="text"
-					name="asset"
-					defaultValue="GoerliETH"
-					onChange={formik.handleChange}
-				/>
-			</FormControl>
-			<FormControl sx={{...theme.typography.customInput, flexGrow: 1}}>
+			<Select sx={{...theme.typography.customInput, flexGrow: 1, marginRight: '0.5rem'}} value={formik.values.asset} onChange={(e) => {
+				formik.handleChange(e)
+				handleAssetChange(e)
+			}} id="asset" name="asset" defaultValue="GoerliETH">
+				<MenuItem key="GoerliETH" value="GoerliETH">GoerliETH</MenuItem>
+				{Array.from({length: token.token.length}, (_, index) => {
+					return <MenuItem key={index} value={token.token[index].tokenSymbol}>{token.token[index].tokenSymbol}</MenuItem>
+				})}
+			</Select>
+			<FormControl sx={{...theme.typography.customInput, flexGrow: 3}}>
 				<InputLabel htmlFor="value">amount</InputLabel>
 				<OutlinedInput
 					id="value"
@@ -81,7 +101,7 @@ const SendInit = ({ isLoading, formik, handleFormikValue, handleStep }) => {
 					value={formik.values.value}
 					onChange={(e) => {
 						formik.handleChange(e)
-						handleValueChange(e)
+						handleValueChange(e, e.target.value, formik.values.to)
 					}}
 				/>
 			</FormControl>
@@ -93,7 +113,10 @@ const SendInit = ({ isLoading, formik, handleFormikValue, handleStep }) => {
 				type="text"
 				name="to"
 				value={formik.values.to}
-				onChange={formik.handleChange}
+				onChange={(e) => {
+					formik.handleChange(e)
+					handleValueChange(e, formik.values.value, e.target.value)
+				}}
 			/>
 		</FormControl>
 		{formik.errors.to && (

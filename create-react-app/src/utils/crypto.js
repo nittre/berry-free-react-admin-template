@@ -68,8 +68,10 @@ export const sendEther = async (provider, wallet, tx) => {
 		const nonce = await signer.getNonce()
 		const txResponse = await signer.sendTransaction({...tx, nonce})
 		const txReceipt = await txResponse.wait()
+		console.log(txReceipt)
 		return true
 	} catch(e) {
+		console.error(e)
 		return false
 	}	
 }
@@ -97,6 +99,40 @@ export const getTokenBalance = async (
 	return result
 }
 
+export const getPopulatedTx = async (
+	provider,
+	contractAddress,
+	method,
+	args,
+) => {
+	const contract = new BaseContract(contractAddress, erc20abi, provider)
+	const populatedTx = await contract[method].populateTransaction(...args)
+	return populatedTx
+}
+
+export const getTokenGasLimit = async (
+	provider,
+	from,
+	contractAddress,
+	method,
+	args,
+) => {
+	try {
+		const populatedTx = await getPopulatedTx(provider, contractAddress, method, args)
+
+		const gasLimit = await provider.estimateGas({
+			from,
+			to: populatedTx.to,
+			data: populatedTx.data,
+		})
+		return gasLimit
+	} catch (e) {
+		console.error(e)
+		const { code } = JSON.parse(JSON.stringify(e))
+		return BigInt(0)
+	}
+}
+
 // export const getBlockHeight = async (provider) => {
 // 	const height = await provider.getBlockNumber
 // 	return height
@@ -106,44 +142,6 @@ export const getTokenBalance = async (
 
 // export const weiToGwei = (value: number): bigint => {
 // 	return BigInt(formatUnits(BigInt(value), 'gwei'))
-// }
-
-// export const getPopulatedTx = async (
-// 	contract: Contract,
-// 	method: string,
-// 	args: any[],
-// ): Promise<ContractTransaction> => {
-// 	const populatedTx = await contract[method].populateTransaction(...args)
-// 	return populatedTx
-// }
-
-// export const getTokenGasLimit = async (
-// 	provider: InfuraProvider,
-// 	from: string,
-// 	contract: Contract,
-// 	method: string,
-// 	args: any[],
-// ): Promise<GasLimitResponse> => {
-// 	try {
-// 		const populatedTx = await getPopulatedTx(contract, method, args)
-
-// 		const gasLimit = await provider.estimateGas({
-// 			from,
-// 			to: populatedTx.to,
-// 			data: populatedTx.data,
-// 		})
-// 		return {
-// 			message: 'success',
-// 			gasLimit,
-// 		}
-// 	} catch (e) {
-// 		console.error(e)
-// 		const { code } = JSON.parse(JSON.stringify(e))
-// 		return {
-// 			message: code,
-// 			gasLimit: BigInt(0),
-// 		}
-// 	}
 // }
 
 

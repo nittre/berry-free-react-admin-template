@@ -33,9 +33,14 @@ const SendConfirm =({ formik, handleStep, handleFormikValue }) => {
   const handleNextButton = async () => {
 	handleStep('load')
 
-	const {from, to, value, gasPrice, gasLimit, selectedFeeType} = formik.values
+	const {from, to, value, gasPrice, gasLimit, selectedFeeType, data, token, asset} = formik.values
 
-	const tx = { from, to, value: String(etherToWei(value)), gasPrice: gasPrice[selectedFeeType], gasLimit}
+	let tx
+	if (asset === 'GoerliETH') {
+		tx = { from, to, value: String(etherToWei(value)), gasPrice: gasPrice[selectedFeeType], gasLimit}
+	} else {
+		tx = { from, to: token.tokenAddress, value: BigInt(0), data: data.data, gasPrice: gasPrice[selectedFeeType], gasLimit}
+	}
 
 	const receipt = await sendEther(networkProvider, wallet, tx)
 
@@ -48,8 +53,6 @@ const SendConfirm =({ formik, handleStep, handleFormikValue }) => {
 	}
   }
 
- 
-
   const handlePrevButton = () => {
 	handleStep('init')
   }
@@ -59,19 +62,25 @@ const SendConfirm =({ formik, handleStep, handleFormikValue }) => {
 		<SubCard>
 			<Grid container direction="column" spacing={1}>
 				<Grid item>
-					<TypoGraphy sx={{ fontSize: '1rem', fontWeight: 400 }}>From: {wallet.address} GoerliETH</TypoGraphy>
+					<TypoGraphy sx={{ fontSize: '1rem', fontWeight: 400 }}>From: {wallet.address} </TypoGraphy>
 				</Grid>
 				<Grid item>
-					<TypoGraphy sx={{ fontSize: '1rem', fontWeight: 400 }}>To: {formik.values.to} GoerliETH</TypoGraphy>
+					<TypoGraphy sx={{ fontSize: '1rem', fontWeight: 400 }}>To: {formik.values.to} </TypoGraphy>
 				</Grid>
 				<Grid item>
-					<TypoGraphy sx={{ fontSize: '1rem', fontWeight: 400 }}>Amount: {formik.values.value} GoerliETH</TypoGraphy>
+					<TypoGraphy sx={{ fontSize: '1rem', fontWeight: 400 }}>Amount: {formik.values.value} {formik.values.asset} </TypoGraphy>
 				</Grid>
 				<Grid item>
 					<TypoGraphy sx={{ fontSize: '1rem', fontWeight: 400 }}>Gas Fee: {weiToEther(formik.values.gasPrice[formik.values.selectedFeeType]*formik.values.gasLimit)} GoerliETH</TypoGraphy>
 				</Grid>
 				<Grid item>
-					<TypoGraphy sx={{ fontSize: '1rem', fontWeight: 400 }}>Total: {weiToEther(etherToWei(formik.values.value) + (formik.values.gasPrice[formik.values.selectedFeeType]*formik.values.gasLimit))} GoerliETH</TypoGraphy>
+					{
+						formik.values.asset === 'GoerliETH' ? (
+							<TypoGraphy sx={{ fontSize: '1rem', fontWeight: 400 }}>Total: {weiToEther(etherToWei(formik.values.value) + (formik.values.gasPrice[formik.values.selectedFeeType]*formik.values.gasLimit))} GoerliETH</TypoGraphy>
+						) : (
+							<TypoGraphy sx={{ fontSize: '1rem', fontWeight: 400 }}>Total: {formik.values.value}{formik.values.asset} + {weiToEther(formik.values.gasPrice[formik.values.selectedFeeType]*formik.values.gasLimit)} GoerliETH</TypoGraphy>
+						)
+					}
 				</Grid>
 			</Grid>
 		</SubCard>

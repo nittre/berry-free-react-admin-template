@@ -55,7 +55,7 @@ const GasFeeCard = ({ isLoading, gasPrice, gasLimit, calcGasFeeLoading }) => {
                 <SubCard>
 					<Grid container direction="column" spacing={1}>
 						<Grid item>
-							<TypoGraphy sx={{ fontSize: '0.9rem', fontWeight: 600 }}>Gas Fee: {gasPrice === undefined ? 0 : weiToEther(gasPrice*gasLimit)} GoerliETH</TypoGraphy>
+							<TypoGraphy sx={{ fontSize: '0.9rem', fontWeight: 600 }}>Gas Fee: {gasPrice === undefined && gasLimit === undefined ? 0 : weiToEther(gasPrice*gasLimit)} GoerliETH</TypoGraphy>
 						</Grid>
 						<Grid item>
 							<Grid container direction="column" spacing={0.1}>
@@ -79,7 +79,10 @@ const GasFeeCard = ({ isLoading, gasPrice, gasLimit, calcGasFeeLoading }) => {
 };
 
 GasFeeCard.propTypes = {
-  isLoading: PropTypes.bool
+  isLoading: PropTypes.bool,
+  gasPrice: PropTypes.bigint, 
+  gasLimit: PropTypes.bigint, 
+  calcGasFeeLoading: PropTypes.bool
 };
 
 export default GasFeeCard;

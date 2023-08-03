@@ -56,7 +56,9 @@ const Send = () => {
 			fast: 0
 		},
 		gasLimit: 0,
-		txResult: 'pending'
+		txResult: 'pending',
+		data: '',
+		token: {}
 	},
 	validationSchema: validationSchema
   })
