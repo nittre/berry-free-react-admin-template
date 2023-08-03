@@ -60,6 +60,7 @@ const ProfileSection = () => {
   const handleLogout = async () => {
     dispatch({type: 'LOGOUT'})
 	dispatch({type: 'RESET_TX'})
+	dispatch({type: 'RESET_TOKEN'})
 	navigate('/wallet')
   };
 

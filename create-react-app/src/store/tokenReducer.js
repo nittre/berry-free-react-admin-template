@@ -14,6 +14,10 @@ const tokenReducer = (state = initialState, action) => {
 		return {
 			token: [...action.payload.token]
 		}
+	case 'RESET_TOKEN':
+		return {
+			token: []
+		}
 	default:
       return state;
   }
