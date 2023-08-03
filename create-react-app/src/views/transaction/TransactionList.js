@@ -33,7 +33,7 @@ const TransactionList = ({ isLoading }) => {
       {isLoading ? (
         <SkeletonPopularCard />
       ) : (
-        <MainCard title="토큰 목록" content={false}>
+        <MainCard title="트랜잭션" content={false}>
           <CardContent>
             <Grid container spacing={gridSpacing}>
               <Grid item xs={12}>

@@ -51,6 +51,13 @@ const Dashboard = () => {
 							dispatch({type: 'ADD_TRANSACTION', payload: {
 								tx
 							}})
+							if (localStorage.getItem('tx')){
+								const localTxs = JSON.parse(localStorage.getItem('tx'))
+								localTxs.push(tx)
+								localStorage.setItem('tx', JSON.stringify(localTxs))
+							} else {
+								localStorage.setItem('tx', JSON.stringify([tx]))
+							}
 						}
 					}
 				}
@@ -58,6 +65,14 @@ const Dashboard = () => {
 		}
 	}
 
+	if (localStorage.getItem('tx')){
+		const localTxs = JSON.parse(localStorage.getItem('tx'))
+		for (const tx of localTxs){
+			dispatch({type: 'ADD_TRANSACTION', payload: {tx}})
+		}
+	} else {
+		localStorage.setItem('tx', JSON.stringify([]))
+	}
 	subscribeBlocks()
   }, [networkProvider])
 
