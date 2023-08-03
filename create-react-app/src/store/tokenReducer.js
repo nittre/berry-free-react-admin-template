@@ -10,6 +10,10 @@ const tokenReducer = (state = initialState, action) => {
 		return {
 			token: [...state.token, action.payload.token]
 		}
+	case 'UPDATE_BALANCE':
+		return {
+			token: [...action.payload.token]
+		}
 	default:
       return state;
   }

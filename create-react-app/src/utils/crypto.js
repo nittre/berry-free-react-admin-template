@@ -92,8 +92,7 @@ export const getTokenBalance = async (
 	accountAddress,
 )=> {
 	const contract = new ethers.BaseContract(tokenAddress, erc20abi, provider)
-	const getBalance = contract.getFunction('balanceOf')
-
+	const getBalance = await contract.getFunction('balanceOf')
 	const result = await getBalance(accountAddress)
 
 	return result
@@ -133,10 +132,12 @@ export const getTokenGasLimit = async (
 	}
 }
 
-// export const getBlockHeight = async (provider) => {
-// 	const height = await provider.getBlockNumber
-// 	return height
-// }
+export const getBlockHeight = async (provider) => {
+	console.log('provider: ', provider)
+	const height = await provider.getBlockNumber()
+	console.log('height: ', height)
+	return height
+}
 
 
 

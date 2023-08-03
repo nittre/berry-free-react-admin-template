@@ -33,6 +33,7 @@ const ImportTokenConfirm = ({ isLoading, handleStep, formik, updateFormikValue }
   }
 
   const handleNextButton = () => {
+	console.log('formik.values: ', formik.values)
 	dispatch({type: 'ADD_TOKEN', payload: { token: formik.values}})
 	navigate('/')
   }

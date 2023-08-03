@@ -69,7 +69,6 @@ const NetworkStatusCard = ({ isLoading, blockNumber }) => {
     setAnchorEl(null);
   };
 
-
   return (
     <>
       {isLoading ? (
@@ -90,7 +89,7 @@ const NetworkStatusCard = ({ isLoading, blockNumber }) => {
                       <TypoGraphy sx={{ fontSize: '1rem', fontWeight: 600 }}>Goerli TestNet</TypoGraphy>
                     </Grid>
                     <Grid item>
-                      <TypoGraphy sx={{ fontSize: '1rem', fontWeight: 400 }}>block height: {blockNumber}</TypoGraphy>
+                      <TypoGraphy sx={{ fontSize: '1rem', fontWeight: 400 }}>block height: {blockNumber ? blockNumber : <>Loading...</>}</TypoGraphy>
                     </Grid>
                   </Grid>
                 </SubCard>

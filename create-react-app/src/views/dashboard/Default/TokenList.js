@@ -9,14 +9,16 @@ import { CardContent, Divider, Grid, Typography } from '@mui/material';
 import MainCard from 'ui-component/cards/MainCard';
 import SkeletonPopularCard from 'ui-component/cards/Skeleton/PopularCard';
 import { gridSpacing } from 'store/constant';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { getTokenBalance, weiToEther } from 'utils/crypto';
+import { useEffect } from 'react';
 
 // ==============================|| DASHBOARD DEFAULT - POPULAR CARD ||============================== //
 
 const TokenList = ({ isLoading }) => {
   const theme = useTheme();
-  const { token } = useSelector(state => state)
-
+  const { wallet, networkProvider, token } = useSelector(state => state)
+  const dispatch = useDispatch()
   const [anchorEl, setAnchorEl] = useState(null);
 
   const handleClick = (event) => {
@@ -27,6 +29,22 @@ const TokenList = ({ isLoading }) => {
     setAnchorEl(null);
   };
 
+  const updateTokenBalance = async () => {
+	const updatedToken = []
+	for (const t of token.token){
+		const balance = await getTokenBalance(networkProvider, t.tokenAddress, wallet.address)
+		updatedToken.push({...t, balance: weiToEther(balance, t.tokenDecimals)})
+	}
+	dispatch({type: 'UPDATE_BALANCE', payload: {
+		token: updatedToken
+	}})
+  }
+
+  useEffect( () => {
+	if (networkProvider !== undefined) {
+		updateTokenBalance()
+	}
+  }, [])
   return (
     <>
       {isLoading ? (

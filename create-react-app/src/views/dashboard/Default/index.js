@@ -12,23 +12,28 @@ import { useNavigate } from 'react-router';
 import { getBlockHeight } from 'utils/crypto';
 import TokenList from './TokenList';
 import AnimateButton from 'ui-component/extended/AnimateButton';
+import { InfuraProvider } from 'ethers';
 
 // ==============================|| DEFAULT DASHBOARD ||============================== //
 
 const Dashboard = () => {
-  const { wallet, networkProvider, transaction } = useSelector(state => state)
+  const { wallet, networkProvider } = useSelector(state => state)
   const dispatch = useDispatch()
   const navigate = useNavigate('/')
   const [isLoading, setLoading] = useState(true);
   const[ blockNumebr, setBlockNumber ] = useState('')
 
   useEffect(() => {
-	setLoading(false);
-	if (Object.keys(networkProvider).length == 0) {
-		setLoading(true)
-		dispatch({type: 'SET_PROVIDER'})
-		setLoading(false)
-	} 
+	async function setProvider() {
+		setLoading(false);
+		if (Object.keys(networkProvider).length == 0) {
+			setLoading(true)
+			dispatch({type: 'SET_PROVIDER'})
+			setLoading(false)
+		} 
+	}
+
+	setProvider()
   }, []);
 
   useEffect(() => {
@@ -60,6 +65,8 @@ const Dashboard = () => {
 	if (Object.keys(wallet).length == 0) {
 		navigate('/wallet')
 	} 
+
+
   })
 
 
