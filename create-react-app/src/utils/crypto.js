@@ -133,9 +133,7 @@ export const getTokenGasLimit = async (
 }
 
 export const getBlockHeight = async (provider) => {
-	console.log('provider: ', provider)
 	const height = await provider.getBlockNumber()
-	console.log('height: ', height)
 	return height
 }
 
