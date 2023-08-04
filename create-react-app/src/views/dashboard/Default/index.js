@@ -9,7 +9,7 @@ import NetworkStatusCard from './NetworkStatusCard';
 import { gridSpacing } from 'store/constant';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
-import { getBlockHeight } from 'utils/crypto';
+import { getBlockHeight, getUserNormalTransaction, getUserTokenTransferEvents } from 'utils/crypto';
 import TokenList from './TokenList';
 import AnimateButton from 'ui-component/extended/AnimateButton';
 import { InfuraProvider } from 'ethers';
@@ -17,32 +17,33 @@ import { InfuraProvider } from 'ethers';
 // ==============================|| DEFAULT DASHBOARD ||============================== //
 
 const Dashboard = () => {
-  const { wallet, networkProvider, transaction } = useSelector(state => state)
+  const { wallet, networkProvider, blockNumber, transaction } = useSelector(state => state)
   const dispatch = useDispatch()
   const navigate = useNavigate('/')
-  const [isLoading, setLoading] = useState(true);
+  const [isLoading, setLoading] = useState(false);
   const[ blockNumebr, setBlockNumber ] = useState('')
 
-  useEffect(() => {
-	async function setProvider() {
-		setLoading(false);
-		if (Object.keys(networkProvider).length == 0) {
-			setLoading(true)
-			dispatch({type: 'SET_PROVIDER'})
-			setLoading(false)
-		} 
-	}
-
+//   useEffect(() => {
+// 	async function setProvider() {
+// 		setLoading(false);
+// 		if (networkProvider == undefined || networkProvider == null || Object.keys(networkProvider).length == 0) {
+// 			setLoading(true)
+// 			dispatch({type: 'SET_PROVIDER'})
+// 			setLoading(false)
+// 		} 
+// 	}
+useEffect(() => {
 	window.addEventListener('beforeunload', () => {
 		dispatch({type: 'LOGOUT'})
 		dispatch({type: 'RESET_TX'})
 		dispatch({type: 'RESET_TOKEN'})
 	})
-	setProvider()
 
-	if (localStorage.getItem('tx')){
-		const localTxs = JSON.parse(localStorage.getItem('tx'))
-		for (const tx of localTxs){
+
+	const localTx = localStorage.getItem('tx')
+	if (localTx != null && localTx.length != 0){
+		const txs = JSON.parse(localTx)
+		for (const tx of txs){
 			if (transaction.tx.filter(t => t.hash === tx.hash).length == 0){
 				dispatch({type: 'ADD_TRANSACTION', payload: {tx}})
 			}
@@ -50,42 +51,8 @@ const Dashboard = () => {
 	} else {
 		localStorage.setItem('tx', JSON.stringify([]))
 	}
+	
   }, []);
-
-  useEffect(() => {
-	async function subscribeBlocks() {
-		if (networkProvider !== undefined && Object.keys(networkProvider).length != 0){
-			networkProvider.on('block', async (blockNumber) => {
-				setBlockNumber(blockNumber)
-
-				const block = await networkProvider.getBlock(blockNumber)
-
-				if (block !== null) {
-					for (const txHash of block.transactions) {
-						const isExist = transaction.tx.filter(elem => elem.hash == txHash).length
-						if (isExist == 0) {
-							const tx = await networkProvider.getTransaction(txHash)
-							if (tx !== null && (tx.to === wallet.address || tx.from === wallet.address)) {
-								dispatch({type: 'ADD_TRANSACTION', payload: {
-									tx
-								}})
-								const locTx = localStorage.getItem('tx')
-								if (locTx !== null && locTx.length !== 0){
-									const localTxs = JSON.parse(locTx)
-									localTxs.push(tx)
-									localStorage.setItem('tx', JSON.stringify(localTxs))
-								} else {
-									localStorage.setItem('tx', JSON.stringify([tx]))
-								}
-							}
-						}
-					}
-				}
-			})
-		}
-	}
-	subscribeBlocks()
-  }, [networkProvider])
 
   useEffect(() => {
 	if (Object.keys(wallet).length == 0) {

@@ -6,6 +6,7 @@ import walletReducer from './walletReducer';
 import networkProviderReducer from './networkProviderReducer';
 import transactionReducer from './transactionReducer';
 import tokenReducer from './tokenReducer';
+import blockReducer from './blockReducer';
 
 // ==============================|| COMBINE REDUCER ||============================== //
 
@@ -14,7 +15,8 @@ const reducer = combineReducers({
   wallet: walletReducer,
   networkProvider: networkProviderReducer,
   transaction: transactionReducer,
-  token: tokenReducer
+  token: tokenReducer,
+  blockNumber: blockReducer
 });
 
 export default reducer;

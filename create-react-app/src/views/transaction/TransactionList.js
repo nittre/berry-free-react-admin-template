@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
-import { CardContent, Divider, Grid, Paper, Table, TableBody, TableCell, TableHead, TableRow, Typography } from '@mui/material';
+import { CardContent, Divider, Grid, Link, Paper, Table, TableBody, TableCell, TableHead, TableRow, Typography } from '@mui/material';
 
 // project imports
 import MainCard from 'ui-component/cards/MainCard';
@@ -41,6 +41,7 @@ const TransactionList = ({ isLoading }) => {
 				<Table>
 					<TableHead>
 						<TableRow>
+							<TableCell>Type</TableCell>
 							<TableCell>Transaction Hash</TableCell>
 							<TableCell>Block</TableCell>
 							<TableCell>From</TableCell>
@@ -53,11 +54,14 @@ const TransactionList = ({ isLoading }) => {
 						Array.from({length: tx.length}, (_, index) => {
 							return (
 							<TableRow key={index}>
-								<TableCell>{formatAddress(tx[index].hash)}</TableCell>
+								<TableCell>{tx[index].tokenName ? tx[index].tokenName : <>GoerliETH</>}</TableCell>
+								<TableCell>
+									<Link href={`https://sepolia.etherscan.io/tx/${tx[index].hash}`} target="_blank" rel="noreferrer" underline="none" >{formatAddress(tx[index].hash)}</Link>
+								</TableCell>
 								<TableCell>{tx[index].blockNumber}</TableCell>
 								<TableCell>{formatAddress(tx[index].from)}</TableCell>
 								<TableCell>{formatAddress(tx[index].to)}</TableCell>
-								<TableCell>{weiToEther(tx[index].value)} GoerliETH</TableCell>
+								<TableCell>{weiToEther(tx[index].value)} {tx[index].tokenSymbol ? tx[index].tokenSymbol : <>GoerliETH</>} </TableCell>
 							</TableRow>
 						)
 						})

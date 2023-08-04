@@ -13,7 +13,7 @@ import * as Yup from 'yup';
 import MainCard from 'ui-component/cards/MainCard';
 import SkeletonPopularCard from 'ui-component/cards/Skeleton/PopularCard';
 import { gridSpacing } from 'store/constant';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { etherToWei, getETHGasLimit, getGasPrice, isValidAddress, sendEther, weiToEther } from 'utils/crypto';
 import { useEffect } from 'react';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
@@ -28,6 +28,7 @@ import { useNavigate } from 'react-router';
 const SendConfirm =({ formik, handleStep, handleFormikValue }) => {
   const theme = useTheme();
   const navigate = useNavigate()
+  const dispatch = useDispatch()
   const {wallet, networkProvider} = useSelector(state => state)
 
   const handleNextButton = async () => {
@@ -42,9 +43,8 @@ const SendConfirm =({ formik, handleStep, handleFormikValue }) => {
 		tx = { from, to: token.tokenAddress, value: BigInt(0), data: data.data, gasPrice: gasPrice[selectedFeeType], gasLimit}
 	}
 
-	const receipt = await sendEther(networkProvider, wallet, tx)
-
-	if (receipt) {
+	const result = await sendEther(networkProvider, wallet, tx)
+	if (result) {
 		handleFormikValue('txResult', 'success')
 		navigate('/transaction')
 	} else {

@@ -1,18 +1,18 @@
 import { InfuraProvider } from "ethers";
 
 export const initialState = {
-
+	blockNumber: 0
 };
 
 // ==============================|| CUSTOMIZATION REDUCER ||============================== //
 
-const networkProviderReducer = (state = initialState, action) => {
+const blockReducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'SET_PROVIDER':
-		return new InfuraProvider('sepolia', process.env.REACT_APP_INFURA_KEY)
+    case 'UPDATE_BLOCKNUMBER':
+		return { blockNumber: action.payload.blockNumber}
 	default:
       return state;
   }
 };
 
-export default networkProviderReducer;
+export default blockReducer;

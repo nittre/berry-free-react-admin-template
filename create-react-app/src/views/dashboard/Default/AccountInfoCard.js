@@ -119,7 +119,7 @@ const AccountInfoCard = ({ isLoading, wallet, networkProvider }) => {
                     color: theme.palette.secondary[200]
                   }}
                 >
-                  {formatAddress(wallet.address)}
+                  {wallet.address ? formatAddress(wallet.address) : <></>}
                 </Typography>
               </Grid>
             </Grid>

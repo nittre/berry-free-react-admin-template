@@ -68,7 +68,7 @@ export const sendEther = async (provider, wallet, tx) => {
 		const nonce = await signer.getNonce()
 		const txResponse = await signer.sendTransaction({...tx, nonce})
 		const txReceipt = await txResponse.wait()
-		console.log(txReceipt)
+
 		return true
 	} catch(e) {
 		console.error(e)
@@ -137,6 +137,33 @@ export const getBlockHeight = async (provider) => {
 	return height
 }
 
+export const getUserNormalTransaction = async (address, startBlock, endBlock) => {
+	const apiKey = process.env.REACT_APP_ETHERSCAN_KEY
+
+	const url = `https://api-sepolia.etherscan.io/api
+		?module=account
+		&action=txlist
+		&address=${address}
+		&startblock=${startBlock}
+		&endblock=${endBlock}
+		&sort=asc
+		&page=1
+		&offset=10
+		&apikey=${apiKey}
+		`		
+
+	const result = await axios.get(url)
+	return result.data.result
+}
+
+export const getUserTokenTransferEvents = async(walletAddress, contractAddress, startBlock, endBlock) => {
+	const apiKey = process.env.REACT_APP_ETHERSCAN_KEY
+
+	const url = `https://api-sepolia.etherscan.io/api?module=account&action=tokentx&contractaddress=${contractAddress}&address=${walletAddress}&page=1&offset=100&startblock=${startBlock}&endblock=${endBlock}&sort=asc&apikey=${apiKey}`
+
+	const result = await axios.get(url)
+	return result.data.result
+}
 
 
 // export const weiToGwei = (value: number): bigint => {

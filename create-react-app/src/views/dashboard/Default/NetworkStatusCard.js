@@ -56,8 +56,9 @@ const CardWrapper = styled(MainCard)(({ theme }) => ({
 
 // ===========================|| DASHBOARD DEFAULT - EARNING CARD ||=========================== //
 
-const NetworkStatusCard = ({ isLoading, blockNumber }) => {
+const NetworkStatusCard = ({ isLoading }) => {
   const theme = useTheme();
+  const {blockNumber} = useSelector(state => state.blockNumber)
 
   const [anchorEl, setAnchorEl] = useState(null);
 
@@ -68,6 +69,10 @@ const NetworkStatusCard = ({ isLoading, blockNumber }) => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  useEffect(() => {
+	console.log(blockNumber)
+  }, [blockNumber])
 
   return (
     <>
