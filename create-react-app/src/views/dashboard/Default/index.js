@@ -56,7 +56,7 @@ useEffect(() => {
 
   useEffect(() => {
 	if (Object.keys(wallet).length == 0) {
-		navigate('/wallet')
+		navigate('/login')
 	} 
 
 

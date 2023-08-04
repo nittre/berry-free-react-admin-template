@@ -4,6 +4,7 @@ import { lazy } from 'react';
 import Loadable from 'ui-component/Loadable';
 import MinimalLayout from 'layout/MinimalLayout';
 import RestoreOrCreate from 'views/pages/authentication/authentication3/InitialPage';
+import Login from 'views/pages/authentication/authentication3/AuthLogin';
 
 // login option 3 routing
 const RestoreWallet = Loadable(lazy(() => import('views/pages/authentication/authentication3/RestoreWallet')));
@@ -15,6 +16,10 @@ const AuthenticationRoutes = {
   path: '/',
   element: <MinimalLayout />,
   children: [
+	{
+		path: '/login',
+		element: <Login />
+	},
 	{
 		path: '/wallet',
 		element: <RestoreOrCreate />

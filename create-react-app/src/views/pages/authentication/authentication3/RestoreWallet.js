@@ -15,7 +15,7 @@ import AuthFooter from 'ui-component/cards/AuthFooter';
 
 // ================================|| AUTH3 - LOGIN ||================================ //
 
-const Login = () => {
+const RestoreWallet = () => {
   const theme = useTheme();
   const matchDownSM = useMediaQuery(theme.breakpoints.down('md'));
 
@@ -72,4 +72,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default RestoreWallet;

@@ -95,7 +95,7 @@ const App = () => {
 							const newTx = {
 								hash: transaction.hash,
 								from: transaction.from,
-								to: transaction.to,
+								to: transaction.to, 
 								value: transaction.value,
 								blockNumber: transaction.blockNumber,
 								type: 'send-ether'

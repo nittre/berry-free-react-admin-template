@@ -39,7 +39,7 @@ import { useNavigate } from 'react-router';
 
 // ============================|| Restore Wallet ||============================ //
 
-const WalletRestore = ({ ...others }) => {
+const RestoreWalletForm = ({ ...others }) => {
   const theme = useTheme();
   const scriptedRef = useScriptRef(); 
   // scriptRef: 컴포넌트가 마운트된 상태에서 비동기 작업이 완료되기 전에 언마운트 되었을 때, 컴포넌트가 마운트되지 않은 상태에서 비동기 작업의 콜백이 호출되는 상황 방지.
@@ -194,4 +194,4 @@ const WalletRestore = ({ ...others }) => {
   );
 };
 
-export default WalletRestore;
+export default RestoreWalletForm;

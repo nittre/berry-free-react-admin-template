@@ -1,40 +1,24 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
-import { Divider, Grid, Stack, Typography, useMediaQuery, Box, Button, FormControl, Input } from '@mui/material';
+import { Divider, Grid, Stack, Typography, useMediaQuery } from '@mui/material';
 
 // project imports
 import AuthWrapper1 from '../AuthWrapper1';
 import AuthCardWrapper from '../AuthCardWrapper';
+import AuthLogin from '../auth-forms/AuthLogin';
 import Logo from 'ui-component/Logo';
 import AuthFooter from 'ui-component/cards/AuthFooter';
-import AnimateButton from 'ui-component/extended/AnimateButton';
-import { createWallet } from 'utils/crypto';
-import { useEffect, useState } from 'react';
-import { pasteToClipboard } from 'utils/utils';
-import { useSelector } from 'react-redux';
-
 
 // assets
 
-// ===============================|| Create Wallet ||=============================== //
+// ================================|| AUTH3 - LOGIN ||================================ //
 
-const createWalletStep = ['start', 'pasteMnemonic', 'end']
-
-const RestoreOrCreate = () => {
+const Login = () => {
   const theme = useTheme();
-  const { wallet } = useSelector(state => state.wallet)
-  const navigate = useNavigate()
   const matchDownSM = useMediaQuery(theme.breakpoints.down('md'));
-  const [step, setStep] = useState(createWalletStep[0])
-  const [phrase, setPhrase] = useState([])
-  const [isPhrasePasted, setIsPhrasePasted] = useState(false)
 
-  const handleButtonClick = (action) => {
-	navigate(`/wallet/${action}`)
-  }
-  
   return (
     <AuthWrapper1>
       <Grid container direction="column" justifyContent="flex-end" sx={{ minHeight: '100vh' }}>
@@ -53,30 +37,29 @@ const RestoreOrCreate = () => {
                       <Grid item>
                         <Stack alignItems="center" justifyContent="center" spacing={1}>
                           <Typography color={theme.palette.secondary.main} gutterBottom variant={matchDownSM ? 'h3' : 'h2'}>
-                            환영합니다!
+                            Coz Wallet
                           </Typography>
                           <Typography variant="caption" fontSize="16px" textAlign={matchDownSM ? 'center' : 'inherit'}>
-							지갑을 생성하거나, 복구하세요.
+							로그인을 진행하세요
                           </Typography>
                         </Stack>
                       </Grid>
                     </Grid>
                   </Grid>
-				</Grid>
-				<Box sx={{ mt: 2 }}>
-					<AnimateButton>
-						<Button onClick={() => handleButtonClick('create')} disableElevation fullWidth size="large" type="submit" variant="contained" color="secondary">
-							생성하기
-						</Button>
-					</AnimateButton>
-				</Box>
-				<Box sx={{ mt: 2 }}>
-					<AnimateButton>
-						<Button onClick={() => handleButtonClick('restore')} disableElevation fullWidth size="large" type="submit" variant="contained" color="secondary">
-							복구하기
-						</Button>
-					</AnimateButton>
-				</Box>
+                  <Grid item xs={12}>
+                    <AuthLogin />
+                  </Grid>
+                  <Grid item xs={12}>
+                    <Divider />
+                  </Grid>
+                  <Grid item xs={12}>
+                    <Grid item container direction="column" alignItems="center" xs={12}>
+                      <Typography component={Link} to="/pages/register/register3" variant="subtitle1" sx={{ textDecoration: 'none' }}>
+                        Don&apos;t have an account?
+                      </Typography>
+                    </Grid>
+                  </Grid>
+                </Grid>
               </AuthCardWrapper>
             </Grid>
           </Grid>
@@ -89,4 +72,4 @@ const RestoreOrCreate = () => {
   );
 };
 
-export default RestoreOrCreate;
+export default Login;
