@@ -9,7 +9,7 @@ export const initialState = {
 const networkProviderReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'SET_PROVIDER':
-		return new InfuraProvider('sepolia', process.env.REACT_APP_INFURA_KEY)
+		return new InfuraProvider('goerli', process.env.REACT_APP_INFURA_KEY)
 	default:
       return state;
   }

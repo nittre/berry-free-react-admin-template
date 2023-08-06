@@ -56,7 +56,7 @@ const TransactionList = ({ isLoading }) => {
 							<TableRow key={index}>
 								<TableCell>{tx[index].tokenName ? tx[index].tokenName : <>GoerliETH</>}</TableCell>
 								<TableCell>
-									<Link href={`https://sepolia.etherscan.io/tx/${tx[index].hash}`} target="_blank" rel="noreferrer" underline="none" >{formatAddress(tx[index].hash)}</Link>
+									<Link href={`https://goerli.etherscan.io/tx/${tx[index].hash}`} target="_blank" rel="noreferrer" underline="none" >{formatAddress(tx[index].hash)}</Link>
 								</TableCell>
 								<TableCell>{tx[index].blockNumber}</TableCell>
 								<TableCell>{formatAddress(tx[index].from)}</TableCell>
