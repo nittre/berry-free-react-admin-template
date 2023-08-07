@@ -46,11 +46,11 @@ const Send = () => {
 		from: wallet.address,
 		selectedFeeType: 'propose',
 		gasPrice: {
-			safe: 0,
-			propose: 0,
-			fast: 0
+			safe: BigInt(0),
+			propose: BigInt(0),
+			fast: BigInt(0)
 		},
-		gasLimit: 0,
+		gasLimit: BigInt(0),
 		txResult: 'pending',
 		data: '',
 		token: {}
