@@ -1,116 +1,55 @@
-# Berry Free React Material UI Admin Template [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=Get%20Berry%20React%20-%20The%20most%20beautiful%20Material%20designed%20Admin%20Dashboard%20Template%20&url=https://berrydashboard.io&via=codedthemes&hashtags=reactjs,webdev,developers,javascript)
+# Coz Wallet
+아주 간단한 형태의 웹 월렛
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Price](https://img.shields.io/badge/price-FREE-0098f7.svg)](https://github.com/codedthemes/berry-free-react-admin-template/blob/main/LICENSE)
+## ⚠️ 주의
+**코즈 월렛은 안전하지 않습니다!**
 
-Berry is a free Material UI admin dashboard template built with React. It is meant to provide the best possible User Experience with highly customizable feature-rich pages. It is a complete Dashboard Template that has easy and intuitive responsive design whether it is viewed on retina screens or laptops.
+코즈 월렛은 **학습 목적**으로 제작되었으며, 학습 외 서비스 목적으로 제작되지 않았습니다.<br/>
+학습을 위해 사용할 것을 권장하며, 절대 메인넷에서 사용하지 마세요.
 
-:star: :star: :star: Do not forget to star (Top right of this page) it if you like the theme :star: :star: :star:
+학습 외 목적으로 사용한 경우에 대해 어떠한 책임도 지지 않습니다.
 
-![IMG_8566.jpg](https://berrydashboard.io/imp-images/berry-github-free-repo-1.jpg)
+## 주요 기능
+- 지갑 생성 및 복구
+- 계정 이더 잔액 조회
+- 이더 전송
+- 토큰 잔액 조회
+- 토큰 전송
+- 트랜잭션 조회
+- 토큰 컨트랙트 이벤트 구독
 
-[Pro version](https://berrydashboard.io) of Berry react template contains features like TypeScript, Next.js Seed versions, Apps, Authentication Methods (i.e. JWT, Auth0, Firebase), Advance Components, Form Plugins, Layouts, Widgets, and many more.
+## 주요 스택
+- React
+	- Material UI - [berry-free-react-admin-template](https://github.com/codedthemes/berry-free-react-admin-template) 사용
+- Ethereum Goerli Testnet
+- Ethers.js
+- Etherscan API
+- [Remix](https://remix.ethereum.org/)
+	- OpenZeppelin에서 제공하는 [ERC-20 컨트랙트](https://docs.openzeppelin.com/contracts/4.x/erc20)를 사용해 테스트용 ERC-20 토큰 컨트랙트를 배포하여 사용합니다.
 
-| [Berry Free](https://berrydashboard.io/free/) | [Berry](https://material-ui.com/store/items/berry-react-material-admin/) |
-| --------------------------------------------- | :----------------------------------------------------------------------- |
-| **9** Demo pages                              | **45+** demo pages                                                       |
-| -                                             | ✓ Multi-language                                                         |
-| -                                             | ✓ Dark/Light Mode 🌓                                                     |
-| -                                             | ✓ TypeScript version                                                     |
-| -                                             | ✓ Design files (Figma)                                                   |
-| -                                             | ✓ 6+ color Options                                                       |
-| -                                             | ✓ RTL                                                                    |
-| -                                             | ✓ JWT, Firebase, Auth0 authentications                                   |
-| -                                             | ✓ [More components](https://berrydashboard.io/dashboard/default)         |
-
-## Why Berry?
-
-Berry offers everything you need to create dashboards. We have included the following high-end features in our initial release:
-
--   Modern aesthetics UI design
--   Material-UI components
--   Fully Responsive, all modern browser supported
--   Easy to use code structure
--   Flexible & High-Performance code
--   Easy Documentation Guide
-
-## Free Berry React version
-
--   [Preview](https://berrydashboard.io/free/)
--   [Download from Github](https://github.com/codedthemes/berry-free-react-admin-template)
-
-## Berry Pro version
-
--   [Preview](https://berrydashboard.io)
--   [Purchase from MUI Store](https://material-ui.com/store/items/berry-react-material-admin/)
-
-## Table of contents
-
--   [Getting Started](#getting-started)
--   [Documentation](#documentation)
--   [Technology Stack](#technology-stack)
--   [Author](#author)
--   [Issues?](#issues)
--   [License](#license)
--   [More Products](#more-free-react-material-admin-templates)
--   [Follow us](#follow-us)
-
-## Getting Started
-
-Clone from Github
-
+## 폴더 구조
 ```
-git clone https://github.com/codedthemes/berry-free-react-admin-template.git
+├── README.md
+├── jsconfig.json
+├── package-lock.json
+├── package.json
+├── public
+|  ├── favicon.svg
+|  └── index.html
+├── src
+|  ├── App.js
+|  ├── assets
+|  ├── config.js
+|  ├── hooks
+|  ├── index.js
+|  ├── layout
+|  ├── menu-items
+|  ├── routes
+|  ├── serviceWorker.js
+|  ├── store
+|  ├── themes
+|  ├── ui-component
+|  ├── utils
+|  └── views
+└── yarn.lock
 ```
-
-## Documentation
-
-[Berry documentation](https://codedthemes.gitbook.io/berry/) helps you with installation, deployment, and troubleshooting.
-
-## Technology Stack
-
--   [Material UI V5](https://material-ui.com/)
--   Built with React Hooks API
--   Redux & React Context API for State Management
--   React Router for Navigation Routing
--   Support of react-script
--   Code Splitting
--   CSS-in-JS where CSS is composed using JavaScript instead of defined in external files
-
-## Author
-
-Berry is developed by Team [CodedThemes](https://codedthemes.com).
-
-## Issues
-
-To report a bug, please submit an [issue](https://github.com/codedthemes/berry-free-react-admin-template/issues) on Github. We will respond as soon as possible to resolve the issue.
-
-## License
-
--   Licensed cover under [MIT](https://github.com/codedthemes/datta-able-bootstrap-dashboard/blob/master/LICENSE)
-
-## Berry - Nodejs version by Appseed
-
--   [Free Nodejs](https://appseed.us/product/react-node-js-berry-dashboard)
--   [Premium Berry Nodejs](https://appseed.us/full-stack/react-berry-dashboard)
-
-## More Free React Material Admin Templates
-
--   [Free Materially](https://codedthemes.com/item/materially-free-reactjs-admin-template/)
--   [Free Mantis](https://mantisdashboard.io/free/)
-
-[![IMG_8566.jpg](https://camo.githubusercontent.com/a2364ad8c498b2a7378dae5e1a5eb5d8e1fcb2d6ceeb8b54acdc2e8bc2508775/68747470733a2f2f6d616e74697364617368626f6172642e696f2f6164762d62616e6e65722d696d616765732f6f672d736f6369616c2e706e67)](https://mantisdashboard.io/free/)
-
-## More Premium React Material Admin Templates
-
--   [Mantis](https://mui.com/store/items/mantis-react-admin-dashboard-template/)
--   [Materially](https://codedthemes.com/item/materially-reactjs-admin-dashboard/)
-
-## Follow us
-
--   [Website](https://berrydashboard.io)
--   [Blog](https://blog.berrydashboard.io)
--   [CodedThemes](https://codedthemes.com)
--   [Dribbble](https://dribbble.com/codedthemes)
--   [Facebook](https://www.facebook.com/codedthemes)
--   [Twitter](https://twitter.com/codedthemes)
