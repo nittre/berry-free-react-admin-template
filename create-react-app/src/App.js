@@ -107,7 +107,7 @@ const App = () => {
 							}})
 
 							const txList = JSON.parse(localStorage.getItem('tx'))
-							txList.push(tx)
+							txList.push(newTx)
 							localStorage.setItem('tx', JSON.stringify(txList))
 							
 						}
