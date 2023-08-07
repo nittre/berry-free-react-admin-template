@@ -40,7 +40,7 @@ const RestoreOrCreate = () => {
                       <Grid item>
                         <Stack alignItems="center" justifyContent="center" spacing={1}>
                           <Typography color={theme.palette.secondary.main} gutterBottom variant={matchDownSM ? 'h3' : 'h2'}>
-                            환영합니다!
+                            지갑 생성 또는 복구
                           </Typography>
                           <Typography variant="caption" fontSize="16px" textAlign={matchDownSM ? 'center' : 'inherit'}>
 							지갑을 생성하거나, 복구하세요.
