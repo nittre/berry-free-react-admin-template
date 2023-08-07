@@ -2,7 +2,7 @@ import { Link, useNavigate } from 'react-router-dom';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
-import { Divider, Grid, Stack, Typography, useMediaQuery, Box, Button, FormControl, Input } from '@mui/material';
+import { Grid, Stack, Typography, useMediaQuery, Box, Button, FormControl, Input } from '@mui/material';
 
 // project imports
 import AuthWrapper1 from '../AuthWrapper1';
@@ -14,9 +14,6 @@ import { createWallet } from 'utils/crypto';
 import { useState } from 'react';
 import { pasteToClipboard } from 'utils/utils';
 import { useDispatch } from 'react-redux';
-
-
-// assets
 
 // ===============================|| Create Wallet ||=============================== //
 
@@ -91,7 +88,15 @@ const CreateWallet = () => {
 								step === 'start' ? (
 								<>버튼을 누르면 새로운 지갑을 생성합니다.</>
 								) : step === 'pasteMnemonic' ? (
-								<>니모닉을 복사하세요.</>
+								<>
+								<p>
+									니모닉을 복사하세요.
+								</p>
+								<p>
+									⚠️ 이 페이지를 벗어나면 더 이상 니모닉 문구를 확인할 수 없습니다!
+									꼭 니모닉 문구를 복사한 후, 다른 곳에 백업해두세요!
+								</p>
+								</>
 								) : null
 							}
                           </Typography>

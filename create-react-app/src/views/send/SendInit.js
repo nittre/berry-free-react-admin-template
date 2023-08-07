@@ -3,25 +3,15 @@ import { useState } from 'react';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
-import { Box, Button, CardContent, Divider, FormControl, FormControlLabel, FormLabel, Grid, IconButton, Input, InputAdornment, InputLabel, MenuItem, OutlinedInput, Radio, RadioGroup, Select, Typography } from '@mui/material';
-import TypoGraphy from '@mui/material/Typography';
-
-// third party
-import * as Yup from 'yup';
+import { Box, Button, FormControl, FormControlLabel, FormLabel, Grid, InputLabel, MenuItem, OutlinedInput, Radio, RadioGroup, Select } from '@mui/material';
 
 // project imports
-import MainCard from 'ui-component/cards/MainCard';
-import SkeletonPopularCard from 'ui-component/cards/Skeleton/PopularCard';
-import { gridSpacing } from 'store/constant';
 import { useSelector } from 'react-redux';
-import { etherToWei, getETHGasLimit, getGasPrice, getPopulatedTx, getTokenGasLimit, isValidAddress, sendEther, weiToEther } from 'utils/crypto';
+import { etherToWei, getETHGasLimit, getGasPrice, getPopulatedTx, getTokenGasLimit } from 'utils/crypto';
 import { useEffect } from 'react';
-import { Visibility, VisibilityOff } from '@mui/icons-material';
-import { Formik, useFormik } from 'formik';
+
 import AnimateButton from 'ui-component/extended/AnimateButton';
 import GasFeeCard from './GasFeeCard';
-import SubCard from 'ui-component/cards/SubCard';
-import { useNavigate } from 'react-router';
 
 // ==============================|| Send - SendInit ||============================== //
 
@@ -30,8 +20,6 @@ const SendInit = ({ isLoading, formik, handleFormikValue, handleStep }) => {
   const {wallet, networkProvider} = useSelector(state => state)
 
   const [calcGasFeeLoading, setCalcGasFeeLoading] = useState(false)
-  const [step, setStep] = useState('init')
-  const [txResult, setTxResult] = useState('pending')
   const [token, setToken] = useState([])
 
   const handleValueChange = async (e, value, to) => {

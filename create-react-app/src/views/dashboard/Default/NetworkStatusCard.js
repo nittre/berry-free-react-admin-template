@@ -7,14 +7,12 @@ import SubCard from 'ui-component/cards/SubCard';
 
 // material-ui
 import { styled, useTheme } from '@mui/material/styles';
-import { Avatar, Box, Grid, Menu, MenuItem, Typography } from '@mui/material';
+import { Box, Grid, Typography } from '@mui/material';
 
 // project imports
 import MainCard from 'ui-component/cards/MainCard';
 import SkeletonEarningCard from 'ui-component/cards/Skeleton/EarningCard';
-import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { getBlockHeight } from 'utils/crypto';
 
 // assets
 
@@ -56,59 +54,45 @@ const CardWrapper = styled(MainCard)(({ theme }) => ({
 
 // ===========================|| DASHBOARD DEFAULT - EARNING CARD ||=========================== //
 
-const NetworkStatusCard = ({ isLoading }) => {
+const NetworkStatusCard = ({isLoading}) => {
   const theme = useTheme();
   const {blockNumber} = useSelector(state => state.blockNumber)
 
-  const [anchorEl, setAnchorEl] = useState(null);
-
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-
-  useEffect(() => {
-	console.log(blockNumber)
-  }, [blockNumber])
-
   return (
-    <>
-      {isLoading ? (
-        <SkeletonEarningCard />
-      ) : (
-        <CardWrapper border={false} content={false}>
-          <Box sx={{ p: 2.25 }}>
-            <Grid container direction="column">
-              <Grid item>
-                <Grid container alignItems="center">
-                  <Grid item>
-                    <Typography sx={{ fontSize: '1.5rem', fontWeight: 500, mr: 1, mt: 1.75, mb: 0.75 }}>Network</Typography>
-                  </Grid>
-                </Grid>
-                <SubCard>
-                  <Grid container direction="column" spacing={1}>
-                    <Grid item>
-                      <TypoGraphy sx={{ fontSize: '1rem', fontWeight: 600 }}>Goerli TestNet</TypoGraphy>
-                    </Grid>
-                    <Grid item>
-                      <TypoGraphy sx={{ fontSize: '1rem', fontWeight: 400 }}>block height: {blockNumber ? blockNumber : <>Loading...</>}</TypoGraphy>
-                    </Grid>
-                  </Grid>
-                </SubCard>
-              </Grid>
-            </Grid>
-          </Box>
-        </CardWrapper>
-      )}
-    </>
+	<>
+		{isLoading ? (
+			<SkeletonEarningCard />
+		) : (
+			<CardWrapper border={false} content={false}>
+				<Box sx={{ p: 2.25 }}>
+				<Grid container direction="column">
+					<Grid item>
+					<Grid container alignItems="center">
+						<Grid item>
+						<Typography sx={{ fontSize: '1.5rem', fontWeight: 500, mr: 1, mt: 1.75, mb: 0.75 }}>Network</Typography>
+						</Grid>
+					</Grid>
+					<SubCard>
+						<Grid container direction="column" spacing={1}>
+						<Grid item>
+							<TypoGraphy sx={{ fontSize: '1rem', fontWeight: 600 }}>Goerli TestNet</TypoGraphy>
+						</Grid>
+						<Grid item>
+							<TypoGraphy sx={{ fontSize: '1rem', fontWeight: 400 }}>block height: {blockNumber ? blockNumber : <>Loading...</>}</TypoGraphy>
+						</Grid>
+						</Grid>
+					</SubCard>
+					</Grid>
+				</Grid>
+				</Box>
+			</CardWrapper>
+		)}
+	</>
   );
 };
 
 NetworkStatusCard.propTypes = {
-  isLoading: PropTypes.bool
+	isLoading: PropTypes.bool,
 };
 
 export default NetworkStatusCard;

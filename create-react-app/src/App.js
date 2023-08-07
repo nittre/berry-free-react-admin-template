@@ -13,17 +13,15 @@ import NavigationScroll from 'layout/NavigationScroll';
 
 
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router';
-import { getBlockHeight, getUserNormalTransaction, getUserTokenTransferEvents } from 'utils/crypto';
+import { getUserNormalTransaction, getUserTokenTransferEvents } from 'utils/crypto';
 
 
 // ==============================|| APP ||============================== //
 
 const App = () => {
   const customization = useSelector((state) => state.customization);
-  const { wallet, networkProvider, tx } = useSelector(state => state)
+  const { wallet, networkProvider } = useSelector(state => state)
   const dispatch = useDispatch()
-  const navigate = useNavigate('/')
   const [networkProviderConnected, setNetworkProviderConnected] = useState(false)
   const [walletConnected, setWalletConnected] = useState(false)
 

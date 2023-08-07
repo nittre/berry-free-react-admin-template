@@ -4,7 +4,7 @@ import { IconBrandChrome, IconHelp } from '@tabler/icons';
 // constant
 const icons = { IconBrandChrome, IconHelp };
 
-// ==============================|| SAMPLE PAGE & DOCUMENTATION MENU ITEMS ||============================== //
+// ==============================|| ETH MENU ITEMS ||============================== //
 
 const eth = {
   id: 'eth',

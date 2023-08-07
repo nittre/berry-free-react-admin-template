@@ -4,13 +4,9 @@ import { useEffect, useState } from 'react';
 import { CardContent, Grid } from '@mui/material';
 
 // project imports
-import AccountInfoCard from '../dashboard/Default/AccountInfoCard';
-import NetworkStatusCard from '../dashboard/Default/NetworkStatusCard';
-import PopularCard from '../dashboard/Default/TokenList';
-import { gridSpacing } from 'store/constant';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
-import { etherToWei, getBlockHeight, getETHGasLimit, getGasPrice, sendEther, isValidAddress } from 'utils/crypto';
+import { isValidAddress } from 'utils/crypto';
 import MainCard from 'ui-component/cards/MainCard';
 import { useFormik } from 'formik';
 import SkeletonPopularCard from 'ui-component/cards/Skeleton/PopularCard';
@@ -22,11 +18,10 @@ import SendInit from './SendInit';
 import SendConfirm from './SendConfirm';
 import SendLoad from './SendLoad';
 
-// ==============================|| DEFAULT DASHBOARD ||============================== //
+// ==============================|| Send - Index ||============================== //
 
 const Send = () => {
-  const { wallet, networkProvider, transaction } = useSelector(state => state)
-  const dispatch = useDispatch()
+  const { wallet } = useSelector(state => state)
   const navigate = useNavigate('/')
   const [isLoading, setLoading] = useState(true);
   const[ step, setStep ] = useState('init') // init, confirm, load, success, fail
@@ -70,7 +65,6 @@ const Send = () => {
 
   useEffect(() => {
 	setLoading(false);
-	
   }, []);
 
   useEffect(() => {

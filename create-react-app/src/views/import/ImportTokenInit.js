@@ -1,24 +1,16 @@
 import PropTypes from 'prop-types';
-import { useState } from 'react';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
-import { Box, Button, CardContent, Divider, FormControl, FormControlLabel, FormLabel, Grid, IconButton, Input, InputAdornment, InputLabel, OutlinedInput, Radio, RadioGroup, Typography } from '@mui/material';
-import TypoGraphy from '@mui/material/Typography';
+import { Box, Button, CardContent, FormControl, Grid, InputLabel, OutlinedInput } from '@mui/material';
 
 
 // project imports
 import MainCard from 'ui-component/cards/MainCard';
 import SkeletonPopularCard from 'ui-component/cards/Skeleton/PopularCard';
-import { gridSpacing } from 'store/constant';
 import { useSelector } from 'react-redux';
-import { etherToWei, getETHGasLimit, getGasPrice, importTokenContract, isValidAddress, sendEther, weiToEther } from 'utils/crypto';
-import { useEffect } from 'react';
-import { Visibility, VisibilityOff } from '@mui/icons-material';
+import { importTokenContract } from 'utils/crypto';
 import AnimateButton from 'ui-component/extended/AnimateButton';
-import GasFeeCard from '../send/GasFeeCard';
-import SubCard from 'ui-component/cards/SubCard';
-import { useNavigate } from 'react-router';
 
 // ==============================|| Import - ImportTokenInit ||============================== //
 
@@ -36,7 +28,6 @@ const ImportTokenInit = ({ isLoading, handleStep, formik, updateFormikValue }) =
 	updateFormikValue('tokenAddress', e.target.value)
 	updateFormikValue('tokenSymbol', symbol)
 	updateFormikValue('tokenDecimals', Number(decimals))
-
   }
 
 

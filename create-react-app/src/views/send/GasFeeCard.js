@@ -7,14 +7,11 @@ import SubCard from 'ui-component/cards/SubCard';
 
 // material-ui
 import { styled, useTheme } from '@mui/material/styles';
-import { Avatar, Box, Grid, Menu, MenuItem, Typography } from '@mui/material';
+import { Box, Grid } from '@mui/material';
 
 // project imports
-import MainCard from 'ui-component/cards/MainCard';
 import SkeletonEarningCard from 'ui-component/cards/Skeleton/EarningCard';
-import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import { getBlockHeight, weiToEther } from 'utils/crypto';
+import { weiToEther } from 'utils/crypto';
 
 // assets
 
@@ -28,20 +25,7 @@ const GasFeeCard = ({ isLoading, gasPrice, gasLimit, calcGasFeeLoading }) => {
 	color: theme.heading,
 	overflow: 'hidden',
 	position: 'relative',
-	// padding: '0'
   }));
-  
-
-  const [anchorEl, setAnchorEl] = useState(null);
-
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-
 
   return (
     <>

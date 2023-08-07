@@ -2,7 +2,7 @@ import { Link, useNavigate } from 'react-router-dom';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
-import { Divider, Grid, Stack, Typography, useMediaQuery, Box, Button, FormControl, Input } from '@mui/material';
+import { Grid, Stack, Typography, useMediaQuery, Box, Button } from '@mui/material';
 
 // project imports
 import AuthWrapper1 from '../AuthWrapper1';
@@ -10,26 +10,13 @@ import AuthCardWrapper from '../AuthCardWrapper';
 import Logo from 'ui-component/Logo';
 import AuthFooter from 'ui-component/cards/AuthFooter';
 import AnimateButton from 'ui-component/extended/AnimateButton';
-import { createWallet } from 'utils/crypto';
-import { useEffect, useState } from 'react';
-import { pasteToClipboard } from 'utils/utils';
-import { useSelector } from 'react-redux';
 
-
-// assets
-
-// ===============================|| Create Wallet ||=============================== //
-
-const createWalletStep = ['start', 'pasteMnemonic', 'end']
+// ===============================|| RestoreOrCreate ||=============================== //
 
 const RestoreOrCreate = () => {
   const theme = useTheme();
-  const { wallet } = useSelector(state => state.wallet)
   const navigate = useNavigate()
   const matchDownSM = useMediaQuery(theme.breakpoints.down('md'));
-  const [step, setStep] = useState(createWalletStep[0])
-  const [phrase, setPhrase] = useState([])
-  const [isPhrasePasted, setIsPhrasePasted] = useState(false)
 
   const handleButtonClick = (action) => {
 	navigate(`/wallet/${action}`)

@@ -1,9 +1,8 @@
 import PropTypes from 'prop-types';
-import { useState } from 'react';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
-import { CardContent, Divider, Grid, Link, Paper, Table, TableBody, TableCell, TableHead, TableRow, Typography } from '@mui/material';
+import { CardContent, Grid, Link, Paper, Table, TableBody, TableCell, TableHead, TableRow } from '@mui/material';
 
 // project imports
 import MainCard from 'ui-component/cards/MainCard';
@@ -11,23 +10,14 @@ import SkeletonPopularCard from 'ui-component/cards/Skeleton/PopularCard';
 import { gridSpacing } from 'store/constant';
 import { useSelector } from 'react-redux';
 import { weiToEther } from 'utils/crypto';
-import { useEffect } from 'react';
 import { formatAddress } from 'utils/utils';
 
 // ==============================|| Transaction - TransactionList ||============================== //
 
 const TransactionList = ({ isLoading }) => {
   const theme = useTheme();
-  const {tx} = useSelector(state => state.transaction)
-  
-  const [anchorEl, setAnchorEl] = useState(null);
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
+  const { tx } = useSelector(state => state.transaction)
 
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
 
   return (
     <>
@@ -67,7 +57,6 @@ const TransactionList = ({ isLoading }) => {
 						})
 					}
 					</TableBody>
-
 				</Table>               
               </Grid>
             </Grid>

@@ -9,7 +9,7 @@ const icons = {
   IconWindmill
 };
 
-// ==============================|| UTILITIES MENU ITEMS ||============================== //
+// ==============================|| TOKEN MENU ITEMS ||============================== //
 
 const token = {
   id: 'token',

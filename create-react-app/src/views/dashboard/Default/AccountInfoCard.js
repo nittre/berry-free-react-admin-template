@@ -56,20 +56,11 @@ const CardWrapper = styled(MainCard)(({ theme }) => ({
 
 const AccountInfoCard = ({ isLoading, wallet, networkProvider }) => {
   const theme = useTheme();
-  const [anchorEl, setAnchorEl] = useState(null);
   const [balance, setBalance] = useState('')
   
   const formatAddress = (address) => {
 	return address.slice(0, 8) + '...' + address.slice(address.length - 10, address.length - 1)
   }
-
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
 
   useEffect(() => {
 	if (networkProvider !== undefined && Object.keys(networkProvider).length !== 0 && Object.keys(wallet).length != 0){
@@ -80,58 +71,60 @@ const AccountInfoCard = ({ isLoading, wallet, networkProvider }) => {
   }, [wallet])
 
   return (
-    <>
-      {isLoading ? (
-        <SkeletonEarningCard />
-      ) : (
-        <CardWrapper border={false} content={false}>
-          <Box sx={{ p: 2.25 }}>
-            <Grid container direction="column">
-              <Grid item>
-                <Grid container justifyContent="space-between">
-                  <Grid item>
-                    <Avatar
-                      variant="rounded"
-                      sx={{
-                        ...theme.typography.commonAvatar,
-                        ...theme.typography.largeAvatar,
-                        backgroundColor: theme.palette.secondary[800],
-                        mt: 1
-                      }}
-                    >
-                      <img src={EthBalanceIcon} alt="Notification" />
-                    </Avatar>
-                  </Grid>
-                </Grid>
-              </Grid>
-              <Grid item>
-                <Grid container alignItems="center">
-                  <Grid item>
-                    <Typography sx={{ fontSize: '2.125rem', fontWeight: 500, mr: 1, mt: 1.75, mb: 0.75 }}>{balance} GoerliETH</Typography>
-                  </Grid>
-                </Grid>
-              </Grid>
-              <Grid item sx={{ mb: 1.25 }}>
-                <Typography
-                  sx={{
-                    fontSize: '1rem',
-                    fontWeight: 400,
-                    color: theme.palette.secondary[200]
-                  }}
-                >
-                  {wallet.address ? formatAddress(wallet.address) : <></>}
-                </Typography>
-              </Grid>
-            </Grid>
-          </Box>
-        </CardWrapper>
-      )}
-    </>
-  );
+	<>
+		{isLoading ? (
+			<SkeletonEarningCard />
+		) : (
+			<CardWrapper border={false} content={false}>
+				<Box sx={{ p: 2.25 }}>
+				<Grid container direction="column">
+					<Grid item>
+					<Grid container justifyContent="space-between">
+						<Grid item>
+						<Avatar
+							variant="rounded"
+							sx={{
+							...theme.typography.commonAvatar,
+							...theme.typography.largeAvatar,
+							backgroundColor: theme.palette.secondary[800],
+							mt: 1
+							}}
+						>
+							<img src={EthBalanceIcon} alt="Notification" />
+						</Avatar>
+						</Grid>
+					</Grid>
+					</Grid>
+					<Grid item>
+					<Grid container alignItems="center">
+						<Grid item>
+						<Typography sx={{ fontSize: '2.125rem', fontWeight: 500, mr: 1, mt: 1.75, mb: 0.75 }}>{balance} GoerliETH</Typography>
+						</Grid>
+					</Grid>
+					</Grid>
+					<Grid item sx={{ mb: 1.25 }}>
+					<Typography
+						sx={{
+						fontSize: '1rem',
+						fontWeight: 400,
+						color: theme.palette.secondary[200]
+						}}
+					>
+						{wallet.address ? formatAddress(wallet.address) : <></>}
+					</Typography>
+					</Grid>
+				</Grid>
+				</Box>
+			</CardWrapper>
+		)}
+	</>
+  )
 };
 
 AccountInfoCard.propTypes = {
-  isLoading: PropTypes.bool
+	isLoading: PropTypes.bool,
+	wallet: PropTypes.object,
+	networkProvider: PropTypes.object,
 };
 
 export default AccountInfoCard;

@@ -4,16 +4,12 @@ import { useEffect, useState } from 'react';
 import { Grid } from '@mui/material';
 
 // project imports
-import AccountInfoCard from '../dashboard/Default/AccountInfoCard';
-import NetworkStatusCard from '../dashboard/Default/NetworkStatusCard';
-import PopularCard from '../dashboard/Default/TokenList';
-import { gridSpacing } from 'store/constant';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
-import { getBlockHeight, isValidAddress } from 'utils/crypto';
-import MainCard from 'ui-component/cards/MainCard';
+import { isValidAddress } from 'utils/crypto';
 import ImportTokenInit from './ImportTokenInit';
-import { Formik, useFormik } from 'formik';
+import { useFormik } from 'formik';
+
 // third party
 import * as Yup from 'yup';
 import ImportTokenConfirm from './ImportTokenConfirm';
@@ -21,8 +17,7 @@ import ImportTokenConfirm from './ImportTokenConfirm';
 // ==============================|| DEFAULT DASHBOARD ||============================== //
 
 const ImportToken = () => {
-  const { wallet, networkProvider, transaction } = useSelector(state => state)
-  const dispatch = useDispatch()
+  const { wallet } = useSelector(state => state)
   const navigate = useNavigate('/')
 
   const [isLoading, setLoading] = useState(true);
@@ -30,12 +25,11 @@ const ImportToken = () => {
 
   useEffect(() => {
 	setLoading(false);
-	
   }, []);
 
   useEffect(() => {
 	if (Object.keys(wallet).length == 0) {
-		navigate('/wallet')
+		navigate('/login')
 	} 
   })
 
