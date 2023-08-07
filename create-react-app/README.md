@@ -1,74 +1,55 @@
-# Getting Started with Create React App
+# Coz Wallet
+아주 간단한 형태의 웹 월렛
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## ⚠️ 주의
+**코즈 월렛은 안전하지 않습니다!**
 
-## Available Scripts
+코즈 월렛은 **학습 목적**으로 제작되었으며, 학습 외 서비스 목적으로 제작되지 않았습니다.<br/>
+학습을 위해 사용할 것을 권장하며, 절대 메인넷에서 사용하지 마세요.
 
-In the project directory, you can run:
+학습 외 목적으로 사용한 경우에 대해 어떠한 책임도 지지 않습니다.
 
-### `npm install`
+## 주요 기능
+- 지갑 생성 및 복구
+- 계정 이더 잔액 조회
+- 이더 전송
+- 토큰 잔액 조회
+- 토큰 전송
+- 트랜잭션 조회
+- 토큰 컨트랙트 이벤트 구독
 
-Install packages
+## 주요 스택
+- React
+	- Material UI - [berry-free-react-admin-template](https://github.com/codedthemes/berry-free-react-admin-template) 사용
+- Ethereum Goerli Testnet
+- Ethers.js
+- Etherscan API
+- [Remix](https://remix.ethereum.org/)
+	- OpenZeppelin에서 제공하는 [ERC-20 컨트랙트](https://docs.openzeppelin.com/contracts/4.x/erc20)를 사용해 테스트용 ERC-20 토큰 컨트랙트를 배포하여 사용합니다.
 
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## 폴더 구조
+```
+├── README.md
+├── jsconfig.json
+├── package-lock.json
+├── package.json
+├── public
+|  ├── favicon.svg
+|  └── index.html
+├── src
+|  ├── App.js
+|  ├── assets
+|  ├── config.js
+|  ├── hooks
+|  ├── index.js
+|  ├── layout
+|  ├── menu-items
+|  ├── routes
+|  ├── serviceWorker.js
+|  ├── store
+|  ├── themes
+|  ├── ui-component
+|  ├── utils
+|  └── views
+└── yarn.lock
+```
