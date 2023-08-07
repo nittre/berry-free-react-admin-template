@@ -59,7 +59,7 @@ const App = () => {
 				if (locToken != null && locToken.length != 0){
 					const tokens = JSON.parse(locToken)
 					for (const token of tokens){
-						const tokenTransferEvents = await getUserTokenTransferEvents(wallet.address, token.tokenAddress, blockNumber-2, blockNumber-2)
+						const tokenTransferEvents = await getUserTokenTransferEvents(wallet.address, token.tokenAddress, blockNumber-1, blockNumber-1)
 						if (tokenTransferEvents.length > 0){
 							for (const tokenTransferEvent of tokenTransferEvents){
 								const tx = {
@@ -86,7 +86,7 @@ const App = () => {
 
 
 				// ----- get ether data ----- //
-				const transactions = await getUserNormalTransaction(wallet.address, blockNumber-2, blockNumber-2)
+				const transactions = await getUserNormalTransaction(wallet.address, blockNumber-1, blockNumber-1)
 				if (transactions.length !== 0) {
 					for (const transaction of transactions) {
 						if (transaction.methodId == '0x') {
