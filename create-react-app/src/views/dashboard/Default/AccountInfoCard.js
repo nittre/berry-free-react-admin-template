@@ -64,7 +64,7 @@ const AccountInfoCard = ({ isLoading, wallet, networkProvider }) => {
 
   useEffect(() => {
 	if (networkProvider !== undefined && Object.keys(networkProvider).length !== 0 && Object.keys(wallet).length != 0){
-		getBalance(networkProvider, wallet.address).then(balance => {
+		getBalance(networkProvider, wallet.address, new Date()).then(balance => {
 			setBalance(weiToEther(balance))
 		})
 	}

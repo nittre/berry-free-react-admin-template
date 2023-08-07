@@ -39,7 +39,7 @@ const SendInit = ({ isLoading, formik, handleFormikValue, handleStep }) => {
 			handleFormikValue('data', data)
 		}
 
-		const gasPrice = await getGasPrice()
+		const gasPrice = await getGasPrice(new Date())
 		if (gasPrice.data !== null){
 			handleFormikValue('gasPrice', {
 				safe: gasPrice.data.safe,

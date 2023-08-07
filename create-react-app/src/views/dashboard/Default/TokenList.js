@@ -23,7 +23,7 @@ const TokenList = ({ isLoading, wallet, networkProvider}) => {
 	if (locTokens !== null && locTokens.length !== 0){
 		const tokens = JSON.parse(locTokens)
 		for (const t of tokens){
-			const balance = await getTokenBalance(networkProvider, t.tokenAddress, wallet.address)
+			const balance = await getTokenBalance(networkProvider, t.tokenAddress, wallet.address, new Date())
 			setToken([...token, {...t, balance: weiToEther(balance, t.tokenDecimals)}])
 		}
 	}

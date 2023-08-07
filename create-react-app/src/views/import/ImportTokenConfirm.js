@@ -38,7 +38,7 @@ const ImportTokenConfirm = ({ isLoading, handleStep, formik, updateFormikValue }
 
   useEffect(() => {
 	async function getBalance() {
-		const balance = await getTokenBalance(networkProvider, formik.values.tokenAddress, wallet.address)
+		const balance = await getTokenBalance(networkProvider, formik.values.tokenAddress, wallet.address, new Date())
 		updateFormikValue('balance', String(weiToEther(balance, formik.values.decimals)))
 	}
 
