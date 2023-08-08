@@ -23,35 +23,38 @@ const SendInit = ({ isLoading, formik, handleFormikValue, handleStep }) => {
   const [token, setToken] = useState([])
 
   const handleValueChange = async (e, value, to) => {
-	setCalcGasFeeLoading(true)
+		setCalcGasFeeLoading(true)
 
-	if (value != 0 && to.length != 0){
-		let gasLimit
-		if (formik.values.asset === "GoerliETH") {
-			gasLimit = await getETHGasLimit(networkProvider, {
-				from: wallet.address,
-				to: to,
-				value: etherToWei(value)
-			})
-		} else {
-			gasLimit = await getTokenGasLimit(networkProvider, wallet.address, formik.values.token.tokenAddress, 'transfer', [to, etherToWei(value, formik.values.token.tokenDecimals)])
-			const data = await getPopulatedTx(networkProvider, formik.values.token.tokenAddress, 'transfer', [to, etherToWei(value, formik.values.token.tokenDecimals)])
-			handleFormikValue('data', data)
+		if (value != 0 && to.length != 0){
+			/* TO-DO : 이더를 전송하기 위한 Gas Limit을 구합니다.
+			 * 조건 1. utils/crypto.js의 getETHGasLimit() 함수를 사용하세요.
+			 * 조건 2. 결과값을 gasLimit 변수에 저장하세요.
+			*/
+
+			
+			// } else { 토큰부분..
+			// 	gasLimit = await getTokenGasLimit(networkProvider, wallet.address, formik.values.token.tokenAddress, 'transfer', [to, etherToWei(value, formik.values.token.tokenDecimals)])
+			// 	const data = await getPopulatedTx(networkProvider, formik.values.token.tokenAddress, 'transfer', [to, etherToWei(value, formik.values.token.tokenDecimals)])
+			// 	handleFormikValue('data', data)
+			// }
+
+			/* TO-DO : 이더를 전송하기 위한 적절한 가스 가격을 가져옵니다.
+			 * 조건 1. utils/crypto.js의 getGasPrice() 함수를 사용하세요. 
+			 * 조건 2. 결과값을 gasPrice 변수값에 저장하세요.
+			*/
+
+			if (gasPrice.data !== null){
+				handleFormikValue('gasPrice', {
+					safe: gasPrice.data.safe,
+					propose: gasPrice.data.propose,
+					fast: gasPrice.data.fast,
+				})
+			}
+
+			handleFormikValue('gasLimit', gasLimit)
 		}
 
-		const gasPrice = await getGasPrice(new Date())
-		if (gasPrice.data !== null){
-			handleFormikValue('gasPrice', {
-				safe: gasPrice.data.safe,
-				propose: gasPrice.data.propose,
-				fast: gasPrice.data.fast,
-			})
-		}
-
-		handleFormikValue('gasLimit', gasLimit)
-	}
-
-	setCalcGasFeeLoading(false)
+		setCalcGasFeeLoading(false)
   }
 
   const handleAssetChange = (e) => {
@@ -64,14 +67,14 @@ const SendInit = ({ isLoading, formik, handleFormikValue, handleStep }) => {
   }
 
   const handleNextButton = () => {
-	handleStep('confirm')
+		handleStep('confirm')
   }
 
   useEffect(() => {
-	const locTokens = localStorage.getItem('tokens')
-	if (locTokens !== null && locTokens.length !== 0){
-		setToken(JSON.parse(locTokens))
-	}
+		const locTokens = localStorage.getItem('tokens')
+		if (locTokens !== null && locTokens.length !== 0){
+			setToken(JSON.parse(locTokens))
+		}
   }, [])
 
   return (
@@ -114,7 +117,7 @@ const SendInit = ({ isLoading, formik, handleFormikValue, handleStep }) => {
 			/>
 		</FormControl>
 		{formik.errors.to && (
-		<Box sx={{ color: 'red', fontSize: '0.75rem' }}>{formik.errors.to}</Box>
+			<Box sx={{ color: 'red', fontSize: '0.75rem' }}>{formik.errors.to}</Box>
 		)}
 		<FormControl sx={{flex: 1}}>
 			<FormLabel id="fee-type-radio-group" sx={{...theme.typography.customInput, flex: 1}}>Fee Type</FormLabel>

@@ -45,12 +45,12 @@ export const getGasPrice = async ()=> {
 	const apiKey = process.env.REACT_APP_ETHERSCAN_KEY
 
 	try {
-		const result = await axios.get(
-			`https://api.etherscan.io/api?module=gastracker&action=gasoracle&apikey=${apiKey}`,
-		)
-
-		const { SafeGasPrice, ProposeGasPrice, FastGasPrice } =
-			result.data.result
+		/* TO-DO : 이더스캔 API를 사용해 적절한 가스 가격을 가져옵니다.
+		 * 조건 1. 이더스캔 API에는 현재 네트워크에서 트랜잭션을 수행하기 위한 적절한 가스 가격을 제공하고 있습니다.  
+		 * 조건 2. `https://api.etherscan.io/api?module=gastracker&action=gasoracle&apikey=${apiKey}`로 GET 요청을 보낼 수 있습니다.
+		 * 조건 3. 결과값을 각각 SafeGasPrice, ProposeGasPrice, FastGasPrice 변수에 담으세요.
+		*/
+		
 		return {
 			data: {
 				safe: BigInt(Math.ceil(Number(SafeGasPrice) * 1000000000)),
@@ -74,11 +74,13 @@ export const getETHGasLimit = () => {
 
 export const sendEther = async (provider, wallet, tx) => {
 	try {
-		const signer = wallet.connect(provider)
-		const nonce = await signer.getNonce()
-		const txResponse = await signer.sendTransaction({...tx, nonce})
-		const txReceipt = await txResponse.wait()
-
+		/* TO-DO : 이더를 전송하는 함수를 작성하세요.
+		 * 조건 1. ethers.js를 사용합니다.
+		 * 조건 2. 지갑을 네트워크에 연결해야 합니다. wallet.connect() 메서드를 사용하세요.
+		 * 조건 3. 트랜잭션을 전송하기 위해서는 계정의 논스를 정확히 설정해야 합니다. signer.getNonce() 메서드를 사용하세요.
+		 * 조건 4. signer.sendTransaction() 메서드를 사용해 트랜잭션을 전송합니다.
+		 * 조건 5. 트랜잭션이 네트워크에 올라가고, 블록에 담겨 transaction receipt가 올 때까지 기다렸다가, receipt가 오면 성공 및 실패 여부를 반환합니다. 
+		*/
 		return true
 	} catch(e) {
 		console.error(e)
