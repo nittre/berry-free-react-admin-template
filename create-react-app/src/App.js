@@ -56,6 +56,12 @@ const App = () => {
 		 * 조건 3. 블록 넘버는 리덕스 상태 변수로 관리됩니다. 블록이 업데이트 될 때마다 	dispatch({type: 'UPDATE_BLOCKNUMBER', payload: {blockNumber}})를 호출합니다.
 		*/
 
+		/* TO-DO : 트랜잭션 데이터를 가져옵니다
+		 * 조건 1. 블록이 생성될 때마다, 현재 계정과 관련된 트랜잭션이 있는지 확인합니다.
+		 * 조건 2. utils/crypto.js의 getUserNormalTransaction() 함수를 사용하세요.
+		 * 조건 3. getUserNormalTransaction() 함수를 반환한 결과값은 리덕스 상태 변수 tx에 저장하세요.
+		 * 조건 4. 또한 localStroge에도 저장합니다. 
+		*/
 					/*
 					// ----- get token data ----- //
 					const locToken = localStorage.getItem('tokens')
@@ -87,35 +93,6 @@ const App = () => {
 						}
 					}
 
-					*/
-					
-					/*
-					// ----- get ether data ----- //
-					const transactions = await getUserNormalTransaction(wallet.address, blockNumber-1, blockNumber-1, new Date())
-					if (transactions.length !== 0) {
-						for (const transaction of transactions) {
-							if (transaction.methodId == '0x') {
-								const newTx = {
-									hash: transaction.hash,
-									from: transaction.from,
-									to: transaction.to, 
-									value: transaction.value,
-									blockNumber: transaction.blockNumber,
-									type: 'send-ether'
-								}
-
-								
-								dispatch({type: 'ADD_TRANSACTION', payload: {
-									tx: newTx
-								}})
-
-								const txList = JSON.parse(localStorage.getItem('tx'))
-								txList.push(newTx)
-								localStorage.setItem('tx', JSON.stringify(txList))
-								
-							}
-						}
-					}
 					*/
 				// })
 			// }

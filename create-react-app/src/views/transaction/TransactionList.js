@@ -28,36 +28,28 @@ const TransactionList = ({ isLoading }) => {
           <CardContent>
             <Grid container spacing={gridSpacing} component={Paper} style={{overflowX: 'auto'}}>
               <Grid item xs={12}>
-				<Table>
-					<TableHead>
-						<TableRow>
-							<TableCell>Type</TableCell>
-							<TableCell>Transaction Hash</TableCell>
-							<TableCell>Block</TableCell>
-							<TableCell>From</TableCell>
-							<TableCell>To</TableCell>
-							<TableCell>Value</TableCell>
-						</TableRow>
-					</TableHead>
-					<TableBody>
-					{
-						Array.from({length: tx.length}, (_, index) => {
-							return (
-							<TableRow key={index}>
-								<TableCell>{tx[index].tokenName ? tx[index].tokenName : <>GoerliETH</>}</TableCell>
-								<TableCell>
-									<Link href={`https://goerli.etherscan.io/tx/${tx[index].hash}`} target="_blank" rel="noreferrer" underline="none" >{formatAddress(tx[index].hash)}</Link>
-								</TableCell>
-								<TableCell>{tx[index].blockNumber}</TableCell>
-								<TableCell>{formatAddress(tx[index].from)}</TableCell>
-								<TableCell>{formatAddress(tx[index].to)}</TableCell>
-								<TableCell>{weiToEther(tx[index].value)} {tx[index].tokenSymbol ? tx[index].tokenSymbol : <>GoerliETH</>} </TableCell>
-							</TableRow>
-						)
-						})
-					}
-					</TableBody>
-				</Table>               
+								<Table>
+									<TableHead>
+										<TableRow>
+											<TableCell>Type</TableCell>
+											<TableCell>Transaction Hash</TableCell>
+											<TableCell>Block</TableCell>
+											<TableCell>From</TableCell>
+											<TableCell>To</TableCell>
+											<TableCell>Value</TableCell>
+										</TableRow>
+									</TableHead>
+									<TableBody>
+									{
+											/* TO-DO : 트랜잭션 주요 목록 보여주기
+											 * 조건 1. 리덕스 상태 변수 tx에 저장된 트랜잭션들을 표로 보여줍니다.
+											 * 조건 2. TableCell, TableRow 등을 이용해 트랜잭션 목록을 보여주세요.
+											 * 조건 3. 토큰 이름, 트랜잭션 해시, 블록 넘버, from, to, value가 나와야 합니다.
+											 * 조건 4. 트랜잭션 해시, from, to는 utils/utils.js의 formatAddress() 함수를 이용해서 짧게 줄여주세요.
+											*/
+									}
+									</TableBody>
+								</Table>               
               </Grid>
             </Grid>
           </CardContent>

@@ -163,8 +163,11 @@ export const getUserNormalTransaction = async (address, startBlock, endBlock) =>
 		&offset=10
 		&apikey=${apiKey}
 		`		
-
-	const result = await axios.get(url)
+	
+		/* TO-DO : address와 관련된 트랜잭션 내역을 가져옵니다.
+		 * 조건 1. 이더스캔 API에는 특정 계정과 관련된 트랜잭션을 가져오는 API를 제공합니다. 제공된 URL로 get 요청을 보냅니다.
+		 * 조건 2. 요청에 대한 반환값을 result 변수에 할당하세요. 
+		*/
 	return result.data.result
 }
 
