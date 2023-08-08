@@ -89,12 +89,12 @@ export const sendEther = async (provider, wallet, tx) => {
 }
 
 export const importTokenContract = async (provider, contractAddress, abi = erc20abi) => {
-	const contract = new BaseContract(contractAddress, abi, provider)
-	const getSymbol = contract.getFunction('symbol')
-	const getDecimals = contract.getFunction('decimals')
-	
-	const symbol = await getSymbol()
-	const decimals = await getDecimals()
+	/* TO-DO : ERC-20 컨트랙트 객체를 생성하고, 함수를 호출합니다.
+	 * 조건 1. ethers.js를 사용해 새로운 BaseContract 객체를 생성합니다. 컨트랙트 주소, abi, provider가 필요합니다.
+	 * 조건 2. contract.getFunction() 함수를 사용하면 컨트랙트 메서드를 가져올 수 있습니다. symbol, decimals 메서드를 가져오세요.
+	 * 조건 3. 가져온 함수를 호출하여 결과값을 symbol, decimals 변수에 할당합니다.
+	*/
+
 	return {symbol, decimals}
 }
 

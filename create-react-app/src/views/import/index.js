@@ -14,7 +14,7 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import ImportTokenConfirm from './ImportTokenConfirm';
 
-// ==============================|| DEFAULT DASHBOARD ||============================== //
+// ==============================|| IMPORT TOKENS ||============================== //
 
 const ImportToken = () => {
   const { wallet } = useSelector(state => state)
@@ -24,37 +24,37 @@ const ImportToken = () => {
   const [step, setStep] = useState('init') // init, confirm
 
   useEffect(() => {
-	setLoading(false);
+		setLoading(false);
   }, []);
 
   useEffect(() => {
-	if (Object.keys(wallet).length == 0) {
-		navigate('/login')
-	} 
+		if (Object.keys(wallet).length == 0) {
+			navigate('/login')
+		} 
   })
 
   const handleStep = (newStep) => {
-	setStep(newStep)
+		setStep(newStep)
   }
 
   const validateToField = (value) => {
-	return isValidAddress(value)
+		return isValidAddress(value)
   }
 
   const updateFormikValue = (field, value) => {
-	formik.setFieldValue(field, value)
+		formik.setFieldValue(field, value)
   }
 
   const formik = useFormik({
-	initialValues: {
-		tokenAddress: '',
-		tokenSymbol: '',
-		tokenDecimals: 0,
-		balance: ''
-	},
-	validationSchema: Yup.object().shape({
-		tokenAddress: Yup.string().required('address 필드는 필수 항목입니다.').test('validateToField', validateToField)
-	})
+		initialValues: {
+			tokenAddress: '',
+			tokenSymbol: '',
+			tokenDecimals: 0,
+			balance: ''
+		},
+		validationSchema: Yup.object().shape({
+			tokenAddress: Yup.string().required('address 필드는 필수 항목입니다.').test('validateToField', validateToField)
+		})
   })
 
 
