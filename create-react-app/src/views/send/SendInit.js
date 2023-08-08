@@ -31,12 +31,15 @@ const SendInit = ({ isLoading, formik, handleFormikValue, handleStep }) => {
 			 * 조건 2. 결과값을 gasLimit 변수에 저장하세요.
 			*/
 
-			
-			// } else { 토큰부분..
-			// 	gasLimit = await getTokenGasLimit(networkProvider, wallet.address, formik.values.token.tokenAddress, 'transfer', [to, etherToWei(value, formik.values.token.tokenDecimals)])
-			// 	const data = await getPopulatedTx(networkProvider, formik.values.token.tokenAddress, 'transfer', [to, etherToWei(value, formik.values.token.tokenDecimals)])
-			// 	handleFormikValue('data', data)
-			// }
+			/* TO-DO : 토큰을 전송하기 위한 적절한 가스 리밋을 가져옵니다.
+			 * 조건 1. utils/crypto.js의 getTokenGasLimit() 함수를 사용하세요.
+			 * 조건 2. 결과값을 gasLimit 변수에 저장하세요.
+			*/
+
+			/* TO-DO : 토큰 컨트랙트의 transfer 메서드를 호출하기 위한 data를 구합니다.
+			 * 조건 1. 토큰의 transfer 메서드를 호출하는 작업을 16진수화 해야 합니다. utils/crypto.js의 getPopulatedTx() 함수를 사용하세요.
+			 * 조건 2. 결과값을 formik value의 'data'에 넣어주세요.
+			*/
 
 			/* TO-DO : 이더를 전송하기 위한 적절한 가스 가격을 가져옵니다.
 			 * 조건 1. utils/crypto.js의 getGasPrice() 함수를 사용하세요. 
@@ -58,12 +61,12 @@ const SendInit = ({ isLoading, formik, handleFormikValue, handleStep }) => {
   }
 
   const handleAssetChange = (e) => {
-	for (const t of token) {
-		if (t.tokenSymbol == e.target.value) {
-			handleFormikValue('token', t)
-			break
-		}
-	} 
+		for (const t of token) {
+			if (t.tokenSymbol == e.target.value) {
+				handleFormikValue('token', t)
+				break
+			}
+		} 
   }
 
   const handleNextButton = () => {

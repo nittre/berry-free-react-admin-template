@@ -129,13 +129,13 @@ export const getTokenGasLimit = async (
 	args,
 ) => {
 	try {
-		const populatedTx = await getPopulatedTx(provider, contractAddress, method, args)
+		
+		/* TO-DO : 토큰 메서드 호출을 위한 gas limit을 계산합니다.
+		 * 조건 1. ethers.js의 provider.estimateGas() 함수를 사용합니다.
+		 * 조건 2. estimateGas()를 호출하기 위해서는 호출을 16진수화 한 트랜잭션 데이터가 필요합니다. getPopulatedTx() 함수를 사용하세요. 
+		 * 조건 3. 계산한 결과를 gasLimit 변수에 할당하세요.
+		*/
 
-		const gasLimit = await provider.estimateGas({
-			from,
-			to: populatedTx.to,
-			data: populatedTx.data,
-		})
 		return gasLimit
 	} catch (e) {
 		console.error(e)
