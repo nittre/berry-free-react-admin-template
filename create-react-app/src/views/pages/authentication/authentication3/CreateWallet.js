@@ -24,43 +24,37 @@ const CreateWallet = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const matchDownSM = useMediaQuery(theme.breakpoints.down('md'));
-  const [step, setStep] = useState(createWalletStep[0])
-  const [phrase, setPhrase] = useState([])
-  const [wallet, setWallet] = useState(undefined)
-  const [isPhrasePasted, setIsPhrasePasted] = useState(false)
+  const [step, setStep] = useState(createWalletStep[0]) // start -> pastedMnemonic -> end
+  const [phrase, setPhrase] = useState([]) // 니모닉 구문의 각 단어를 배열의 요소로 저장합니다.
+  const [wallet, setWallet] = useState(undefined) // 새롭게 생성한 지갑 객체를 저장합니다.
+  const [isPhrasePasted, setIsPhrasePasted] = useState(false) // 니모닉이 사용자의 클립보드에 복사되었는지의 여부를 저장합니다.
 
   const dispatchWallet = () => {
-	dispatch({
-		type: 'CREATE_WALLET',
-		payload: {
-			wallet
-		}
-	})
+		dispatch({
+			type: 'CREATE_WALLET',
+			payload: {
+				wallet
+			}
+		})
   }
 
   const handleCreateButtonClick = () => {
-	try {
-		if (step == createWalletStep[0]){
-			const wallet = createWallet()
-			setWallet(wallet)
-			setPhrase(wallet.mnemonic.phrase.split(' '))
-			setStep(createWalletStep[1])
-		} else if (step == createWalletStep[1]) {
-			dispatchWallet()
-			navigate('/')
+		try {
+			/* TO-DO : 생성하기 버튼을 누르면 새로운 니모닉 지갑을 생성합니다.
+			* 조건 1. ethers.js를 사용해 니모닉 지갑을 생성하고, 해당 지갑의 니모닉을 상태 변수 phrase에 할당합니다. utils/crypto.js 파일의 createWallet()함수를 사용하세요.
+			* 조건 2. 생성된 니모닉 지갑은 리덕스가 관리하는 상태에 저장합니다. dispatchWallet() 함수를 사용하세요.
+			* 조건 2. 정상적으로 니모닉 지갑이 생성되었다면, 다음 step으로 넘어갑니다.
+			*/
+		} catch (e) {
+			console.error(e)
 		}
-	} catch(e) {
-		console.error(e)
-	}
   }
 
   const handlePasteButtonClick = (e) => {
-	if (pasteToClipboard(phrase.join(' '))) {
-		setIsPhrasePasted(true)
-	}
-	else {
-		console.error('something wrong')
-	}
+		/* TO-DO : 복사 기능을 구현하세요.
+		 * 조건 1. pasteToClipboard() 함수를 호출해 사용자의 클립보드에 니모닉을 복사합니다.
+		 * 조건 2. 성공적으로 니모닉을 복사하면, isPhrasePasted 상태변수를 true로 설정합니다.
+		*/
   }
 
   return (
@@ -84,21 +78,21 @@ const CreateWallet = () => {
                             지갑 생성하기
                           </Typography>
                           <Typography variant="caption" fontSize="16px" textAlign={matchDownSM ? 'center' : 'inherit'}>
-							{
-								step === 'start' ? (
-								<>버튼을 누르면 새로운 지갑을 생성합니다.</>
-								) : step === 'pasteMnemonic' ? (
-								<>
-								<p>
-									니모닉을 복사하세요.
-								</p>
-								<p>
-									⚠️ 이 페이지를 벗어나면 더 이상 니모닉 문구를 확인할 수 없습니다!
-									꼭 니모닉 문구를 복사한 후, 다른 곳에 백업해두세요!
-								</p>
-								</>
-								) : null
-							}
+														{
+															step === 'start' ? (
+															<>버튼을 누르면 새로운 지갑을 생성합니다.</>
+															) : step === 'pasteMnemonic' ? (
+															<>
+															<p>
+																니모닉을 복사하세요.
+															</p>
+															<p>
+																⚠️ 이 페이지를 벗어나면 더 이상 니모닉 문구를 확인할 수 없습니다!
+																꼭 니모닉 문구를 복사한 후, 다른 곳에 백업해두세요!
+															</p>
+															</>
+															) : null
+														}
                           </Typography>
                         </Stack>
                       </Grid>
