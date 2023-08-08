@@ -10,7 +10,10 @@ export const createWallet = () => {
 }
 
 export const createWalletFromPhrase = (phrase) => {
-	return ethers.HDNodeWallet.fromPhrase(phrase)
+	/* TO-DO : 니모닉 구문으로부터 지갑을 복구합니다.
+	 * 조건 1. ethers.js를 사용합니다.
+	 * 조건 2. HDNodeWallet의 fromPhrase() 메서드를 사용합니다.
+	*/
 }
 
 export const getBalance = async (provider, address)=> {
