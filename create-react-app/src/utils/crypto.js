@@ -17,8 +17,9 @@ export const createWalletFromPhrase = (phrase) => {
 }
 
 export const getBalance = async (provider, address)=> {
-	const balance = await provider.getBalance(address)
-	return balance
+	/* TO-DO : 계정의 잔액을 가져오세요.
+	 * 조건 1. provider.getBalance()를 통해 특정 계정의 잔액을 가져올 수 있습니다. 
+	*/
 }
 
 export const etherToWei = (value, decimal = 18) => {
@@ -26,7 +27,10 @@ export const etherToWei = (value, decimal = 18) => {
 }
 
 export const weiToEther = (value, decimal = 18, ceil = 7) => {
-	return formatUnits(value, decimal).slice(0, ceil)
+	/* TO-DO : wei를 이더 형식으로 변환해주는 함수를 작성하세요.
+	 * 조건 1. ethers.js의 formatUnits() 메서드를 사용하세요.
+	 * 조건 2. value는 단위를 변경해야 할 값이며, decimal을 기준으로 변경한 후, ceil만큼 올림해야 합니다.
+	*/
 }
 
 export const isValidAddress = (address) => {

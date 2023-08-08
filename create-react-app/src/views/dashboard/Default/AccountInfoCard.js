@@ -59,15 +59,22 @@ const AccountInfoCard = ({ isLoading, wallet, networkProvider }) => {
   const [balance, setBalance] = useState('')
   
   const formatAddress = (address) => {
-	return address.slice(0, 8) + '...' + address.slice(address.length - 10, address.length - 1)
+		return address.slice(0, 8) + '...' + address.slice(address.length - 10, address.length - 1)
   }
 
   useEffect(() => {
-	if (networkProvider !== undefined && Object.keys(networkProvider).length !== 0 && Object.keys(wallet).length != 0){
-		getBalance(networkProvider, wallet.address, new Date()).then(balance => {
-			setBalance(weiToEther(balance))
-		})
-	}
+		if (networkProvider !== undefined && Object.keys(networkProvider).length !== 0 && Object.keys(wallet).length != 0){
+			/* TO-DO : 현재 계정의 잔액을 구합니다.
+			 * 조건 1. 현재 계정은 wallet props에 있습니다.
+			 * 조건 2. utils/crypto.js의 getBalance() 메서드를 사용하세요.
+			 * 조건 3. getBalance() 메서드를 사용해 잔액을 가져왔다면, balance 상태변수를 업데이트하세요.
+			 * 조건 4. 잔액은 Wei가 아닌 이더 형식으로 보여져야 합니다.
+			 * 
+			 * 주의!
+			 * getBalance()는 이더가 아닌 wei 형태로 잔액을 반환합니다.
+			 * utils/crypto.js는 wei를 이더 형식으로 변환하는 weiToEther() 메서드를 제공합니다. 이 메서드를 활용하세요.
+			*/
+		}
   }, [wallet])
 
   return (
@@ -77,43 +84,43 @@ const AccountInfoCard = ({ isLoading, wallet, networkProvider }) => {
 		) : (
 			<CardWrapper border={false} content={false}>
 				<Box sx={{ p: 2.25 }}>
-				<Grid container direction="column">
-					<Grid item>
-					<Grid container justifyContent="space-between">
+					<Grid container direction="column">
+							<Grid item>
+								<Grid container justifyContent="space-between">
+									<Grid item>
+										<Avatar
+											variant="rounded"
+											sx={{
+											...theme.typography.commonAvatar,
+											...theme.typography.largeAvatar,
+											backgroundColor: theme.palette.secondary[800],
+											mt: 1
+											}}
+										>
+											<img src={EthBalanceIcon} alt="Notification" />
+										</Avatar>
+									</Grid>
+								</Grid>
+							</Grid>
 						<Grid item>
-						<Avatar
-							variant="rounded"
-							sx={{
-							...theme.typography.commonAvatar,
-							...theme.typography.largeAvatar,
-							backgroundColor: theme.palette.secondary[800],
-							mt: 1
-							}}
-						>
-							<img src={EthBalanceIcon} alt="Notification" />
-						</Avatar>
+							<Grid container alignItems="center">
+								<Grid item>
+									<Typography sx={{ fontSize: '2.125rem', fontWeight: 500, mr: 1, mt: 1.75, mb: 0.75 }}>{balance} GoerliETH</Typography>
+								</Grid>
+							</Grid>
+						</Grid>
+						<Grid item sx={{ mb: 1.25 }}>
+							<Typography
+								sx={{
+								fontSize: '1rem',
+								fontWeight: 400,
+								color: theme.palette.secondary[200]
+								}}
+							>
+								{wallet.address ? formatAddress(wallet.address) : <></>}
+							</Typography>
 						</Grid>
 					</Grid>
-					</Grid>
-					<Grid item>
-					<Grid container alignItems="center">
-						<Grid item>
-						<Typography sx={{ fontSize: '2.125rem', fontWeight: 500, mr: 1, mt: 1.75, mb: 0.75 }}>{balance} GoerliETH</Typography>
-						</Grid>
-					</Grid>
-					</Grid>
-					<Grid item sx={{ mb: 1.25 }}>
-					<Typography
-						sx={{
-						fontSize: '1rem',
-						fontWeight: 400,
-						color: theme.palette.secondary[200]
-						}}
-					>
-						{wallet.address ? formatAddress(wallet.address) : <></>}
-					</Typography>
-					</Grid>
-				</Grid>
 				</Box>
 			</CardWrapper>
 		)}
