@@ -3,7 +3,10 @@ import axios from 'axios'
 import { erc20abi } from './erc20abi'
 
 export const createWallet = () => {
-	return ethers.HDNodeWallet.createRandom()
+	/* TO-DO : 새로운 지갑을 생성합니다.
+	 * 조건 1. ethers.js를 사용합니다.
+	 * 조건 2. HDNodeWallet을 생성하세요.
+	*/
 }
 
 export const createWalletFromPhrase = (phrase) => {
