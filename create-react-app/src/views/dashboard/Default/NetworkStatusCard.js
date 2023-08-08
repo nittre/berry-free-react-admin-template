@@ -52,7 +52,7 @@ const CardWrapper = styled(MainCard)(({ theme }) => ({
   }
 }));
 
-// ===========================|| DASHBOARD DEFAULT - EARNING CARD ||=========================== //
+// ===========================|| DASHBOARD - NETWORK STATUS CARD ||=========================== //
 
 const NetworkStatusCard = ({isLoading}) => {
   const theme = useTheme();
