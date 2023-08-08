@@ -60,42 +60,26 @@ const App = () => {
 		 * 조건 1. 블록이 생성될 때마다, 현재 계정과 관련된 트랜잭션이 있는지 확인합니다.
 		 * 조건 2. utils/crypto.js의 getUserNormalTransaction() 함수를 사용하세요.
 		 * 조건 3. getUserNormalTransaction() 함수를 반환한 결과값은 리덕스 상태 변수 tx에 저장하세요.
-		 * 조건 4. 또한 localStroge에도 저장합니다. 
+		 * 조건 4. 또한 로컬스토리지에도 저장합니다. 
+		 * 조건 5. 트랜잭션에는 hash, from, to, value, blockNumber, tokenName, tokenDecimal, tokenSymbol, type이 들어가야 합니다.
+		 *  - tokenName과 tokenSymbol은 'GoerliETH' 값을 넣습니다.
+		 *  - tokenDecimal은 18로 설정합니다.
+		 *  - 이더 전송 트랜잭션의 type은 'send-ether' 값을 넣습니다.
 		*/
-					/*
-					// ----- get token data ----- //
-					const locToken = localStorage.getItem('tokens')
-					if (locToken != null && locToken.length != 0){
-						const tokens = JSON.parse(locToken)
-						for (const token of tokens){
-							const tokenTransferEvents = await getUserTokenTransferEvents(wallet.address, token.tokenAddress, blockNumber-1, blockNumber-1, new Date())
-							if (tokenTransferEvents.length > 0){
-								for (const tokenTransferEvent of tokenTransferEvents){
-									const tx = {
-										hash: tokenTransferEvent.hash,
-										from: tokenTransferEvent.from,
-										to: tokenTransferEvent.to,
-										value: tokenTransferEvent.value,
-										blockNumber: tokenTransferEvent.blockNumber,
-										tokenName: tokenTransferEvent.tokenName,
-										tokenDecimal: tokenTransferEvent.tokenDecimal,
-										tokenSymbol: tokenTransferEvent.tokenSymbol,
-										type: 'token-transfer'
-									}
-									dispatch({type: 'ADD_TRANSACTION', payload: {tx: tx}})
-								
-									const txList = JSON.parse(localStorage.getItem('tx'))
-									txList.push(tx)
-									localStorage.setItem('tx', JSON.stringify(txList))
-								}
-							}
 
-						}
-					}
-
-					*/
-				// })
-			// }
+		/* TO-DO : 토큰 Transfer 이벤트를 가져옵니다.
+		 * 조건 1. 로컬 스토리지에 import한 토큰 목록이 담겨 있습니다. 블록이 생성될 때마다, 현재 계정과 관련된 토큰 Transfer 이벤트가 있는지 확인합니다.
+		 * 조건 2. utils/crypto.js의 getUserTokenTransferEvents() 함수를 사용하세요.
+		 * 조건 3. getUserTokenTransferEvents() 함수를 반환한 결과값은 리덕스 상태 변수 tx에 저장합니다.
+		 * 조건 4. 또한 로컬스토리지에도 저장합니다.
+		 * 조건 5. 트랜잭션에는 hash, from, to, value, blockNumber, tokenName, tokenDecimal, tokenSymbol, type이 들어가야 합니다.
+		 *  - to에는 컨트랙트 주소가 아닌, 실제로 토큰을 받은 계정 주소가 들어가야 합니다.
+		 * 	- value에는 이더가 아닌 실제로 전송한 토큰의 양이 들어가야 합니다.
+		 *  - tokenName에는 해당 토큰의 이름이 들어가야 합니다. 없다면, 심볼을 넣습니다.
+		 * 	- tokenDecimal: 해당 토큰의 decimal을 넣습니다.
+		 *  - tokenSymbol: 해당 토큰의 심볼을 넣습니다.
+		 *  - type: Transfer 이벤트에 대한 트랜잭션에는 'token-transfer' 값을 넣습니다.
+		*/
 		}
 		subscribeBlocks()
   }, [networkProviderConnected, walletConnected])
