@@ -27,7 +27,7 @@ import { useNavigate } from 'react-router';
 import AnimateButton from 'ui-component/extended/AnimateButton';
 import * as Yup from 'yup';
 
-// ============================||  LOGIN ||============================ //
+// ============================|| LOGIN ||============================ //
 
 const AuthLoginForm = ({ ...others }) => {
   const theme = useTheme();

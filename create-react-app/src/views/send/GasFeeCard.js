@@ -8,7 +8,7 @@ import { weiToEther } from 'utils/crypto';
 
 // assets
 
-// ===========================|| DASHBOARD DEFAULT - EARNING CARD ||=========================== //
+// ===========================|| SEND - EARNING CARD ||=========================== //
 
 const GasFeeCard = ({ isLoading, gasPrice, gasLimit, calcGasFeeLoading }) => {
   const theme = useTheme();

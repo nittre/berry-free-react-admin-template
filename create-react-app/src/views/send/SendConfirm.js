@@ -8,7 +8,7 @@ import SubCard from 'ui-component/cards/SubCard';
 import AnimateButton from 'ui-component/extended/AnimateButton';
 import { etherToWei, sendEther, weiToEther } from 'utils/crypto';
 
-// ==============================|| Send - SendConfirm ||============================== //
+// ==============================|| SEND - SendConfirm ||============================== //
 
 const SendConfirm =({ formik, handleStep, handleFormikValue }) => {
   const theme = useTheme();

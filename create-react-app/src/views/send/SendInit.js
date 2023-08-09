@@ -7,7 +7,7 @@ import AnimateButton from 'ui-component/extended/AnimateButton';
 import { etherToWei, getETHGasLimit, getGasPrice, getPopulatedTx, getTokenGasLimit } from 'utils/crypto';
 import GasFeeCard from './GasFeeCard';
 
-// ==============================|| Send - SendInit ||============================== //
+// ==============================|| SEND - SendInit ||============================== //
 
 const SendInit = ({ isLoading, formik, handleFormikValue, handleStep }) => {
   const theme = useTheme();

@@ -11,7 +11,7 @@ import SendConfirm from './SendConfirm';
 import SendInit from './SendInit';
 import SendLoad from './SendLoad';
 
-// ==============================|| Send - Index ||============================== //
+// ==============================|| SEND ||============================== //
 
 const Send = () => {
   const { wallet } = useSelector(state => state)

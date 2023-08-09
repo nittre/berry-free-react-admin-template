@@ -4,7 +4,7 @@ import { useTheme } from '@mui/material/styles';
 import PropTypes from 'prop-types';
 import SubCard from 'ui-component/cards/SubCard';
 
-// ==============================|| Send - SendLoad ||============================== //
+// ==============================|| SEND - SendLoad ||============================== //
 
 const SendLoad = ({ formik }) => {
   const theme = useTheme();

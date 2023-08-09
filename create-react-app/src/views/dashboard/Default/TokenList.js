@@ -7,7 +7,7 @@ import MainCard from 'ui-component/cards/MainCard';
 import SkeletonEarningCard from 'ui-component/cards/Skeleton/EarningCard';
 import { getTokenBalance, weiToEther } from 'utils/crypto';
 
-// ==============================|| DASHBOARD DEFAULT - POPULAR CARD ||============================== //
+// ==============================|| DASHBOARD DEFAULT - TOKEN LIST CARD ||============================== //
 
 const TokenList = ({ isLoading, wallet, networkProvider}) => {
   const theme = useTheme();

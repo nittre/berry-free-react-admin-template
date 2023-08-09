@@ -7,7 +7,7 @@ import SkeletonPopularCard from 'ui-component/cards/Skeleton/PopularCard';
 import AnimateButton from 'ui-component/extended/AnimateButton';
 import { importTokenContract } from 'utils/crypto';
 
-// ==============================|| Import - ImportTokenInit ||============================== //
+// ==============================|| IMPORT - ImportTokenInit ||============================== //
 
 const ImportTokenInit = ({ isLoading, handleStep, formik, updateFormikValue }) => {
   const theme = useTheme();

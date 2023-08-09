@@ -8,7 +8,7 @@ import * as Yup from 'yup';
 import ImportTokenConfirm from './ImportTokenConfirm';
 import ImportTokenInit from './ImportTokenInit';
 
-// ==============================|| DEFAULT DASHBOARD ||============================== //
+// ==============================|| IMPORT ||============================== //
 
 const ImportToken = () => {
   const { wallet } = useSelector(state => state)

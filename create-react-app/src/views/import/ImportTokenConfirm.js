@@ -10,7 +10,7 @@ import SkeletonPopularCard from 'ui-component/cards/Skeleton/PopularCard';
 import AnimateButton from 'ui-component/extended/AnimateButton';
 import { getTokenBalance, weiToEther } from 'utils/crypto';
 
-// ==============================|| Import - ImportTokenConfirm ||============================== //
+// ==============================|| IMPORT - ImportTokenConfirm ||============================== //
 
 const ImportTokenConfirm = ({ isLoading, handleStep, formik, updateFormikValue }) => {
   const theme = useTheme();

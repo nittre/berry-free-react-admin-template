@@ -8,7 +8,7 @@ import SkeletonPopularCard from 'ui-component/cards/Skeleton/PopularCard';
 import { weiToEther } from 'utils/crypto';
 import { formatAddress } from 'utils/utils';
 
-// ==============================|| Transaction - TransactionList ||============================== //
+// ==============================|| TRANSACTION - TransactionList ||============================== //
 
 const TransactionList = ({ isLoading }) => {
   const theme = useTheme();

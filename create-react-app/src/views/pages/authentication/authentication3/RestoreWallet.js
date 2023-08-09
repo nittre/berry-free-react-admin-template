@@ -7,7 +7,7 @@ import AuthCardWrapper from '../AuthCardWrapper';
 import AuthWrapper1 from '../AuthWrapper1';
 import RestoreWalletForm from '../auth-forms/RestoreWalletForm';
 
-// ================================||RestoreWallet ||================================ //
+// ================================|| RestoreWallet ||================================ //
 
 const RestoreWallet = () => {
   const theme = useTheme();
