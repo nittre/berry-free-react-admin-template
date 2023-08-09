@@ -1,15 +1,11 @@
-import { Link } from 'react-router-dom';
-
-// material-ui
-import { useTheme } from '@mui/material/styles';
 import { Divider, Grid, Stack, Typography, useMediaQuery } from '@mui/material';
-
-// project imports
-import AuthWrapper1 from '../AuthWrapper1';
-import AuthCardWrapper from '../AuthCardWrapper';
-import RestoreWalletForm from '../auth-forms/RestoreWalletForm';
+import { useTheme } from '@mui/material/styles';
+import { Link } from 'react-router-dom';
 import Logo from 'ui-component/Logo';
 import AuthFooter from 'ui-component/cards/AuthFooter';
+import AuthCardWrapper from '../AuthCardWrapper';
+import AuthWrapper1 from '../AuthWrapper1';
+import RestoreWalletForm from '../auth-forms/RestoreWalletForm';
 
 // ================================||RestoreWallet ||================================ //
 

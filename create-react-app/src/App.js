@@ -1,20 +1,11 @@
-import {useState, useEffect} from 'react'
-import { ThemeProvider } from '@mui/material/styles';
 import { CssBaseline, StyledEngineProvider } from '@mui/material';
-
-// routing
-import Routes from 'routes';
-
-// defaultTheme
-import themes from 'themes';
-
-// project imports
+import { ThemeProvider } from '@mui/material/styles';
 import NavigationScroll from 'layout/NavigationScroll';
-
-
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import Routes from 'routes';
+import themes from 'themes';
 import { getUserNormalTransaction, getUserTokenTransferEvents } from 'utils/crypto';
-
 
 // ==============================|| APP ||============================== //
 

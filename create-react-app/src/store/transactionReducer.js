@@ -2,7 +2,7 @@ export const initialState = {
 	tx: []
 };
 
-// ==============================|| CUSTOMIZATION REDUCER ||============================== //
+// ==============================|| TRANSACTION REDUCER ||============================== //
 
 const transactionReducer = (state = initialState, action) => {
   switch (action.type) {

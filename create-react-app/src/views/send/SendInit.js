@@ -1,16 +1,10 @@
-import PropTypes from 'prop-types';
-import { useState } from 'react';
-
-// material-ui
-import { useTheme } from '@mui/material/styles';
 import { Box, Button, FormControl, FormControlLabel, FormLabel, Grid, InputLabel, MenuItem, OutlinedInput, Radio, RadioGroup, Select } from '@mui/material';
-
-// project imports
+import { useTheme } from '@mui/material/styles';
+import PropTypes from 'prop-types';
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { etherToWei, getETHGasLimit, getGasPrice, getPopulatedTx, getTokenGasLimit } from 'utils/crypto';
-import { useEffect } from 'react';
-
 import AnimateButton from 'ui-component/extended/AnimateButton';
+import { etherToWei, getETHGasLimit, getGasPrice, getPopulatedTx, getTokenGasLimit } from 'utils/crypto';
 import GasFeeCard from './GasFeeCard';
 
 // ==============================|| Send - SendInit ||============================== //

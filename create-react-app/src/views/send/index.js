@@ -1,21 +1,14 @@
-import { useEffect, useState } from 'react';
-
-// material-ui
 import { CardContent, Grid } from '@mui/material';
-
-// project imports
+import { useFormik } from 'formik';
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
-import { isValidAddress } from 'utils/crypto';
 import MainCard from 'ui-component/cards/MainCard';
-import { useFormik } from 'formik';
 import SkeletonPopularCard from 'ui-component/cards/Skeleton/PopularCard';
-
-
-// third party
+import { isValidAddress } from 'utils/crypto';
 import * as Yup from 'yup';
-import SendInit from './SendInit';
 import SendConfirm from './SendConfirm';
+import SendInit from './SendInit';
 import SendLoad from './SendLoad';
 
 // ==============================|| Send - Index ||============================== //

@@ -1,19 +1,10 @@
-import PropTypes from 'prop-types';
-import { useState } from 'react';
-
-// material-ui
+import { Avatar, Box, Grid, Typography } from '@mui/material';
 import { styled, useTheme } from '@mui/material/styles';
-import { Avatar, Box, Grid, Hidden, Menu, MenuItem, Typography } from '@mui/material';
-
-// project imports
+import EthBalanceIcon from 'assets/images/icons/ethBalance.svg';
+import PropTypes from 'prop-types';
+import { useEffect, useState } from 'react';
 import MainCard from 'ui-component/cards/MainCard';
 import SkeletonEarningCard from 'ui-component/cards/Skeleton/EarningCard';
-
-// assets
-import EthBalanceIcon from 'assets/images/icons/ethBalance.svg';
-import { useNavigate } from 'react-router';
-import { useSelector } from 'react-redux';
-import { useEffect } from 'react';
 import { getBalance, weiToEther } from 'utils/crypto';
 
 const CardWrapper = styled(MainCard)(({ theme }) => ({

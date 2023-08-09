@@ -1,19 +1,10 @@
-import PropTypes from 'prop-types';
-import { useState } from 'react';
-import TypoGraphy from '@mui/material/Typography';
-
-// project imports
-import SubCard from 'ui-component/cards/SubCard';
-
-// material-ui
-import { styled, useTheme } from '@mui/material/styles';
 import { Box, Grid } from '@mui/material';
-
-// project imports
+import TypoGraphy from '@mui/material/Typography';
+import { styled, useTheme } from '@mui/material/styles';
+import PropTypes from 'prop-types';
 import SkeletonEarningCard from 'ui-component/cards/Skeleton/EarningCard';
+import SubCard from 'ui-component/cards/SubCard';
 import { weiToEther } from 'utils/crypto';
-
-// assets
 
 // ===========================|| DASHBOARD DEFAULT - EARNING CARD ||=========================== //
 

@@ -1,12 +1,8 @@
-import { useEffect, useState } from 'react';
-
-// material-ui
 import { Grid } from '@mui/material';
-
-// project imports
-import { gridSpacing } from 'store/constant';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
+import { gridSpacing } from 'store/constant';
 import TransactionList from './TransactionList';
 
 // ==============================|| TRANSACTION ||============================== //

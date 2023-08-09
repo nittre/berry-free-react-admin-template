@@ -1,14 +1,10 @@
-import PropTypes from 'prop-types';
-
-// material-ui
-import { useTheme } from '@mui/material/styles';
 import { CardContent, Grid, Link, Paper, Table, TableBody, TableCell, TableHead, TableRow } from '@mui/material';
-
-// project imports
+import { useTheme } from '@mui/material/styles';
+import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
+import { gridSpacing } from 'store/constant';
 import MainCard from 'ui-component/cards/MainCard';
 import SkeletonPopularCard from 'ui-component/cards/Skeleton/PopularCard';
-import { gridSpacing } from 'store/constant';
-import { useSelector } from 'react-redux';
 import { weiToEther } from 'utils/crypto';
 import { formatAddress } from 'utils/utils';
 

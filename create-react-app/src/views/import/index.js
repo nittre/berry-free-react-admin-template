@@ -1,18 +1,12 @@
-import { useEffect, useState } from 'react';
-
-// material-ui
 import { Grid } from '@mui/material';
-
-// project imports
+import { useFormik } from 'formik';
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { isValidAddress } from 'utils/crypto';
-import ImportTokenInit from './ImportTokenInit';
-import { useFormik } from 'formik';
-
-// third party
 import * as Yup from 'yup';
 import ImportTokenConfirm from './ImportTokenConfirm';
+import ImportTokenInit from './ImportTokenInit';
 
 // ==============================|| IMPORT TOKENS ||============================== //
 

@@ -4,7 +4,7 @@ export const initialState = {
 	blockNumber: 0
 };
 
-// ==============================|| CUSTOMIZATION REDUCER ||============================== //
+// ==============================|| BLOCK REDUCER ||============================== //
 
 const blockReducer = (state = initialState, action) => {
   switch (action.type) {

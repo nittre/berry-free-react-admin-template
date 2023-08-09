@@ -1,19 +1,15 @@
-import { Link, useNavigate } from 'react-router-dom';
-
-// material-ui
+import { Box, Button, FormControl, Grid, Input, Stack, Typography, useMediaQuery } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
-import { Grid, Stack, Typography, useMediaQuery, Box, Button, FormControl, Input } from '@mui/material';
-
-// project imports
-import AuthWrapper1 from '../AuthWrapper1';
-import AuthCardWrapper from '../AuthCardWrapper';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
 import Logo from 'ui-component/Logo';
 import AuthFooter from 'ui-component/cards/AuthFooter';
 import AnimateButton from 'ui-component/extended/AnimateButton';
 import { createWallet } from 'utils/crypto';
-import { useState } from 'react';
 import { pasteToClipboard } from 'utils/utils';
-import { useDispatch } from 'react-redux';
+import AuthCardWrapper from '../AuthCardWrapper';
+import AuthWrapper1 from '../AuthWrapper1';
 
 // ===============================|| Create Wallet ||=============================== //
 

@@ -1,19 +1,14 @@
-import PropTypes from 'prop-types';
-
-// material-ui
-import { useTheme } from '@mui/material/styles';
 import { Box, Button, CardContent, Grid } from '@mui/material';
 import TypoGraphy from '@mui/material/Typography';
-
-
-// project imports
+import { useTheme } from '@mui/material/styles';
+import PropTypes from 'prop-types';
+import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router';
 import MainCard from 'ui-component/cards/MainCard';
 import SkeletonPopularCard from 'ui-component/cards/Skeleton/PopularCard';
-import { useSelector } from 'react-redux';
-import { getTokenBalance, weiToEther } from 'utils/crypto';
-import { useEffect } from 'react';
 import AnimateButton from 'ui-component/extended/AnimateButton';
-import { useNavigate } from 'react-router';
+import { getTokenBalance, weiToEther } from 'utils/crypto';
 
 // ==============================|| Import - ImportTokenConfirm ||============================== //
 

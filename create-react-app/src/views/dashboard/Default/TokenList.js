@@ -1,16 +1,11 @@
-import PropTypes from 'prop-types';
-import { useState } from 'react';
-
-// material-ui
-import { useTheme } from '@mui/material/styles';
 import { CardContent, Divider, Grid, Typography } from '@mui/material';
-import SkeletonEarningCard from 'ui-component/cards/Skeleton/EarningCard';
-
-// project imports
-import MainCard from 'ui-component/cards/MainCard';
+import { useTheme } from '@mui/material/styles';
+import PropTypes from 'prop-types';
+import { useEffect, useState } from 'react';
 import { gridSpacing } from 'store/constant';
+import MainCard from 'ui-component/cards/MainCard';
+import SkeletonEarningCard from 'ui-component/cards/Skeleton/EarningCard';
 import { getTokenBalance, weiToEther } from 'utils/crypto';
-import { useEffect } from 'react';
 
 // ==============================|| DASHBOARD DEFAULT - POPULAR CARD ||============================== //
 

@@ -1,16 +1,12 @@
-import PropTypes from 'prop-types';
-
-// material-ui
-import { useTheme } from '@mui/material/styles';
 import { Box, Button, CardContent, FormControl, Grid, InputLabel, OutlinedInput } from '@mui/material';
-
-
-// project imports
+import { useTheme } from '@mui/material/styles';
+import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 import MainCard from 'ui-component/cards/MainCard';
 import SkeletonPopularCard from 'ui-component/cards/Skeleton/PopularCard';
-import { useSelector } from 'react-redux';
-import { importTokenContract } from 'utils/crypto';
 import AnimateButton from 'ui-component/extended/AnimateButton';
+import { importTokenContract } from 'utils/crypto';
+
 
 // ==============================|| Import - ImportTokenInit ||============================== //
 

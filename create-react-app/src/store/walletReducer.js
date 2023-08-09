@@ -4,7 +4,7 @@ export const initialState = {
 
 };
 
-// ==============================|| CUSTOMIZATION REDUCER ||============================== //
+// ==============================|| WALLET REDUCER ||============================== //
 
 const walletReducer = (state = initialState, action) => {
   switch (action.type) {

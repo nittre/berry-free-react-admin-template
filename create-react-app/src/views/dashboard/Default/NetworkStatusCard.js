@@ -1,20 +1,11 @@
-import PropTypes from 'prop-types';
-import { useState } from 'react';
-import TypoGraphy from '@mui/material/Typography';
-
-// project imports
-import SubCard from 'ui-component/cards/SubCard';
-
-// material-ui
-import { styled, useTheme } from '@mui/material/styles';
 import { Box, Grid, Typography } from '@mui/material';
-
-// project imports
+import TypoGraphy from '@mui/material/Typography';
+import { styled, useTheme } from '@mui/material/styles';
+import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 import MainCard from 'ui-component/cards/MainCard';
 import SkeletonEarningCard from 'ui-component/cards/Skeleton/EarningCard';
-import { useSelector } from 'react-redux';
-
-// assets
+import SubCard from 'ui-component/cards/SubCard';
 
 const CardWrapper = styled(MainCard)(({ theme }) => ({
   backgroundColor: theme.palette.secondary.dark,

@@ -1,14 +1,10 @@
-import { useEffect, useState } from 'react';
-
-// material-ui
 import { Grid } from '@mui/material';
-
-// project imports
-import AccountInfoCard from './AccountInfoCard';
-import NetworkStatusCard from './NetworkStatusCard';
-import { gridSpacing } from 'store/constant';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
+import { gridSpacing } from 'store/constant';
+import AccountInfoCard from './AccountInfoCard';
+import NetworkStatusCard from './NetworkStatusCard';
 import TokenList from './TokenList';
 
 // ==============================|| DEFAULT DASHBOARD ||============================== //

@@ -1,16 +1,12 @@
-import PropTypes from 'prop-types';
-
-// material-ui
-import { useTheme } from '@mui/material/styles';
 import { Box, Button, Grid } from '@mui/material';
 import TypoGraphy from '@mui/material/Typography';
-
-// project imports
+import { useTheme } from '@mui/material/styles';
+import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
-import { etherToWei, sendEther, weiToEther } from 'utils/crypto';
-import AnimateButton from 'ui-component/extended/AnimateButton';
-import SubCard from 'ui-component/cards/SubCard';
 import { useNavigate } from 'react-router';
+import SubCard from 'ui-component/cards/SubCard';
+import AnimateButton from 'ui-component/extended/AnimateButton';
+import { etherToWei, sendEther, weiToEther } from 'utils/crypto';
 
 // ==============================|| Send - SendConfirm ||============================== //
 

@@ -4,7 +4,7 @@ export const initialState = {
 
 };
 
-// ==============================|| CUSTOMIZATION REDUCER ||============================== //
+// ==============================|| NETWORK PROVIDER REDUCER ||============================== //
 
 const networkProviderReducer = (state = initialState, action) => {
   switch (action.type) {

@@ -1,32 +1,23 @@
-import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-
-// material-ui
-import { useTheme } from '@mui/material/styles';
-import {
-  Box,
-  Button,
-  FormControl,
-  IconButton,
-  InputAdornment,
-  InputLabel,
-  OutlinedInput,
-  FormHelperText
-} from '@mui/material';
-
-// third party
-import * as Yup from 'yup';
-import { Formik } from 'formik';
-
-// project imports
-import useScriptRef from 'hooks/useScriptRef';
-import AnimateButton from 'ui-component/extended/AnimateButton';
-
-// assets
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
-
+import {
+	Box,
+	Button,
+	FormControl,
+	FormHelperText,
+	IconButton,
+	InputAdornment,
+	InputLabel,
+	OutlinedInput
+} from '@mui/material';
+import { useTheme } from '@mui/material/styles';
+import { Formik } from 'formik';
+import useScriptRef from 'hooks/useScriptRef';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
+import AnimateButton from 'ui-component/extended/AnimateButton';
+import * as Yup from 'yup';
 
 // ============================|| Restore Wallet Form ||============================ //
 
