@@ -15,7 +15,7 @@ const RestoreOrCreate = () => {
   const matchDownSM = useMediaQuery(theme.breakpoints.down('md'));
 
   const handleButtonClick = (action) => {
-	navigate(`/wallet/${action}`)
+		navigate(`/wallet/${action}`)
   }
   
   return (
@@ -39,27 +39,27 @@ const RestoreOrCreate = () => {
                             지갑 생성 또는 복구
                           </Typography>
                           <Typography variant="caption" fontSize="16px" textAlign={matchDownSM ? 'center' : 'inherit'}>
-							지갑을 생성하거나, 복구하세요.
+														지갑을 생성하거나, 복구하세요.
                           </Typography>
                         </Stack>
                       </Grid>
                     </Grid>
                   </Grid>
-				</Grid>
-				<Box sx={{ mt: 2 }}>
-					<AnimateButton>
-						<Button onClick={() => handleButtonClick('create')} disableElevation fullWidth size="large" type="submit" variant="contained" color="secondary">
-							생성하기
-						</Button>
-					</AnimateButton>
-				</Box>
-				<Box sx={{ mt: 2 }}>
-					<AnimateButton>
-						<Button onClick={() => handleButtonClick('restore')} disableElevation fullWidth size="large" type="submit" variant="contained" color="secondary">
-							복구하기
-						</Button>
-					</AnimateButton>
-				</Box>
+								</Grid>
+								<Box sx={{ mt: 2 }}>
+									<AnimateButton>
+										<Button onClick={() => handleButtonClick('create')} disableElevation fullWidth size="large" type="submit" variant="contained" color="secondary">
+											생성하기
+										</Button>
+									</AnimateButton>
+								</Box>
+								<Box sx={{ mt: 2 }}>
+									<AnimateButton>
+										<Button onClick={() => handleButtonClick('restore')} disableElevation fullWidth size="large" type="submit" variant="contained" color="secondary">
+											복구하기
+										</Button>
+									</AnimateButton>
+								</Box>
               </AuthCardWrapper>
             </Grid>
           </Grid>

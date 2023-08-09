@@ -43,7 +43,7 @@ const CardWrapper = styled(MainCard)(({ theme }) => ({
   }
 }));
 
-// ===========================|| DASHBOARD DEFAULT - EARNING CARD ||=========================== //
+// ===========================|| DASHBOARD DEFAULT - ACCOUNT INFO CARD ||=========================== //
 
 const AccountInfoCard = ({ isLoading, wallet, networkProvider }) => {
   const theme = useTheme();

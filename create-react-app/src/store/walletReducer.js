@@ -9,13 +9,13 @@ export const initialState = {
 const walletReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'RESTORE_WALLET':
-		return createWalletFromPhrase(action.payload.phrase);
-	case 'CREATE_WALLET':
-		return action.payload.wallet
-	case 'LOGOUT':
-		return new Object()
-    default:
-      return state;
+			return createWalletFromPhrase(action.payload.phrase);
+		case 'CREATE_WALLET':
+			return action.payload.wallet
+		case 'LOGOUT':
+			return new Object()
+		default:
+			return state;
   }
 };
 

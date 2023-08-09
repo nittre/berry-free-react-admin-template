@@ -6,7 +6,7 @@ import SkeletonEarningCard from 'ui-component/cards/Skeleton/EarningCard';
 import SubCard from 'ui-component/cards/SubCard';
 import { weiToEther } from 'utils/crypto';
 
-// ===========================|| DASHBOARD DEFAULT - EARNING CARD ||=========================== //
+// ===========================|| SEND - GAS FEE CARD ||=========================== //
 
 const GasFeeCard = ({ isLoading, gasPrice, gasLimit, calcGasFeeLoading }) => {
   const theme = useTheme();

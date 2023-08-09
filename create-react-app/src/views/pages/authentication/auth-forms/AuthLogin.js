@@ -42,7 +42,7 @@ const AuthLoginForm = ({ ...others }) => {
   };
 
   const handleSignInButtonClick = async () => {
-	navigate('/wallet')
+		navigate('/wallet')
   }
 
   const [showPassword, setShowPassword] = useState(false);

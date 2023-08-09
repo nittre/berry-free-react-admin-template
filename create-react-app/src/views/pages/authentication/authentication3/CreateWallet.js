@@ -94,61 +94,61 @@ const CreateWallet = () => {
                       </Grid>
                     </Grid>
                   </Grid>
-				</Grid>
-				{
-					step === 'pasteMnemonic' ? (
-						<>
+							</Grid>
 							{
-								Array.from({length: 12}, (_, index) => {
-									return <FormControl key={phrase[index]} sx={{...theme.typography.customInput}}>
-										<Input
-											id={phrase[index]}
-											type="text"
-											value={phrase[index]}
-											name={phrase[index]}
-										/>
-									</FormControl>
-								})
+								step === 'pasteMnemonic' ? (
+									<>
+										{
+											Array.from({length: 12}, (_, index) => {
+												return <FormControl key={phrase[index]} sx={{...theme.typography.customInput}}>
+													<Input
+														id={phrase[index]}
+														type="text"
+														value={phrase[index]}
+														name={phrase[index]}
+													/>
+												</FormControl>
+											})
+										}
+									</>
+								) : null
 							}
-						</>
-					) : null
-				}
-				{
-					step === 'pasteMnemonic' ? (
-					<>
-						<Box sx={{ mt: 2 }}>
-						<AnimateButton>
-							<Button onClick={handlePasteButtonClick} disableElevation fullWidth size="large" type="submit" variant="contained" color="secondary">
-								{
-									isPhrasePasted === false 
-									? (
-										<>복사하기</>
-									) : (
-										<>복사 완료!</>
-									)
-								}
-							</Button>
-						</AnimateButton>
-						</Box>
-					</>
-					) : null
-				}
+							{
+								step === 'pasteMnemonic' ? (
+								<>
+									<Box sx={{ mt: 2 }}>
+									<AnimateButton>
+										<Button onClick={handlePasteButtonClick} disableElevation fullWidth size="large" type="submit" variant="contained" color="secondary">
+											{
+												isPhrasePasted === false 
+												? (
+													<>복사하기</>
+												) : (
+													<>복사 완료!</>
+												)
+											}
+										</Button>
+									</AnimateButton>
+									</Box>
+								</>
+								) : null
+							}
 
-				<Box sx={{ mt: 2 }}>
-					<AnimateButton>
-					{
-						step === 'start' ? (
-							<Button onClick={handleCreateButtonClick} disableElevation fullWidth size="large" type="submit" variant="contained" color="secondary">
-								생성하기
-							</Button>
-						) : ( 
-							<Button disabled={!isPhrasePasted} onClick={handleCreateButtonClick} disableElevation fullWidth size="large" type="submit" variant="contained" color="secondary">
-								확인
-							</Button>
-						)
-					}
-					</AnimateButton>
-				</Box>
+								<Box sx={{ mt: 2 }}>
+									<AnimateButton>
+									{
+										step === 'start' ? (
+											<Button onClick={handleCreateButtonClick} disableElevation fullWidth size="large" type="submit" variant="contained" color="secondary">
+												생성하기
+											</Button>
+										) : ( 
+											<Button disabled={!isPhrasePasted} onClick={handleCreateButtonClick} disableElevation fullWidth size="large" type="submit" variant="contained" color="secondary">
+												확인
+											</Button>
+										)
+									}
+									</AnimateButton>
+								</Box>
               </AuthCardWrapper>
             </Grid>
           </Grid>

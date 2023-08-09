@@ -35,7 +35,7 @@ const Login = () => {
                             환영합니다!
                           </Typography>
                           <Typography variant="caption" fontSize="16px" textAlign={matchDownSM ? 'center' : 'inherit'}>
-							로그인을 진행하세요
+														로그인을 진행하세요
                           </Typography>
                         </Stack>
                       </Grid>

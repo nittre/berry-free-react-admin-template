@@ -14,7 +14,7 @@ const networkProviderReducer = (state = initialState, action) => {
 			 * 조건 2. ethers.js의 InfuraProvider를 사용해 Infura 엔드포인트에 연결하세요.
 			*/
 			return
-	default:
+		default:
       return state;
   }
 };

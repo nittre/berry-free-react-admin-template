@@ -21,9 +21,9 @@ const Transaction = () => {
 
   return (
     <Grid container spacing={gridSpacing}>
-          <Grid item xs={12}>
-            <TransactionList isLoading={isLoading} />
-          </Grid>
+			<Grid item xs={12}>
+				<TransactionList isLoading={isLoading} />
+			</Grid>
     </Grid>
   );
 };

@@ -8,7 +8,7 @@ import AnimateButton from 'ui-component/extended/AnimateButton';
 import { importTokenContract } from 'utils/crypto';
 
 
-// ==============================|| Import - ImportTokenInit ||============================== //
+// ==============================|| IMPORT TOKENS - ImportTokenInit ||============================== //
 
 const ImportTokenInit = ({ isLoading, handleStep, formik, updateFormikValue }) => {
   const theme = useTheme();

@@ -10,7 +10,7 @@ import SkeletonPopularCard from 'ui-component/cards/Skeleton/PopularCard';
 import AnimateButton from 'ui-component/extended/AnimateButton';
 import { getTokenBalance, weiToEther } from 'utils/crypto';
 
-// ==============================|| Import - ImportTokenConfirm ||============================== //
+// ==============================|| IMPORT TOKENS - ImportTokenConfirm ||============================== //
 
 const ImportTokenConfirm = ({ isLoading, handleStep, formik, updateFormikValue }) => {
   const theme = useTheme();
@@ -18,7 +18,7 @@ const ImportTokenConfirm = ({ isLoading, handleStep, formik, updateFormikValue }
   const {networkProvider, wallet} = useSelector(state => state)
 
   const handlePrevButton = () => {
-	handleStep('init')
+		handleStep('init')
   }
 
   const handleNextButton = () => {

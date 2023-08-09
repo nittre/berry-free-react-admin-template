@@ -8,7 +8,7 @@ import SubCard from 'ui-component/cards/SubCard';
 import AnimateButton from 'ui-component/extended/AnimateButton';
 import { etherToWei, sendEther, weiToEther } from 'utils/crypto';
 
-// ==============================|| Send - SendConfirm ||============================== //
+// ==============================|| SEND - SendConfirm ||============================== //
 
 const SendConfirm =({ formik, handleStep, handleFormikValue }) => {
   const theme = useTheme();
@@ -39,56 +39,56 @@ const SendConfirm =({ formik, handleStep, handleFormikValue }) => {
   }
 
   return (
-	<Grid container direction="column">
-		<SubCard>
-			<Grid container direction="column" spacing={1}>
-				<Grid item>
-					<TypoGraphy sx={{ fontSize: '1rem', fontWeight: 400 }}>From: {wallet.address} </TypoGraphy>
-				</Grid>
-				<Grid item>
-					<TypoGraphy sx={{ fontSize: '1rem', fontWeight: 400 }}>To: {formik.values.to} </TypoGraphy>
-				</Grid>
-				<Grid item>
-					<TypoGraphy sx={{ fontSize: '1rem', fontWeight: 400 }}>Amount: {formik.values.value} {formik.values.asset} </TypoGraphy>
-				</Grid>
-				<Grid item>
-					<TypoGraphy sx={{ fontSize: '1rem', fontWeight: 400 }}>Gas Fee: {weiToEther(formik.values.gasPrice[formik.values.selectedFeeType]*formik.values.gasLimit)} GoerliETH</TypoGraphy>
-				</Grid>
-				<Grid item>
-					{
-						formik.values.asset === 'GoerliETH' ? (
-							<TypoGraphy sx={{ fontSize: '1rem', fontWeight: 400 }}>Total: {weiToEther(etherToWei(formik.values.value) + (formik.values.gasPrice[formik.values.selectedFeeType]*formik.values.gasLimit))} GoerliETH</TypoGraphy>
-						) : (
-							<TypoGraphy sx={{ fontSize: '1rem', fontWeight: 400 }}>Total: {formik.values.value}{formik.values.asset} + {weiToEther(formik.values.gasPrice[formik.values.selectedFeeType]*formik.values.gasLimit)} GoerliETH</TypoGraphy>
-						)
-					}
-				</Grid>
-			</Grid>
-		</SubCard>
-		<Grid container direction="row">
-			<Box sx={{ mt: 2, flexGrow: 1, padding: '0.1rem' }}>
-				<AnimateButton>
-					<Button disableElevation onClick={handlePrevButton} fullWidth={true} size="large" type="submit" variant="contained" sx={{
-						bgcolor: theme.palette.secondary.light,
-						color: "#5f5f5f",
-						"&:hover": {
-							bgcolor: theme.palette.secondary['200'],
-							color: "#0d0d0d",
+		<Grid container direction="column">
+			<SubCard>
+				<Grid container direction="column" spacing={1}>
+					<Grid item>
+						<TypoGraphy sx={{ fontSize: '1rem', fontWeight: 400 }}>From: {wallet.address} </TypoGraphy>
+					</Grid>
+					<Grid item>
+						<TypoGraphy sx={{ fontSize: '1rem', fontWeight: 400 }}>To: {formik.values.to} </TypoGraphy>
+					</Grid>
+					<Grid item>
+						<TypoGraphy sx={{ fontSize: '1rem', fontWeight: 400 }}>Amount: {formik.values.value} {formik.values.asset} </TypoGraphy>
+					</Grid>
+					<Grid item>
+						<TypoGraphy sx={{ fontSize: '1rem', fontWeight: 400 }}>Gas Fee: {weiToEther(formik.values.gasPrice[formik.values.selectedFeeType]*formik.values.gasLimit)} GoerliETH</TypoGraphy>
+					</Grid>
+					<Grid item>
+						{
+							formik.values.asset === 'GoerliETH' ? (
+								<TypoGraphy sx={{ fontSize: '1rem', fontWeight: 400 }}>Total: {weiToEther(etherToWei(formik.values.value) + (formik.values.gasPrice[formik.values.selectedFeeType]*formik.values.gasLimit))} GoerliETH</TypoGraphy>
+							) : (
+								<TypoGraphy sx={{ fontSize: '1rem', fontWeight: 400 }}>Total: {formik.values.value}{formik.values.asset} + {weiToEther(formik.values.gasPrice[formik.values.selectedFeeType]*formik.values.gasLimit)} GoerliETH</TypoGraphy>
+							)
 						}
-					}}>
-					이전
-					</Button>
-				</AnimateButton>
-			</Box>
-			<Box sx={{ mt: 2, flexGrow: 1, padding: '0.1rem' }}>
-				<AnimateButton>
-					<Button disableElevation onClick={handleNextButton} fullWidth={true} size="large" variant="contained" color="secondary">
-					확인 및 전송
-					</Button>
-				</AnimateButton>
-			</Box>
+					</Grid>
+				</Grid>
+			</SubCard>
+			<Grid container direction="row">
+				<Box sx={{ mt: 2, flexGrow: 1, padding: '0.1rem' }}>
+					<AnimateButton>
+						<Button disableElevation onClick={handlePrevButton} fullWidth={true} size="large" type="submit" variant="contained" sx={{
+							bgcolor: theme.palette.secondary.light,
+							color: "#5f5f5f",
+							"&:hover": {
+								bgcolor: theme.palette.secondary['200'],
+								color: "#0d0d0d",
+							}
+						}}>
+						이전
+						</Button>
+					</AnimateButton>
+				</Box>
+				<Box sx={{ mt: 2, flexGrow: 1, padding: '0.1rem' }}>
+					<AnimateButton>
+						<Button disableElevation onClick={handleNextButton} fullWidth={true} size="large" variant="contained" color="secondary">
+						확인 및 전송
+						</Button>
+					</AnimateButton>
+				</Box>
+			</Grid>
 		</Grid>
-	</Grid>
   );
 };
 

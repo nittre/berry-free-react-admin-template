@@ -24,14 +24,14 @@ const AuthenticationRoutes = {
 		path: '/wallet',
 		element: <RestoreOrCreate />
 	},
-    {
-      path: '/wallet/restore',
-      element: <RestoreWallet />
-    },
-    {
-      path: '/wallet/create',
-      element: <CreateWallet />
-    }
+	{
+		path: '/wallet/restore',
+		element: <RestoreWallet />
+	},
+	{
+		path: '/wallet/create',
+		element: <CreateWallet />
+	}
   ]
 };
 
