@@ -1,11 +1,7 @@
-import PropTypes from 'prop-types';
-
-// material-ui
-import { useTheme } from '@mui/material/styles';
 import { Grid } from '@mui/material';
 import TypoGraphy from '@mui/material/Typography';
-
-// project imports
+import { useTheme } from '@mui/material/styles';
+import PropTypes from 'prop-types';
 import SubCard from 'ui-component/cards/SubCard';
 
 // ==============================|| Send - SendLoad ||============================== //

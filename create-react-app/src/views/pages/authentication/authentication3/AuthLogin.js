@@ -1,17 +1,11 @@
-import { Link } from 'react-router-dom';
-
-// material-ui
+import { Grid, Stack, Typography, useMediaQuery } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
-import { Divider, Grid, Stack, Typography, useMediaQuery } from '@mui/material';
-
-// project imports
-import AuthWrapper1 from '../AuthWrapper1';
-import AuthCardWrapper from '../AuthCardWrapper';
-import AuthLogin from '../auth-forms/AuthLogin';
+import { Link } from 'react-router-dom';
 import Logo from 'ui-component/Logo';
 import AuthFooter from 'ui-component/cards/AuthFooter';
-
-// assets
+import AuthCardWrapper from '../AuthCardWrapper';
+import AuthWrapper1 from '../AuthWrapper1';
+import AuthLogin from '../auth-forms/AuthLogin';
 
 // ================================|| AUTH3 - LOGIN ||================================ //
 
@@ -40,7 +34,7 @@ const Login = () => {
                             환영합니다!
                           </Typography>
                           <Typography variant="caption" fontSize="16px" textAlign={matchDownSM ? 'center' : 'inherit'}>
-							로그인을 진행하세요
+														로그인을 진행하세요
                           </Typography>
                         </Stack>
                       </Grid>

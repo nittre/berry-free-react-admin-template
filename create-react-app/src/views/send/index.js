@@ -1,21 +1,14 @@
-import { useEffect, useState } from 'react';
-
-// material-ui
 import { CardContent, Grid } from '@mui/material';
-
-// project imports
+import { useFormik } from 'formik';
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
-import { isValidAddress } from 'utils/crypto';
 import MainCard from 'ui-component/cards/MainCard';
-import { useFormik } from 'formik';
 import SkeletonPopularCard from 'ui-component/cards/Skeleton/PopularCard';
-
-
-// third party
+import { isValidAddress } from 'utils/crypto';
 import * as Yup from 'yup';
-import SendInit from './SendInit';
 import SendConfirm from './SendConfirm';
+import SendInit from './SendInit';
 import SendLoad from './SendLoad';
 
 // ==============================|| Send - Index ||============================== //
@@ -27,11 +20,11 @@ const Send = () => {
   const[ step, setStep ] = useState('init') // init, confirm, load, success, fail
 
   const handleStep = (newStep) => {
-	setStep(newStep)
+		setStep(newStep)
   }
   
   const validateToField = (value) => {
-	return isValidAddress(value)
+		return isValidAddress(value)
   }
 
   const validationSchema = Yup.object().shape({
@@ -39,38 +32,37 @@ const Send = () => {
   });
 
   const formik = useFormik({
-	initialValues: {
-		asset: 'GoerliETH',
-		value: '0',
-		to: '',
-		from: wallet.address,
-		selectedFeeType: 'propose',
-		gasPrice: {
-			safe: BigInt(0),
-			propose: BigInt(0),
-			fast: BigInt(0)
+		initialValues: {
+			asset: 'GoerliETH',
+			value: '0',
+			to: '',
+			from: wallet.address,
+			selectedFeeType: 'propose',
+			gasPrice: {
+				safe: BigInt(0),
+				propose: BigInt(0),
+				fast: BigInt(0)
+			},
+			gasLimit: BigInt(0),
+			txResult: 'pending',
+			data: '',
+			token: {}
 		},
-		gasLimit: BigInt(0),
-		txResult: 'pending',
-		data: '',
-		token: {}
-	},
-	validationSchema: validationSchema
+		validationSchema: validationSchema
   })
 
   const handleFormikValue = (field, value) => {
-	formik.setFieldValue(field, value)
+		formik.setFieldValue(field, value)
   }
 
-
   useEffect(() => {
-	setLoading(false);
+		setLoading(false);
   }, []);
 
   useEffect(() => {
-	if (Object.keys(wallet).length == 0) {
-		navigate('/login')
-	} 
+		if (Object.keys(wallet).length == 0) {
+			navigate('/login')
+		} 
   })
 
   return (

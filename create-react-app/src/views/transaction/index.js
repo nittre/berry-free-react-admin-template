@@ -1,12 +1,8 @@
-import { useEffect, useState } from 'react';
-
-// material-ui
 import { Grid } from '@mui/material';
-
-// project imports
-import { gridSpacing } from 'store/constant';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
+import { gridSpacing } from 'store/constant';
 import TransactionList from './TransactionList';
 
 // ==============================|| TRANSACTION ||============================== //
@@ -18,18 +14,18 @@ const Transaction = () => {
   const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
-	setLoading(false);
-	if (Object.keys(networkProvider).length == 0) {
-		setLoading(true)
-		dispatch({type: 'SET_PROVIDER'})
-		setLoading(false)
-	}
+		setLoading(false);
+		if (Object.keys(networkProvider).length == 0) {
+			setLoading(true)
+			dispatch({type: 'SET_PROVIDER'})
+			setLoading(false)
+		}
   }, []);
 
   useEffect(() => {
-	if (Object.keys(wallet).length == 0) {
-		navigate('/login')
-	}
+		if (Object.keys(wallet).length == 0) {
+			navigate('/login')
+		}
   })
 
   return (

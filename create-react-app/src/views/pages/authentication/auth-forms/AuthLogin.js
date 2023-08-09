@@ -1,40 +1,31 @@
-import { useState } from 'react';
-import { useSelector } from 'react-redux';
-
-// material-ui
-import { useTheme } from '@mui/material/styles';
-import {
-  Box,
-  Button,
-  Checkbox,
-  Divider,
-  FormControl,
-  FormControlLabel,
-  FormHelperText,
-  Grid,
-  IconButton,
-  InputAdornment,
-  InputLabel,
-  OutlinedInput,
-  Stack,
-  Typography,
-  useMediaQuery
-} from '@mui/material';
-
-// third party
-import * as Yup from 'yup';
-import { Formik } from 'formik';
-
-// project imports
-import useScriptRef from 'hooks/useScriptRef';
-import AnimateButton from 'ui-component/extended/AnimateButton';
-
-// assets
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
-
+import {
+	Box,
+	Button,
+	Checkbox,
+	Divider,
+	FormControl,
+	FormControlLabel,
+	FormHelperText,
+	Grid,
+	IconButton,
+	InputAdornment,
+	InputLabel,
+	OutlinedInput,
+	Stack,
+	Typography,
+	useMediaQuery
+} from '@mui/material';
+import { useTheme } from '@mui/material/styles';
 import Google from 'assets/images/icons/social-google.svg';
+import { Formik } from 'formik';
+import useScriptRef from 'hooks/useScriptRef';
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
+import AnimateButton from 'ui-component/extended/AnimateButton';
+import * as Yup from 'yup';
 
 // ============================||  LOGIN ||============================ //
 
@@ -45,16 +36,16 @@ const AuthLoginForm = ({ ...others }) => {
   const matchDownSM = useMediaQuery(theme.breakpoints.down('md'));
   const customization = useSelector((state) => state.customization);
   const [checked, setChecked] = useState(true);
+	const [showPassword, setShowPassword] = useState(false);
 
   const googleHandler = async () => {
     navigate('/wallet')
   };
 
   const handleSignInButtonClick = async () => {
-	navigate('/wallet')
+		navigate('/wallet')
   }
 
-  const [showPassword, setShowPassword] = useState(false);
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);
   };

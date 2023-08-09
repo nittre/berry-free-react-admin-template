@@ -1,15 +1,11 @@
-import { Link, useNavigate } from 'react-router-dom';
-
-// material-ui
+import { Box, Button, Grid, Stack, Typography, useMediaQuery } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
-import { Grid, Stack, Typography, useMediaQuery, Box, Button } from '@mui/material';
-
-// project imports
-import AuthWrapper1 from '../AuthWrapper1';
-import AuthCardWrapper from '../AuthCardWrapper';
+import { Link, useNavigate } from 'react-router-dom';
 import Logo from 'ui-component/Logo';
 import AuthFooter from 'ui-component/cards/AuthFooter';
 import AnimateButton from 'ui-component/extended/AnimateButton';
+import AuthCardWrapper from '../AuthCardWrapper';
+import AuthWrapper1 from '../AuthWrapper1';
 
 // ===============================|| RestoreOrCreate ||=============================== //
 
@@ -19,7 +15,7 @@ const RestoreOrCreate = () => {
   const matchDownSM = useMediaQuery(theme.breakpoints.down('md'));
 
   const handleButtonClick = (action) => {
-	navigate(`/wallet/${action}`)
+		navigate(`/wallet/${action}`)
   }
   
   return (
@@ -43,27 +39,27 @@ const RestoreOrCreate = () => {
                             지갑 생성 또는 복구
                           </Typography>
                           <Typography variant="caption" fontSize="16px" textAlign={matchDownSM ? 'center' : 'inherit'}>
-							지갑을 생성하거나, 복구하세요.
+														지갑을 생성하거나, 복구하세요.
                           </Typography>
                         </Stack>
                       </Grid>
                     </Grid>
                   </Grid>
-				</Grid>
-				<Box sx={{ mt: 2 }}>
-					<AnimateButton>
-						<Button onClick={() => handleButtonClick('create')} disableElevation fullWidth size="large" type="submit" variant="contained" color="secondary">
-							생성하기
-						</Button>
-					</AnimateButton>
-				</Box>
-				<Box sx={{ mt: 2 }}>
-					<AnimateButton>
-						<Button onClick={() => handleButtonClick('restore')} disableElevation fullWidth size="large" type="submit" variant="contained" color="secondary">
-							복구하기
-						</Button>
-					</AnimateButton>
-				</Box>
+								</Grid>
+								<Box sx={{ mt: 2 }}>
+									<AnimateButton>
+										<Button onClick={() => handleButtonClick('create')} disableElevation fullWidth size="large" type="submit" variant="contained" color="secondary">
+											생성하기
+										</Button>
+									</AnimateButton>
+								</Box>
+								<Box sx={{ mt: 2 }}>
+									<AnimateButton>
+										<Button onClick={() => handleButtonClick('restore')} disableElevation fullWidth size="large" type="submit" variant="contained" color="secondary">
+											복구하기
+										</Button>
+									</AnimateButton>
+								</Box>
               </AuthCardWrapper>
             </Grid>
           </Grid>

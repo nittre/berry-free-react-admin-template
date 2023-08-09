@@ -1,18 +1,12 @@
-import { useEffect, useState } from 'react';
-
-// material-ui
 import { Grid } from '@mui/material';
-
-// project imports
+import { useFormik } from 'formik';
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { isValidAddress } from 'utils/crypto';
-import ImportTokenInit from './ImportTokenInit';
-import { useFormik } from 'formik';
-
-// third party
 import * as Yup from 'yup';
 import ImportTokenConfirm from './ImportTokenConfirm';
+import ImportTokenInit from './ImportTokenInit';
 
 // ==============================|| DEFAULT DASHBOARD ||============================== //
 
@@ -24,37 +18,37 @@ const ImportToken = () => {
   const [step, setStep] = useState('init') // init, confirm
 
   useEffect(() => {
-	setLoading(false);
+		setLoading(false);
   }, []);
 
   useEffect(() => {
-	if (Object.keys(wallet).length == 0) {
-		navigate('/login')
-	} 
+		if (Object.keys(wallet).length == 0) {
+			navigate('/login')
+		} 
   })
 
   const handleStep = (newStep) => {
-	setStep(newStep)
+		setStep(newStep)
   }
 
   const validateToField = (value) => {
-	return isValidAddress(value)
+		return isValidAddress(value)
   }
 
   const updateFormikValue = (field, value) => {
-	formik.setFieldValue(field, value)
+		formik.setFieldValue(field, value)
   }
 
   const formik = useFormik({
-	initialValues: {
-		tokenAddress: '',
-		tokenSymbol: '',
-		tokenDecimals: 0,
-		balance: ''
-	},
-	validationSchema: Yup.object().shape({
-		tokenAddress: Yup.string().required('address 필드는 필수 항목입니다.').test('validateToField', validateToField)
-	})
+		initialValues: {
+			tokenAddress: '',
+			tokenSymbol: '',
+			tokenDecimals: 0,
+			balance: ''
+		},
+		validationSchema: Yup.object().shape({
+			tokenAddress: Yup.string().required('address 필드는 필수 항목입니다.').test('validateToField', validateToField)
+		})
   })
 
 

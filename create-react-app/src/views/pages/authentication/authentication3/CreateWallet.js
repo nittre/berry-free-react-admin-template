@@ -1,19 +1,15 @@
-import { Link, useNavigate } from 'react-router-dom';
-
-// material-ui
+import { Box, Button, FormControl, Grid, Input, Stack, Typography, useMediaQuery } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
-import { Grid, Stack, Typography, useMediaQuery, Box, Button, FormControl, Input } from '@mui/material';
-
-// project imports
-import AuthWrapper1 from '../AuthWrapper1';
-import AuthCardWrapper from '../AuthCardWrapper';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
 import Logo from 'ui-component/Logo';
 import AuthFooter from 'ui-component/cards/AuthFooter';
 import AnimateButton from 'ui-component/extended/AnimateButton';
 import { createWallet } from 'utils/crypto';
-import { useState } from 'react';
 import { pasteToClipboard } from 'utils/utils';
-import { useDispatch } from 'react-redux';
+import AuthCardWrapper from '../AuthCardWrapper';
+import AuthWrapper1 from '../AuthWrapper1';
 
 // ===============================|| Create Wallet ||=============================== //
 
@@ -30,37 +26,37 @@ const CreateWallet = () => {
   const [isPhrasePasted, setIsPhrasePasted] = useState(false)
 
   const dispatchWallet = () => {
-	dispatch({
-		type: 'CREATE_WALLET',
-		payload: {
-			wallet
-		}
-	})
+		dispatch({
+			type: 'CREATE_WALLET',
+			payload: {
+				wallet
+			}
+		})
   }
 
   const handleCreateButtonClick = () => {
-	try {
-		if (step == createWalletStep[0]){
-			const wallet = createWallet()
-			setWallet(wallet)
-			setPhrase(wallet.mnemonic.phrase.split(' '))
-			setStep(createWalletStep[1])
-		} else if (step == createWalletStep[1]) {
-			dispatchWallet()
-			navigate('/')
+		try {
+			if (step == createWalletStep[0]){
+				const wallet = createWallet()
+				setWallet(wallet)
+				setPhrase(wallet.mnemonic.phrase.split(' '))
+				setStep(createWalletStep[1])
+			} else if (step == createWalletStep[1]) {
+				dispatchWallet()
+				navigate('/')
+			}
+		} catch(e) {
+			console.error(e)
 		}
-	} catch(e) {
-		console.error(e)
-	}
   }
 
   const handlePasteButtonClick = (e) => {
-	if (pasteToClipboard(phrase.join(' '))) {
-		setIsPhrasePasted(true)
-	}
-	else {
-		console.error('something wrong')
-	}
+		if (pasteToClipboard(phrase.join(' '))) {
+			setIsPhrasePasted(true)
+		}
+		else {
+			console.error('something wrong')
+		}
   }
 
   return (
@@ -84,81 +80,81 @@ const CreateWallet = () => {
                             지갑 생성하기
                           </Typography>
                           <Typography variant="caption" fontSize="16px" textAlign={matchDownSM ? 'center' : 'inherit'}>
-							{
-								step === 'start' ? (
-								<>버튼을 누르면 새로운 지갑을 생성합니다.</>
-								) : step === 'pasteMnemonic' ? (
-								<>
-								<p>
-									니모닉을 복사하세요.
-								</p>
-								<p>
-									⚠️ 이 페이지를 벗어나면 더 이상 니모닉 문구를 확인할 수 없습니다!
-									꼭 니모닉 문구를 복사한 후, 다른 곳에 백업해두세요!
-								</p>
-								</>
-								) : null
-							}
+														{
+															step === 'start' ? (
+															<>버튼을 누르면 새로운 지갑을 생성합니다.</>
+															) : step === 'pasteMnemonic' ? (
+															<>
+															<p>
+																니모닉을 복사하세요.
+															</p>
+															<p>
+																⚠️ 이 페이지를 벗어나면 더 이상 니모닉 문구를 확인할 수 없습니다!
+																꼭 니모닉 문구를 복사한 후, 다른 곳에 백업해두세요!
+															</p>
+															</>
+															) : null
+														}
                           </Typography>
                         </Stack>
                       </Grid>
                     </Grid>
                   </Grid>
-				</Grid>
-				{
-					step === 'pasteMnemonic' ? (
-						<>
-							{
-								Array.from({length: 12}, (_, index) => {
-									return <FormControl key={phrase[index]} sx={{...theme.typography.customInput}}>
-										<Input
-											id={phrase[index]}
-											type="text"
-											value={phrase[index]}
-											name={phrase[index]}
-										/>
-									</FormControl>
-								})
-							}
-						</>
-					) : null
-				}
-				{
-					step === 'pasteMnemonic' ? (
-					<>
-						<Box sx={{ mt: 2 }}>
-						<AnimateButton>
-							<Button onClick={handlePasteButtonClick} disableElevation fullWidth size="large" type="submit" variant="contained" color="secondary">
+								</Grid>
 								{
-									isPhrasePasted === false 
-									? (
-										<>복사하기</>
-									) : (
-										<>복사 완료!</>
-									)
+									step === 'pasteMnemonic' ? (
+										<>
+											{
+												Array.from({length: 12}, (_, index) => {
+													return <FormControl key={phrase[index]} sx={{...theme.typography.customInput}}>
+														<Input
+															id={phrase[index]}
+															type="text"
+															value={phrase[index]}
+															name={phrase[index]}
+														/>
+													</FormControl>
+												})
+											}
+										</>
+									) : null
 								}
-							</Button>
-						</AnimateButton>
-						</Box>
-					</>
-					) : null
-				}
+								{
+									step === 'pasteMnemonic' ? (
+									<>
+										<Box sx={{ mt: 2 }}>
+										<AnimateButton>
+											<Button onClick={handlePasteButtonClick} disableElevation fullWidth size="large" type="submit" variant="contained" color="secondary">
+												{
+													isPhrasePasted === false 
+													? (
+														<>복사하기</>
+													) : (
+														<>복사 완료!</>
+													)
+												}
+											</Button>
+										</AnimateButton>
+										</Box>
+									</>
+									) : null
+								}
 
-				<Box sx={{ mt: 2 }}>
-					<AnimateButton>
-					{
-						step === 'start' ? (
-							<Button onClick={handleCreateButtonClick} disableElevation fullWidth size="large" type="submit" variant="contained" color="secondary">
-								생성하기
-							</Button>
-						) : ( 
-							<Button disabled={!isPhrasePasted} onClick={handleCreateButtonClick} disableElevation fullWidth size="large" type="submit" variant="contained" color="secondary">
-								확인
-							</Button>
-						)
-					}
-					</AnimateButton>
-				</Box>
+								<Box sx={{ mt: 2 }}>
+									<AnimateButton>
+									{
+										step === 'start' ? (
+											<Button onClick={handleCreateButtonClick} disableElevation fullWidth size="large" type="submit" variant="contained" color="secondary">
+												생성하기
+											</Button>
+										) : ( 
+											<Button disabled={!isPhrasePasted} onClick={handleCreateButtonClick} disableElevation fullWidth size="large" type="submit" variant="contained" color="secondary">
+												확인
+											</Button>
+										)
+									}
+									</AnimateButton>
+								</Box>
               </AuthCardWrapper>
             </Grid>
           </Grid>

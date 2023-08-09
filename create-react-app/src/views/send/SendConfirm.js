@@ -1,16 +1,12 @@
-import PropTypes from 'prop-types';
-
-// material-ui
-import { useTheme } from '@mui/material/styles';
 import { Box, Button, Grid } from '@mui/material';
 import TypoGraphy from '@mui/material/Typography';
-
-// project imports
+import { useTheme } from '@mui/material/styles';
+import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
-import { etherToWei, sendEther, weiToEther } from 'utils/crypto';
-import AnimateButton from 'ui-component/extended/AnimateButton';
-import SubCard from 'ui-component/cards/SubCard';
 import { useNavigate } from 'react-router';
+import SubCard from 'ui-component/cards/SubCard';
+import AnimateButton from 'ui-component/extended/AnimateButton';
+import { etherToWei, sendEther, weiToEther } from 'utils/crypto';
 
 // ==============================|| Send - SendConfirm ||============================== //
 
@@ -20,29 +16,29 @@ const SendConfirm =({ formik, handleStep, handleFormikValue }) => {
   const {wallet, networkProvider} = useSelector(state => state)
 
   const handleNextButton = async () => {
-	handleStep('load')
+		handleStep('load')
 
-	const {from, to, value, gasPrice, gasLimit, selectedFeeType, data, token, asset} = formik.values
+		const {from, to, value, gasPrice, gasLimit, selectedFeeType, data, token, asset} = formik.values
 
-	let tx
-	if (asset === 'GoerliETH') {
-		tx = { from, to, value: String(etherToWei(value)), gasPrice: gasPrice[selectedFeeType], gasLimit}
-	} else {
-		tx = { from, to: token.tokenAddress, value: BigInt(0), data: data.data, gasPrice: gasPrice[selectedFeeType], gasLimit}
-	}
+		let tx
+		if (asset === 'GoerliETH') {
+			tx = { from, to, value: String(etherToWei(value)), gasPrice: gasPrice[selectedFeeType], gasLimit}
+		} else {
+			tx = { from, to: token.tokenAddress, value: BigInt(0), data: data.data, gasPrice: gasPrice[selectedFeeType], gasLimit}
+		}
 
-	const result = await sendEther(networkProvider, wallet, tx)
-	if (result) {
-		handleFormikValue('txResult', 'success')
-		navigate('/transaction')
-	} else {
-		handleFormikValue('txResult', 'fail')
-		navigate('/send')
-	}
+		const result = await sendEther(networkProvider, wallet, tx)
+		if (result) {
+			handleFormikValue('txResult', 'success')
+			navigate('/transaction')
+		} else {
+			handleFormikValue('txResult', 'fail')
+			navigate('/send')
+		}
   }
 
   const handlePrevButton = () => {
-	handleStep('init')
+		handleStep('init')
   }
 
   return (

@@ -39,8 +39,8 @@ export const getGasPrice = async ()=> {
 			`https://api.etherscan.io/api?module=gastracker&action=gasoracle&apikey=${apiKey}`,
 		)
 
-		const { SafeGasPrice, ProposeGasPrice, FastGasPrice } =
-			result.data.result
+		const { SafeGasPrice, ProposeGasPrice, FastGasPrice } = result.data.result
+		
 		return {
 			data: {
 				safe: BigInt(Math.ceil(Number(SafeGasPrice) * 1000000000)),

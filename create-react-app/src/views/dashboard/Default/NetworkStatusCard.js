@@ -1,20 +1,11 @@
-import PropTypes from 'prop-types';
-import { useState } from 'react';
-import TypoGraphy from '@mui/material/Typography';
-
-// project imports
-import SubCard from 'ui-component/cards/SubCard';
-
-// material-ui
-import { styled, useTheme } from '@mui/material/styles';
 import { Box, Grid, Typography } from '@mui/material';
-
-// project imports
+import TypoGraphy from '@mui/material/Typography';
+import { styled, useTheme } from '@mui/material/styles';
+import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 import MainCard from 'ui-component/cards/MainCard';
 import SkeletonEarningCard from 'ui-component/cards/Skeleton/EarningCard';
-import { useSelector } from 'react-redux';
-
-// assets
+import SubCard from 'ui-component/cards/SubCard';
 
 const CardWrapper = styled(MainCard)(({ theme }) => ({
   backgroundColor: theme.palette.secondary.dark,
@@ -65,25 +56,25 @@ const NetworkStatusCard = ({isLoading}) => {
 		) : (
 			<CardWrapper border={false} content={false}>
 				<Box sx={{ p: 2.25 }}>
-				<Grid container direction="column">
-					<Grid item>
-					<Grid container alignItems="center">
+					<Grid container direction="column">
 						<Grid item>
-						<Typography sx={{ fontSize: '1.5rem', fontWeight: 500, mr: 1, mt: 1.75, mb: 0.75 }}>Network</Typography>
+							<Grid container alignItems="center">
+								<Grid item>
+									<Typography sx={{ fontSize: '1.5rem', fontWeight: 500, mr: 1, mt: 1.75, mb: 0.75 }}>Network</Typography>
+								</Grid>
+							</Grid>
+							<SubCard>
+								<Grid container direction="column" spacing={1}>
+									<Grid item>
+										<TypoGraphy sx={{ fontSize: '1rem', fontWeight: 600 }}>Goerli TestNet</TypoGraphy>
+									</Grid>
+									<Grid item>
+										<TypoGraphy sx={{ fontSize: '1rem', fontWeight: 400 }}>block height: {blockNumber ? blockNumber : <>Loading...</>}</TypoGraphy>
+									</Grid>
+								</Grid>
+							</SubCard>
 						</Grid>
 					</Grid>
-					<SubCard>
-						<Grid container direction="column" spacing={1}>
-						<Grid item>
-							<TypoGraphy sx={{ fontSize: '1rem', fontWeight: 600 }}>Goerli TestNet</TypoGraphy>
-						</Grid>
-						<Grid item>
-							<TypoGraphy sx={{ fontSize: '1rem', fontWeight: 400 }}>block height: {blockNumber ? blockNumber : <>Loading...</>}</TypoGraphy>
-						</Grid>
-						</Grid>
-					</SubCard>
-					</Grid>
-				</Grid>
 				</Box>
 			</CardWrapper>
 		)}
