@@ -18,18 +18,9 @@ const Transaction = () => {
   const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
-	setLoading(false);
-	if (Object.keys(networkProvider).length == 0) {
-		setLoading(true)
-		dispatch({type: 'SET_PROVIDER'})
-		setLoading(false)
-	}
-  }, []);
-
-  useEffect(() => {
-	if (Object.keys(wallet).length == 0) {
-		navigate('/login')
-	}
+		if (Object.keys(wallet).length == 0) {
+			navigate('/login')
+		}
   })
 
   return (
